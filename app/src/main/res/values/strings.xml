@@ -2,4 +2,10 @@
     <string name="app_name">OttU</string>
 
     <string name="logo">logo</string>
+
+    <string name="nav_community">커뮤니티</string>
+    <string name="nav_recruit">팀원 찾기</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_notice">알림</string>
+    <string name="nav_mypage">마이페이지</string>
 </resources>
