@@ -2,10 +2,30 @@
     <string name="app_name">OttU</string>
 
     <string name="logo">logo</string>
+    <string name="nickname">닉네임</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
 
     <string name="nav_community">커뮤니티</string>
     <string name="nav_recruit">팀원 찾기</string>
     <string name="nav_home">Home</string>
     <string name="nav_notice">알림</string>
     <string name="nav_mypage">마이페이지</string>
+
+    <string name="genre_1">드라마</string>
+    <string name="genre_2">멜로/로맨스</string>
+    <string name="genre_3">범죄</string>
+    <string name="genre_4">스릴러</string>
+    <string name="genre_5">사극</string>
+    <string name="genre_6">성인/애로</string>
+    <string name="genre_7">애니메이션</string>
+    <string name="genre_8">액션</string>
+    <string name="genre_9">코미디</string>
+    <string name="genre_10">판타지</string>
+    <string name="genre_11">SF</string>
+    <string name="genre_12">기타</string>
+
+    <string name="participate_question">참여 요청하시겠습니까?</string>
+    <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며 \n 이를 통해 팀원 간 연락이 가능합니다.</string>
+    <string name="participate_notice2">작성자가 요청 수락 시, 팀원으로 모집됩니다.</string>
 </resources>

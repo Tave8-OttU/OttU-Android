@@ -2,9 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_initial_logo"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
 
     <LinearLayout
         android:id="@+id/ll_initial_setting"
@@ -13,7 +25,7 @@
         android:orientation="vertical"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_initial_logo"
         app:layout_constraintBottom_toTopOf="@id/bt_initial_submit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -26,14 +38,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <EditText
@@ -48,15 +59,14 @@
                     android:paddingBottom="8dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="@color/bg_bt_color"
                     android:textSize="15sp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_initial_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_roundcorner"
+                    android:background="@drawable/bg_r20white"
                     android:layout_marginStart="30dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
@@ -65,7 +75,8 @@
                     android:paddingRight="15dp"
                     android:paddingBottom="8dp"
                     android:text="중복 확인"
-                    android:textSize="12sp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -74,43 +85,155 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="컨텐츠 관심 장르"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="컨텐츠 관심 장르"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="*최대 3가지"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/tv_initial_genre1"
+                    android:id="@+id/bt_initial_genre1"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_non_select"
-                    android:text="로맨스"
-                    android:textSize="15sp"/>
+                    android:text="@string/genre_1"
+                    android:textSize="15sp" />
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/tv_initial_genre2"
+                    android:id="@+id/bt_initial_genre2"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_button_non_select"
-                    android:text="로맨스"/>
+                    android:text="@string/genre_2"
+                    android:textSize="15sp" />
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/tv_initial_genre3"
+                    android:id="@+id/bt_initial_genre3"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_non_select"
-                    android:text="로맨스"/>
+                    android:text="@string/genre_3"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_4"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_5"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre6"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_6"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre7"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_7"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre8"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_8"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre9"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_9"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre10"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_10"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre11"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_11"
+                    android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_initial_genre12"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_non_select"
+                    android:text="@string/genre_12"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -120,7 +243,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="@color/sub_color"
+        android:backgroundTint="@color/main_color"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:layout_marginStart="30dp"
@@ -132,6 +255,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.92" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

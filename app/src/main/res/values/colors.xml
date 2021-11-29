@@ -8,7 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="main_color">#FF343434</color>
-    <color name="sub_color">#FF45C7FF</color>
+    <color name="main_bg_color">#FF343434</color>
+    <color name="main_transparent_color">#99343434</color>
+    <color name="main_color">#FF45C7FF</color>
+    <color name="light_skyblue">#FFBBEBFF</color>
     <color name="bg_bt_color">#99FFFFFF</color>
+    <color name="bg_fab_color">#44FFFFFF</color>
+    <color name="sub_text_color">#FFC2C2C2</color>
+    <color name="light_grey2">#FFC4C4C4</color>
+    <color name="bg_black_color">#BB000000</color>
+    <color name="red_notice">#FFFFA49E</color>
 </resources>

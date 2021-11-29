@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="모집 관련 OTT 선택"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott1"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_netflix" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott3"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_wavve" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott5"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_disney" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="45dp"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott2"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_tving" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott4"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_watcha" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibt_frag_recruit_ott6"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/bg_r5white"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ott_coupang_play" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
