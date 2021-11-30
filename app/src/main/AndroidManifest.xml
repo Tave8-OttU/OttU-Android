@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".InitialSettingActivity"/>
+        <activity android:name=".RecruitActivity"/>
+        <activity android:name=".RecruitingActivity"/>
     </application>
 
 </manifest>

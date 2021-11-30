@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_ott_level"
+        android:background="@drawable/bg_r5black_sblue"
         android:orientation="vertical"
         android:padding="15dp">
         <TextView
@@ -67,7 +67,7 @@
                 android:progressDrawable="@drawable/bg_progress"/>
 
             <TextView
-                android:id="@+id/tv_dialog_profile_progress"
+                android:id="@+id/tv_dialog_profile_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

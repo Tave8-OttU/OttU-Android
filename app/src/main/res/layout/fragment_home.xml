@@ -33,18 +33,18 @@
                 android:layout_height="20dp"/>
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_home_payment"
+                android:id="@+id/vp_home_charge"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/bg_viewpager"
+                android:background="@drawable/bg_r10white"
                 android:orientation="horizontal" />
 
             <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/ci_home_payment"
+                android:id="@+id/ci_home_charge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:ci_drawable="@drawable/indicator_dot_on"
@@ -77,7 +77,7 @@
                 android:id="@+id/rv_home_community"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_rblack"
+                android:background="@drawable/bg_r10black_sblue"
                 android:nestedScrollingEnabled="false" />
         </LinearLayout>
     </LinearLayout>

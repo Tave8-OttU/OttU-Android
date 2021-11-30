@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_recruit_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/main_bg_color"
     android:padding="10dp"
     android:gravity="center_vertical"
     android:orientation="horizontal">
@@ -21,7 +23,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_bt_recruit"
+        android:background="@drawable/bg_r5blue"
         android:minHeight="0dp"
         android:minWidth="0dp"
         android:paddingTop="8dp"

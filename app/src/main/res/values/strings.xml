@@ -28,4 +28,20 @@
     <string name="participate_question">참여 요청하시겠습니까?</string>
     <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며 \n 이를 통해 팀원 간 연락이 가능합니다.</string>
     <string name="participate_notice2">작성자가 요청 수락 시, 팀원으로 모집됩니다.</string>
+    
+    <string name="recruiting_select_charge">요금제 선택</string>
+    <string name="recruiting_step_in_progress">진행 방법</string>
+    <string name="recruiting_1">1. </string>
+    <string name="recruiting_2">2. </string>
+    <string name="recruiting_3">3. </string>
+    <string name="recruiting_4">4. </string>
+    <string name="recruiting_1_content">참여자 모집 글 작성</string>
+    <string name="recruiting_2_content">참여자 중 팀원 선택</string>
+    <string name="recruiting_2_content2">*오뜨 Level과 프로필을 참고하세요:)</string>
+    <string name="recruiting_3_content">팀원 선택 후, 팀원의 카카오 아이디 확인</string>
+    <string name="recruiting_4_content">1주일 내로, 팀원들과 소통 후 결제 일자 입력</string>
+    <string name="recruiting_notice1">*팀원 중 한 명이라도 해지 의사를 밝히면 팀은 해체됩니다.</string>
+    <string name="recruiting_notice2">*팀 해체 시, 오뜨 level에 적용되는 팀원 간의 평가가 이루어집니다.</string>
+    <string name="recruiting_check">위 사항들을 확인했습니다.</string>
+    <string name="recruiting_submit">모집 작성 완료</string>
 </resources>
