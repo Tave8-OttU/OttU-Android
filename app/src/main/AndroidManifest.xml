@@ -22,6 +22,7 @@
         <activity android:name=".InitialSettingActivity"/>
         <activity android:name=".RecruitActivity"/>
         <activity android:name=".RecruitingActivity"/>
+        <activity android:name=".AddMyOttActivity"/>
     </application>
 
 </manifest>

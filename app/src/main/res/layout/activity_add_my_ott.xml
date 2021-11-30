@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_addmyott_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_r5white"
+                android:backgroundTint="@color/bg_black_color2"
+                android:orientation="vertical"
+                android:padding="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="OTT 서비스 선택"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott1"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_r5white_sblue"
+                            android:padding="15dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_netflix" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott3"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_r5white"
+                            android:padding="15dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_wavve" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott5"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_r5white"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_disney" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott2"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_r5white"
+                            android:padding="20dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_tving" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott4"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_r5white"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_watcha" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibt_addmyott_ott6"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_r5white"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_ott_coupang_play" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_r5white"
+                android:backgroundTint="@color/bg_black_color2"
+                android:orientation="vertical"
+                android:padding="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recruiting_select_charge"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_addmyott_charge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_r5white"
+                android:backgroundTint="@color/bg_black_color2"
+                android:orientation="vertical"
+                android:padding="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="결제 일자"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="*결제 알림일"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="매월"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/et_addmyott_payment_day"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_r5black_sblue"
+                        android:inputType="number"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="Autofill,LabelFor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_addmyott_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="OTT 서비스 추가"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -5,6 +5,7 @@
     <string name="nickname">닉네임</string>
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
+    <string name="terminate">해지</string>
 
     <string name="nav_community">커뮤니티</string>
     <string name="nav_recruit">팀원 찾기</string>

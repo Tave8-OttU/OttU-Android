@@ -13,13 +13,4 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:src="@drawable/icon_back" />
-
-    <ImageView
-        android:id="@+id/iv_ab_recruit_ott"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/ibt_ab_recruit_back"
-        android:layout_marginStart="15dp"
-        android:src="@drawable/icon_ott_netflix" />
 </RelativeLayout>

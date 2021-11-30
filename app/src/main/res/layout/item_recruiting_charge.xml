@@ -6,7 +6,7 @@
     android:padding="20dp">
     <!--만약 선택된 항목이라면 background가 @drawable/bg_r5black_sblue이면 됨!-->
     <TextView
-        android:id="@+id/tv_item_recruiting_name"
+        android:id="@+id/tv_item_recruiting_rateplan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -20,11 +20,22 @@
         android:id="@+id/tv_item_recruiting_charge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tv_item_recruiting_rateplan"
+        android:layout_toStartOf="@id/tv_item_recruiting_yuan"
+        android:text="9,500"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/main_color"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_item_recruiting_yuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/tv_item_recruiting_name"
-        android:layout_marginStart="15dp"
-        android:text="9,500원"
+        android:layout_marginStart="5dp"
+        android:text="원"
         android:textAlignment="viewEnd"
         android:textColor="@color/main_color"
         android:textSize="14sp"
