@@ -61,7 +61,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_tving" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -88,7 +88,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_wavve" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -115,7 +115,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_watcha" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -142,7 +142,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_disney" />
 
                 <androidx.appcompat.widget.AppCompatImageButton

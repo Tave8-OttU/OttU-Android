@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:src="@drawable/icon_ott_netflix" />
 
     <androidx.appcompat.widget.AppCompatImageButton

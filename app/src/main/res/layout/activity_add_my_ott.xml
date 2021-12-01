@@ -50,8 +50,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:background="@drawable/bg_r5white_sblue"
-                            android:padding="15dp"
-                            android:scaleType="fitCenter"
+                            android:padding="20dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_netflix" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -61,7 +61,7 @@
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="15dp"
-                            android:scaleType="fitCenter"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_wavve" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -70,8 +70,8 @@
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
-                            android:padding="5dp"
-                            android:scaleType="fitCenter"
+                            android:padding="20dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_disney" />
                     </LinearLayout>
 
@@ -89,8 +89,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:background="@drawable/bg_r5white"
-                            android:padding="20dp"
-                            android:scaleType="fitCenter"
+                            android:padding="25dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_tving" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -99,8 +99,8 @@
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
-                            android:padding="10dp"
-                            android:scaleType="fitCenter"
+                            android:padding="18dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_watcha" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -109,8 +109,8 @@
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
-                            android:padding="5dp"
-                            android:scaleType="fitCenter"
+                            android:padding="18dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_coupang_play" />
                     </LinearLayout>
                 </LinearLayout>

@@ -21,6 +21,6 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/ibt_ab_recruiting_back"
         android:layout_marginStart="15dp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:src="@drawable/icon_ott_netflix" />
 </RelativeLayout>
