@@ -46,7 +46,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott1"
+                            android:id="@+id/ibt_addmyott_netflix"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:background="@drawable/bg_r5white_sblue"
@@ -55,7 +55,7 @@
                             android:src="@drawable/icon_ott_netflix" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott3"
+                            android:id="@+id/ibt_addmyott_wavve"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
@@ -65,7 +65,7 @@
                             android:src="@drawable/icon_ott_wavve" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott5"
+                            android:id="@+id/ibt_addmyott_disney"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
@@ -85,7 +85,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott2"
+                            android:id="@+id/ibt_addmyott_tving"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:background="@drawable/bg_r5white"
@@ -94,7 +94,7 @@
                             android:src="@drawable/icon_ott_tving" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott4"
+                            android:id="@+id/ibt_addmyott_watcha"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"
@@ -104,7 +104,7 @@
                             android:src="@drawable/icon_ott_watcha" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/ibt_addmyott_ott6"
+                            android:id="@+id/ibt_addmyott_coupangplay"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_marginTop="20dp"

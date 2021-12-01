@@ -91,7 +91,7 @@
             android:background="@drawable/bg_bt_no"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:text="@string/cancel"
+            android:text="@string/delete"
             android:textColor="@color/red_notice"
             android:textSize="16sp"
             android:textStyle="bold"/>

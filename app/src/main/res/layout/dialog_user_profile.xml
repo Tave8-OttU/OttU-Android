@@ -111,7 +111,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_bt_genre"
             android:text="@string/genre_1"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_profile_genre2"
             android:layout_width="0dp"
@@ -121,7 +121,7 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/bg_bt_genre"
             android:text="@string/genre_2"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_profile_genre3"
             android:layout_width="0dp"
@@ -129,6 +129,6 @@
             android:layout_weight="1"
             android:background="@drawable/bg_bt_genre"
             android:text="@string/genre_3"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>
