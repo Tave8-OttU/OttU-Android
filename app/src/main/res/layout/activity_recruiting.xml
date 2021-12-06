@@ -13,6 +13,7 @@
         app:contentInsetEnd="0dp" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_recruiting"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -30,7 +31,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/recruiting_select_charge"
+                    android:text="@string/recruiting_select_rateplan"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -196,6 +197,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_recruiting_notification1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -206,6 +208,7 @@
                 android:textColor="@color/red_notice"
                 android:textSize="14sp" />
             <TextView
+                android:id="@+id/tv_recruiting_notification2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -229,6 +232,7 @@
                     android:button="@android:color/transparent"
                     android:background="@drawable/checkbox_design"/>
                 <TextView
+                    android:id="@+id/tv_recruiting_agree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"

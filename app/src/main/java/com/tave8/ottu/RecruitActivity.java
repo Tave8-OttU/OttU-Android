@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -107,8 +109,21 @@ public class RecruitActivity extends AppCompatActivity {
     }
 
     private void recruitClickListener() {
+        ActivityResultLauncher<Intent> startActivityResultRecruiting = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK)
+                        updateRecruitList(false);
+                });
+
         FloatingActionButton fabAddRecruitment = findViewById(R.id.fab_recruit_add);
-        fabAddRecruitment.setOnClickListener(v -> startActivity(new Intent(this, RecruitingActivity.class)));
+        fabAddRecruitment.setOnClickListener(v -> {
+            Intent recruitingIntent = new Intent(this, RecruitingActivity.class);
+            Bundle bundle = new Bundle();
+                bundle.putInt("platformId", platformId);
+            recruitingIntent.putExtras(bundle);
+            startActivityResultRecruiting.launch(recruitingIntent);
+        });
     }
     
     private void updateRecruitList(boolean isSwipe) {

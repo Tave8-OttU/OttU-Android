@@ -43,7 +43,7 @@
     <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며, 이를 통해 팀원 간 연락이 가능합니다.</string>
     <string name="participate_notice2">작성자가 요청 수락 시, 팀원으로 모집됩니다.</string>
     
-    <string name="recruiting_select_charge">요금제 선택</string>
+    <string name="recruiting_select_rateplan">요금제 선택</string>
     <string name="recruiting_step_in_progress">진행 방법</string>
     <string name="recruiting_1">1. </string>
     <string name="recruiting_2">2. </string>
