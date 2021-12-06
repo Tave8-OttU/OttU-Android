@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OTT 서비스 커뮤니티"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:text="OTT 서비스 커뮤니티"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
             <RelativeLayout
                 android:id="@+id/rl_frag_community_netflix"
@@ -48,11 +50,14 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
             <RelativeLayout
                 android:id="@+id/rl_frag_community_tving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_r5white"
                 android:clickable="true"
                 android:padding="15dp">
@@ -75,11 +80,14 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
             <RelativeLayout
                 android:id="@+id/rl_frag_community_wavve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_r5white"
                 android:clickable="true"
                 android:padding="15dp">
@@ -102,11 +110,14 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
             <RelativeLayout
                 android:id="@+id/rl_frag_community_watcha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_r5white"
                 android:clickable="true"
                 android:padding="15dp">
@@ -129,11 +140,14 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
             <RelativeLayout
                 android:id="@+id/rl_frag_community_disney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_r5white"
                 android:clickable="true"
                 android:padding="15dp">
@@ -156,11 +170,14 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
             <RelativeLayout
                 android:id="@+id/rl_frag_community_coupangplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_r5white"
                 android:clickable="true"
                 android:padding="15dp">
@@ -183,5 +200,5 @@
                     android:src="@drawable/icon_next" />
             </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

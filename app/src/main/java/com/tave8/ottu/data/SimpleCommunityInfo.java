@@ -1,22 +1,22 @@
 package com.tave8.ottu.data;
 
 public class SimpleCommunityInfo {
-    private int ottID;
-    private String ottName;
+    private int platformId;
+    private String platformName;
     private String latestContent;
 
-    public SimpleCommunityInfo(int ottID, String ottName, String latestContent) {
-        this.ottID = ottID;
-        this.ottName = ottName;
+    public SimpleCommunityInfo(int platformId, String platformName, String latestContent) {
+        this.platformId = platformId;
+        this.platformName = platformName;
         this.latestContent = latestContent;
     }
 
-    public int getOttID() {
-        return ottID;
+    public int getPlatformId() {
+        return platformId;
     }
 
-    public String getOttName() {
-        return ottName;
+    public String getPlatformName() {
+        return platformName;
     }
 
     public String getLatestContent() {

@@ -39,7 +39,7 @@ public class HomeCommunityRecyclerAdapter extends RecyclerView.Adapter<HomeCommu
 
     @Override
     public void onBindViewHolder(@NonNull HomeCommunityRecyclerAdapter.ItemViewHolder holder, int position) {
-        holder.tvOttName.setText(simpleOttCommunityList.get(position).getOttName());
+        holder.tvOttName.setText(simpleOttCommunityList.get(position).getPlatformName());
         holder.tvOttLatestContent.setText(simpleOttCommunityList.get(position).getLatestContent());
     }
 
@@ -54,7 +54,7 @@ public class HomeCommunityRecyclerAdapter extends RecyclerView.Adapter<HomeCommu
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvOttName = itemView.findViewById(R.id.tv_item_home_commu_ott);
+            tvOttName = itemView.findViewById(R.id.tv_item_home_commu_platform);
             tvOttLatestContent = itemView.findViewById(R.id.tv_item_home_commu_content);
 
             itemView.setOnClickListener(v -> {
@@ -62,7 +62,7 @@ public class HomeCommunityRecyclerAdapter extends RecyclerView.Adapter<HomeCommu
                 if (pos != RecyclerView.NO_POSITION) {
                     Intent showOttCommunity = new Intent(context, CommunityActivity.class);
                     Bundle bundle = new Bundle();
-                        bundle.putInt("ottID", simpleOttCommunityList.get(pos).getOttID());
+                        bundle.putInt("platformId", simpleOttCommunityList.get(pos).getPlatformId());
                     showOttCommunity.putExtras(bundle);
                     context.startActivity(showOttCommunity);
                 }

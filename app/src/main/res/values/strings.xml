@@ -5,6 +5,7 @@
     <string name="nickname">닉네임</string>
     <string name="submit">제출</string>
     <string name="ok">확인</string>
+    <string name="confirmed">확정</string>
     <string name="cancel">취소</string>
     <string name="delete">삭제</string>
     <string name="terminate">해지</string>
@@ -18,6 +19,9 @@
     <string name="nav_home">Home</string>
     <string name="nav_notice">알림</string>
     <string name="nav_mypage">마이페이지</string>
+
+    <string name="recruit_ing">모집 중</string>
+    <string name="recruit_completed">모집 완료</string>
 
     <string name="post_edit">글 수정</string>
     <string name="post_delete">글 삭제</string>
@@ -36,7 +40,7 @@
     <string name="genre_12">기타</string>
 
     <string name="participate_question">참여 요청하시겠습니까?</string>
-    <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며 \n 이를 통해 팀원 간 연락이 가능합니다.</string>
+    <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며, 이를 통해 팀원 간 연락이 가능합니다.</string>
     <string name="participate_notice2">작성자가 요청 수락 시, 팀원으로 모집됩니다.</string>
     
     <string name="recruiting_select_charge">요금제 선택</string>

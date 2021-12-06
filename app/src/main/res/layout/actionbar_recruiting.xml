@@ -15,7 +15,7 @@
         android:src="@drawable/icon_back" />
 
     <ImageView
-        android:id="@+id/iv_ab_recruiting_ott"
+        android:id="@+id/iv_ab_recruiting_platform"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"

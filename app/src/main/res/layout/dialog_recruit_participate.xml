@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
     android:gravity="center_horizontal"
     android:background="@drawable/bg_r5white"
     android:orientation="vertical"
@@ -18,12 +17,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+        android:layout_height="35dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:text="@string/participate_notice1"
         android:textAlignment="center"
         android:textColor="@color/red_notice"
@@ -31,12 +29,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="15dp"/>
+        android:layout_height="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:text="@string/participate_notice2"
         android:textAlignment="center"
         android:textColor="@color/sub_text_color"

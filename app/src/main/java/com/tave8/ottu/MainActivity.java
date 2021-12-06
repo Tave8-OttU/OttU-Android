@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.tave8.ottu.data.UserInfo;
 import com.tave8.ottu.navigation.FragmentCommunity;
 import com.tave8.ottu.navigation.FragmentHome;
 import com.tave8.ottu.navigation.FragmentMypage;
@@ -14,6 +15,8 @@ import com.tave8.ottu.navigation.FragmentNotice;
 import com.tave8.ottu.navigation.FragmentRecruit;
 
 public class MainActivity extends AppCompatActivity {
+    public static UserInfo myInfo = null;
+
     private FragmentManager fragmentManager;
     private FragmentCommunity fragmentCommunity;
     private FragmentRecruit fragmentRecruit;

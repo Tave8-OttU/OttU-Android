@@ -59,7 +59,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dialog_request"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
@@ -81,6 +81,18 @@
             android:textColor="@color/light_grey2"
             android:textSize="16sp"
             android:textStyle="bold"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_dialog_request_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bt_yes"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="@string/confirmed"
+            android:textColor="@color/light_grey2"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
         <View
             android:layout_width="30dp"
             android:layout_height="0dp"/>

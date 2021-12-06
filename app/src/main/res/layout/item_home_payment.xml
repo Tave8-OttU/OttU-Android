@@ -3,45 +3,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
-        android:id="@+id/iv_item_home_charge_ott"
-        android:layout_width="170dp"
-        android:layout_height="100dp"
+        android:id="@+id/iv_item_home_payment_platform"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
         android:scaleType="fitXY"
         android:src="@drawable/icon_ott_netflix"
         android:contentDescription="@string/ott_service"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_item_home_payment"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <LinearLayout
+        android:id="@+id/ll_item_home_payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/iv_item_home_charge_ott"
+        app:layout_constraintTop_toBottomOf="@id/iv_item_home_payment_platform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintRight_toRightOf="parent">
         <TextView
-            android:id="@+id/tv_item_home_charge"
+            android:id="@+id/tv_item_home_payment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:shadowRadius="5.0"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowColor="@color/bg_black_color3"
             android:text="2021.12.30"
             android:textColor="@color/sub_text_color2"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
+            android:shadowRadius="5.0"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowColor="@color/bg_black_color3"
             android:text="결제 예정"
             android:textColor="@color/sub_text_color2"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
