@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ibt_ab_recruit_back"
+        android:id="@+id/ibt_ab_mypage_back"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_centerVertical="true"
@@ -13,4 +13,15 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:src="@drawable/icon_back" />
+
+    <TextView
+        android:id="@+id/tv_ab_mypage_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/ibt_ab_mypage_back"
+        android:text="My OTT Service"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 </RelativeLayout>

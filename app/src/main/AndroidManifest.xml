@@ -25,7 +25,9 @@
         <activity android:name=".PostingActivity"/>
         <activity android:name=".RecruitActivity"/>
         <activity android:name=".RecruitingActivity"/>
-        <activity android:name=".AddMyOttActivity"/>
+        <activity android:name=".MyOTTActivity"/>
+        <activity android:name=".AddMyOTTActivity"/>
+        <activity android:name=".MyRecruitActivity"/>
     </application>
 
 </manifest>

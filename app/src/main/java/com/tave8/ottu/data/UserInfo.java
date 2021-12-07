@@ -26,6 +26,10 @@ public class UserInfo {
         this.interestGenre = interestGenre;
     }
 
+    public UserEssentialInfo getUserEssentialInfo() {
+        return userEssentialInfo;
+    }
+
     public Long getUserId() {
         return userEssentialInfo.getUserId();
     }
@@ -46,7 +50,7 @@ public class UserInfo {
         return level;
     }
 
-    public boolean getIsFirst() {
+    public boolean isFirst() {
         return isFirst;
     }
 

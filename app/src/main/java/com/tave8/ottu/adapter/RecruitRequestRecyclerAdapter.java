@@ -121,7 +121,7 @@ public class RecruitRequestRecyclerAdapter extends RecyclerView.Adapter<RecruitR
 
                 pbOttULevel.setProgress(writerInfo.getLevel());
                 tvOttULevel.setText(String.valueOf(writerInfo.getLevel()));
-                if (writerInfo.getIsFirst()) {
+                if (writerInfo.isFirst()) {
                     pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
                     tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));
                 }

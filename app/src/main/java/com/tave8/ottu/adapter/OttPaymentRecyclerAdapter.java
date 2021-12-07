@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tave8.ottu.R;
@@ -23,34 +24,32 @@ import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.SingletonPlatform;
 
 import java.text.DecimalFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPagerAdapter.ItemViewHolder> {
+public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRecyclerAdapter.ItemViewHolder> {
     private Context context;
     private ArrayList<PaymentInfo> ottPaymentList;
 
-    public HomePaymentPagerAdapter(ArrayList<PaymentInfo> ottPaymentList) {
+    public OttPaymentRecyclerAdapter(ArrayList<PaymentInfo> ottPaymentList) {
         this.ottPaymentList = ottPaymentList;
     }
 
     @NonNull
     @Override
-    public HomePaymentPagerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OttPaymentRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.item_home_payment, parent, false);
-        HomePaymentPagerAdapter.ItemViewHolder viewHolder = new HomePaymentPagerAdapter.ItemViewHolder(view);
+        View view = inflater.inflate(R.layout.item_mypage_ott, parent, false);
+        OttPaymentRecyclerAdapter.ItemViewHolder viewHolder = new OttPaymentRecyclerAdapter.ItemViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomePaymentPagerAdapter.ItemViewHolder holder, int position) {
-        holder.ivOttIcon.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformId()));
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        holder.tvOttPaymentDate.setText(ottPaymentList.get(position).getPaymentDate().format(dateTimeFormatter));
+    public void onBindViewHolder(@NonNull OttPaymentRecyclerAdapter.ItemViewHolder holder, int position) {
+        int imageResourceId = SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformId());
+        holder.ivPlatform.setImageResource(imageResourceId);
     }
 
     @Override
@@ -59,14 +58,14 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivOttIcon;
-        TextView tvOttPaymentDate;
+        ImageView ivPlatform;
+        AppCompatImageButton ibtOttNext;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ivOttIcon = itemView.findViewById(R.id.iv_item_home_payment_platform);
-            tvOttPaymentDate = itemView.findViewById(R.id.tv_item_home_payment_date);
+            ivPlatform = itemView.findViewById(R.id.iv_item_mypage_platform);
+            ibtOttNext = itemView.findViewById(R.id.ibt_item_mypage_ott_next);
 
             itemView.setOnClickListener(v -> {
                 int pos = getAdapterPosition();

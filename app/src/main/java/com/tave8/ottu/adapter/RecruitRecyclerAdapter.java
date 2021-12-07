@@ -127,17 +127,17 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                         params.width = (int) (width*0.89);
                         alertDialog.getWindow().setAttributes(params);
 
-                        RecyclerView rvReqruitRequest = requestDialogView.findViewById(R.id.rv_dialog_request);
+                        RecyclerView rvRecruitRequest = requestDialogView.findViewById(R.id.rv_dialog_request);
                         if (userRequestList.size() > 3) {
                             int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics());
-                            LinearLayout.LayoutParams rvReqruitRequestParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
-                            rvReqruitRequest.setLayoutParams(rvReqruitRequestParams);
+                            LinearLayout.LayoutParams rvRecruitRequestParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
+                            rvRecruitRequest.setLayoutParams(rvRecruitRequestParams);
 
                         }
                         LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
-                        rvReqruitRequest.setLayoutManager(manager);
+                        rvRecruitRequest.setLayoutManager(manager);
                         RecruitRequestRecyclerAdapter recruitRequestRecyclerAdapter = new RecruitRequestRecyclerAdapter(userRequestList);
-                        rvReqruitRequest.setAdapter(recruitRequestRecyclerAdapter);
+                        rvRecruitRequest.setAdapter(recruitRequestRecyclerAdapter);
 
                         AppCompatButton btRequestYes = requestDialogView.findViewById(R.id.bt_dialog_request_yes);
                         btRequestYes.setOnClickListener(view -> alertDialog.dismiss());
@@ -220,7 +220,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
 
                 pbOttULevel.setProgress(writerInfo.getLevel());
                 tvOttULevel.setText(String.valueOf(writerInfo.getLevel()));
-                if (writerInfo.getIsFirst()) {
+                if (writerInfo.isFirst()) {
                     pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
                     tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));
                 }

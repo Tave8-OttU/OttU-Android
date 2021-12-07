@@ -11,19 +11,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_mypage_nick"
+                android:id="@+id/tv_frag_mypage_nick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/bt_mypage_edit_profile"
+                android:layout_toStartOf="@id/bt_frag_mypage_edit_profile"
                 android:layout_marginEnd="5dp"
                 android:text="@string/nickname"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_mypage_edit_profile"
+                android:id="@+id/bt_frag_mypage_edit_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -63,7 +63,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <ProgressBar
-                    android:id="@+id/pb_mypage_level"
+                    android:id="@+id/pb_frag_mypage_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -73,7 +73,7 @@
                     android:progressDrawable="@drawable/bg_progress"/>
 
                 <TextView
-                    android:id="@+id/tv_mypage_level"
+                    android:id="@+id/tv_frag_mypage_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -109,7 +109,7 @@
             android:layout_marginEnd="5dp"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_mypage_genre1"
+                android:id="@+id/bt_frag_mypage_genre1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -117,7 +117,7 @@
                 android:text="@string/genre_1"
                 android:textSize="12sp" />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_mypage_genre2"
+                android:id="@+id/bt_frag_mypage_genre2"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -127,7 +127,7 @@
                 android:text="@string/genre_2"
                 android:textSize="12sp" />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_mypage_genre3"
+                android:id="@+id/bt_frag_mypage_genre3"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -140,24 +140,28 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_frag_mypage_my_ott"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5blue"
-                android:padding="20dp"
-                android:text="내가 이용하는 OTT 서비스"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            android:background="@drawable/bg_r5blue"
+            android:padding="20dp"
+            android:text="내가 이용하는 OTT 서비스"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_mypage_ottlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
-        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_frag_mypage_my_recruit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_r5blue"
+            android:padding="20dp"
+            android:text="내가 작성한 모집글"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

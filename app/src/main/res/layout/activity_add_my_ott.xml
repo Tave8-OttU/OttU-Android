@@ -14,6 +14,7 @@
         app:contentInsetEnd="0dp" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_add_my_ott"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -31,7 +32,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OTT 서비스 선택"
+                    android:text="OTT 서비스 플랫폼"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -49,7 +50,7 @@
                             android:id="@+id/ibt_addmyott_netflix"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            android:background="@drawable/bg_r5white_sblue"
+                            android:background="@drawable/bg_r5white"
                             android:padding="20dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_ott_netflix" />
@@ -135,7 +136,7 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_addmyott_charge"
+                    android:id="@+id/rv_addmyott_rateplan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -182,7 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="매월"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_addmyott_payment_day"
@@ -191,10 +192,13 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/bg_r5black_sblue"
+                        android:cursorVisible="false"
+                        android:focusable="false"
                         android:inputType="number"
                         android:padding="8dp"
                         android:textAlignment="center"
-                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill,LabelFor" />
 
@@ -202,7 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="일"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -211,10 +215,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:text="OTT 서비스 추가"
+                android:text="추가"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>

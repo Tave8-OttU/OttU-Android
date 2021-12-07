@@ -20,8 +20,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tave8.ottu.adapter.RecruitRecyclerAdapter;
 import com.tave8.ottu.data.RecruitInfo;
+import com.tave8.ottu.data.SingletonPlatform;
 import com.tave8.ottu.data.UserEssentialInfo;
-import com.tave8.ottu.data.UserInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,10 +59,11 @@ public class RecruitActivity extends AppCompatActivity {
         //TODO: 임시 recruitList
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.KOREA);
         try {
-            recruitList.add(new RecruitInfo(1L, new UserEssentialInfo(1L, "nick1"), false, 4, 2, new Date(String.valueOf(sdf.parse("2021/12/08")))));
-            recruitList.add(new RecruitInfo(2L, new UserEssentialInfo(3L, "nick3"), true, 4, 4, new Date(String.valueOf(sdf.parse("2021/12/15")))));
-            recruitList.add(new RecruitInfo(3L, new UserEssentialInfo(4L, "nick4"), false, 3, 1, new Date(String.valueOf(sdf.parse("2021/12/20")))));
+            recruitList.add(new RecruitInfo(1L, platformId, new UserEssentialInfo(1L, "nick1"), false, 4, 2, new Date(String.valueOf(sdf.parse("2021/12/08")))));
+            recruitList.add(new RecruitInfo(2L, platformId, new UserEssentialInfo(3L, "nick3"), true, 4, 4, new Date(String.valueOf(sdf.parse("2021/12/15")))));
+            recruitList.add(new RecruitInfo(3L, platformId, new UserEssentialInfo(4L, "nick4"), false, 3, 1, new Date(String.valueOf(sdf.parse("2021/12/20")))));
         } catch (ParseException e) { e.printStackTrace(); }
+        //
 
         srlRecruitPosts = findViewById(R.id.srl_recruit_postlist);
         srlRecruitPosts.setDistanceToTriggerSync(400);
@@ -85,27 +86,7 @@ public class RecruitActivity extends AppCompatActivity {
         ibtBack.setOnClickListener(v -> finish());
 
         ImageView ivPlatform = toolbar.findViewById(R.id.iv_ab_recruit_platform);
-        switch (platformId) {
-            case 1: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_netflix);
-                break;
-            } case 2: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_tving);
-                break;
-            } case 3: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_wavve);
-                break;
-            } case 4: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_watcha);
-                break;
-            } case 5: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_disney);
-                break;
-            } case 6: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_coupang_play);
-                break;
-            }
-        }
+        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformId));
     }
 
     private void recruitClickListener() {

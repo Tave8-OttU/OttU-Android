@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tave8.ottu.adapter.RatePlanRecyclerAdapter;
 import com.tave8.ottu.data.RatePlanInfo;
+import com.tave8.ottu.data.SingletonPlatform;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -26,7 +27,7 @@ import java.util.Objects;
 public class RecruitingActivity extends AppCompatActivity {
     private boolean isSubmitted = false;
     private int platformId = 0;
-    private ArrayList<RatePlanInfo> ratePlanInfos = null;
+    private ArrayList<RatePlanInfo> ratePlanInfoList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class RecruitingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recruiting);
 
         platformId = getIntent().getExtras().getInt("platformId");
+        ratePlanInfoList = SingletonPlatform.getPlatform().getPlatformInfoList().get(platformId);
 
         Toolbar toolbar = findViewById(R.id.tb_recruiting_toolbar);
         setSupportActionBar(toolbar);
@@ -46,13 +48,10 @@ public class RecruitingActivity extends AppCompatActivity {
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
 
-        ratePlanInfos = new ArrayList<>();
-        setPlatformRatePlanList();
-
-        RecyclerView rvRatePlan = findViewById(R.id.rv_recruiting_charge);
+        RecyclerView rvRatePlan = findViewById(R.id.rv_recruiting_rateplan);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         rvRatePlan.setLayoutManager(manager);
-        RatePlanRecyclerAdapter ratePlanAdapter = new RatePlanRecyclerAdapter(ratePlanInfos);
+        RatePlanRecyclerAdapter ratePlanAdapter = new RatePlanRecyclerAdapter(ratePlanInfoList);
         rvRatePlan.setAdapter(ratePlanAdapter);
 
         TextView tvNotification1 = findViewById(R.id.tv_recruiting_notification1);
@@ -82,58 +81,7 @@ public class RecruitingActivity extends AppCompatActivity {
         ibtBack.setOnClickListener(v -> finish());
 
         ImageView ivPlatform = toolbar.findViewById(R.id.iv_ab_recruiting_platform);
-        switch (platformId) {
-            case 1: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_netflix);
-                break;
-            } case 2: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_tving);
-                break;
-            } case 3: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_wavve);
-                break;
-            } case 4: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_watcha);
-                break;
-            } case 5: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_disney);
-                break;
-            } case 6: {
-                ivPlatform.setImageResource(R.drawable.icon_ott_coupang_play);
-                break;
-            }
-        }
-    }
-
-    private void setPlatformRatePlanList() {
-        switch (platformId) {
-            case 1: {   //넷플릭스
-                ratePlanInfos.add(new RatePlanInfo("베이식", 1, 9500));
-                ratePlanInfos.add(new RatePlanInfo("스탠다드", 2, 13500));
-                ratePlanInfos.add(new RatePlanInfo("프리미엄", 4, 17000));
-                break;
-            } case 2: {   //티빙
-                ratePlanInfos.add(new RatePlanInfo("베이직", 1, 7900));
-                ratePlanInfos.add(new RatePlanInfo("스탠다드", 2, 10900));
-                ratePlanInfos.add(new RatePlanInfo("프리미엄", 4, 13900));
-                break;
-            } case 3: {   //웨이브
-                ratePlanInfos.add(new RatePlanInfo("Basic", 1, 7900));
-                ratePlanInfos.add(new RatePlanInfo("Standard", 2, 10900));
-                ratePlanInfos.add(new RatePlanInfo("Premium", 4, 13900));
-                break;
-            } case 4: {   //왓챠
-                ratePlanInfos.add(new RatePlanInfo("베이직", 1, 7900));
-                ratePlanInfos.add(new RatePlanInfo("프리미엄", 4, 12900));
-                break;
-            } case 5: {   //디즈니 플러스
-                ratePlanInfos.add(new RatePlanInfo("Disney+", 4, 9900));
-                break;
-            } case 6: {   //쿠팡 플레이
-                ratePlanInfos.add(new RatePlanInfo("쿠팡 와우 멤버십", 2, 2900));
-                break;
-            }
-        }
+        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformId));
     }
 
     private void recruitingClickListener(RatePlanRecyclerAdapter ratePlanAdapter) {

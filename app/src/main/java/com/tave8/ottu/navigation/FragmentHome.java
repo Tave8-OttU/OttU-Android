@@ -15,19 +15,17 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.tave8.ottu.R;
 import com.tave8.ottu.adapter.HomeCommunityRecyclerAdapter;
 import com.tave8.ottu.adapter.HomePaymentPagerAdapter;
+import com.tave8.ottu.data.PaymentInfo;
 import com.tave8.ottu.data.SimpleCommunityInfo;
-import com.tave8.ottu.data.SimpleOttPayment;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class FragmentHome extends Fragment {
-    private ArrayList<SimpleOttPayment> ottPaymentList = null;
+    private ArrayList<PaymentInfo> ottPaymentList = null;
     private ArrayList<SimpleCommunityInfo> ottCommunityList = null;
 
     private HomePaymentPagerAdapter homePaymentPagerAdapter;
@@ -41,12 +39,9 @@ public class FragmentHome extends Fragment {
         ottCommunityList = new ArrayList<>();
 
         //TODO: 임시
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-        try {
-            ottPaymentList.add(new SimpleOttPayment(2, new Date(String.valueOf(sdf.parse("2021-12-15")))));
-            ottPaymentList.add(new SimpleOttPayment(3, new Date(String.valueOf(sdf.parse("2021-12-20")))));
-            ottPaymentList.add(new SimpleOttPayment(6, new Date(String.valueOf(sdf.parse("2021-12-30")))));
-        } catch (ParseException e) { e.printStackTrace(); }
+        ottPaymentList.add(new PaymentInfo(1L, 3, 4, LocalDate.parse("2021-12-15", DateTimeFormatter.ISO_DATE)));
+        ottPaymentList.add(new PaymentInfo(2L, 2, 2, LocalDate.parse("2021-12-20", DateTimeFormatter.ISO_DATE)));
+        ottPaymentList.add(new PaymentInfo(3L, 6, 2, LocalDate.parse("2021-12-30", DateTimeFormatter.ISO_DATE)));
 
         ViewPager2 vpOttPayment = rootView.findViewById(R.id.vp_home_payment);
         homePaymentPagerAdapter = new HomePaymentPagerAdapter(ottPaymentList);

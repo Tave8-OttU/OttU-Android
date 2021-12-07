@@ -47,7 +47,7 @@ public class RatePlanRecyclerAdapter extends RecyclerView.Adapter<RatePlanRecycl
         holder.tvRatePlanName.setText(ratePlanInfoList.get(position).getRatePlanName());
         holder.tvHeadCount.setText(String.valueOf(ratePlanInfoList.get(position).getHeadCount()));
 
-        DecimalFormat chargeFormatter = new DecimalFormat("###,###");
+        DecimalFormat chargeFormatter = new DecimalFormat("###,##0");
         holder.tvCharge.setText(chargeFormatter.format(ratePlanInfoList.get(position).getCharge()));
     }
 
@@ -58,6 +58,10 @@ public class RatePlanRecyclerAdapter extends RecyclerView.Adapter<RatePlanRecycl
 
     public int getSelectedRatePlanPosition() {
         return selectedRatePlanPosition;
+    }
+
+    public int getSelectedRatePlanHeadCount() {
+        return ratePlanInfoList.get(selectedRatePlanPosition).getHeadCount();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
