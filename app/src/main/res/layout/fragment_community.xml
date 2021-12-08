@@ -21,14 +21,14 @@
         android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
             <RelativeLayout
                 android:id="@+id/rl_frag_community_netflix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -36,15 +36,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_netflix"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_netflix" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />
@@ -58,7 +59,7 @@
                 android:id="@+id/rl_frag_community_tving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -66,15 +67,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_tving"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_tving" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />
@@ -88,7 +90,7 @@
                 android:id="@+id/rl_frag_community_wavve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -96,15 +98,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_wavve"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_wavve" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />
@@ -118,7 +121,7 @@
                 android:id="@+id/rl_frag_community_watcha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -126,15 +129,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_watcha"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_watcha" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />
@@ -148,7 +152,7 @@
                 android:id="@+id/rl_frag_community_disney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -156,15 +160,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_disneyplus"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_disney" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />
@@ -178,7 +183,7 @@
                 android:id="@+id/rl_frag_community_coupangplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_r5white"
+                android:background="@drawable/selector_item"
                 android:clickable="true"
                 android:padding="15dp">
                 <ImageView
@@ -186,15 +191,16 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/ott_coupangplay"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_coupang_play" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="33dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/next"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next" />

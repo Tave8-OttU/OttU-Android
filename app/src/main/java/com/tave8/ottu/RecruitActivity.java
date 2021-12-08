@@ -23,11 +23,9 @@ import com.tave8.ottu.data.RecruitInfo;
 import com.tave8.ottu.data.SingletonPlatform;
 import com.tave8.ottu.data.UserEssentialInfo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
 
 public class RecruitActivity extends AppCompatActivity {
@@ -57,12 +55,10 @@ public class RecruitActivity extends AppCompatActivity {
         toolbarListener(toolbar);
 
         //TODO: 임시 recruitList
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.KOREA);
-        try {
-            recruitList.add(new RecruitInfo(1L, platformId, new UserEssentialInfo(1L, "nick1"), false, 4, 2, new Date(String.valueOf(sdf.parse("2021/12/08")))));
-            recruitList.add(new RecruitInfo(2L, platformId, new UserEssentialInfo(3L, "nick3"), true, 4, 4, new Date(String.valueOf(sdf.parse("2021/12/15")))));
-            recruitList.add(new RecruitInfo(3L, platformId, new UserEssentialInfo(4L, "nick4"), false, 3, 1, new Date(String.valueOf(sdf.parse("2021/12/20")))));
-        } catch (ParseException e) { e.printStackTrace(); }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        recruitList.add(new RecruitInfo(3L, platformId, new UserEssentialInfo(4L, "nick4"), false, 3, 1, LocalDateTime.parse("2021-12-03 07:20:23",formatter)));
+        recruitList.add(new RecruitInfo(2L, platformId, new UserEssentialInfo(3L, "nick3"), true, 4, 4, LocalDateTime.parse("2021-11-23 14:20:23", formatter)));
+        recruitList.add(new RecruitInfo(1L, platformId, new UserEssentialInfo(1L, "nick1"), false, 4, 2, LocalDateTime.parse("2021-11-08 12:03:10", formatter)));
         //
 
         srlRecruitPosts = findViewById(R.id.srl_recruit_postlist);

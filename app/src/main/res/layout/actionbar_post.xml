@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ibt_ab_community_back"
+        android:id="@+id/ibt_ab_post_back"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_centerVertical="true"
@@ -12,16 +12,31 @@
         android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/icon_back" />
+        android:src="@drawable/icon_back"
+        android:tint="@color/white" />
 
-    <ImageView
-        android:id="@+id/iv_ab_community_platform"
+    <TextView
+        android:id="@+id/tv_ab_post_platform"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/ibt_ab_post_back"
+        android:layout_toStartOf="@id/ibt_ab_post_menu"
+        android:text="넷플릭스"
+        android:textSize="14sp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibt_ab_post_menu"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/icon_menu" />
+        android:src="@drawable/icon_menu"
+        android:tint="@color/white"
+        android:visibility="invisible" />
 </RelativeLayout>

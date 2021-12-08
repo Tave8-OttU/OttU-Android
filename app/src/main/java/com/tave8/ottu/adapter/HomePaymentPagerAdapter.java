@@ -76,7 +76,7 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
 
                     View paymentDialogView = View.inflate(context, R.layout.dialog_ott_payment_info, null);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setView(paymentDialogView);
                     AlertDialog alertDialog = builder.create();
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

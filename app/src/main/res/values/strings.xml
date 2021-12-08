@@ -13,12 +13,20 @@
     <string name="comment">Comment</string>
     <string name="content">content 내용</string>
     <string name="notice">알림</string>
+    <string name="next">Next</string>
 
     <string name="nav_community">커뮤니티</string>
     <string name="nav_recruit">팀원 찾기</string>
     <string name="nav_home">Home</string>
     <string name="nav_notice">알림</string>
     <string name="nav_mypage">마이페이지</string>
+
+    <string name="ott_netflix">Netflix</string>
+    <string name="ott_tving">Tving</string>
+    <string name="ott_wavve">Wavve</string>
+    <string name="ott_watcha">Watcha</string>
+    <string name="ott_disneyplus">Disney Plus</string>
+    <string name="ott_coupangplay">Coupang Play</string>
 
     <string name="recruit_ing">모집 중</string>
     <string name="recruit_completed">모집 완료</string>

@@ -37,7 +37,7 @@ public class FragmentRecruit extends Fragment {
         ibtTving.setOnClickListener(v -> {
             Intent netflixRecruit = new Intent(rootView.getContext(), RecruitActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("platformId", 2);
+                bundle.putInt("platformId", 2);
             netflixRecruit.putExtras(bundle);
             startActivity(netflixRecruit);
         });
@@ -45,7 +45,7 @@ public class FragmentRecruit extends Fragment {
         ibtWavve.setOnClickListener(v -> {
             Intent netflixRecruit = new Intent(rootView.getContext(), RecruitActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("platformId", 3);
+                bundle.putInt("platformId", 3);
             netflixRecruit.putExtras(bundle);
             startActivity(netflixRecruit);
         });
@@ -53,7 +53,7 @@ public class FragmentRecruit extends Fragment {
         ibtWatcha.setOnClickListener(v -> {
             Intent netflixRecruit = new Intent(rootView.getContext(), RecruitActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("platformId", 4);
+                bundle.putInt("platformId", 4);
             netflixRecruit.putExtras(bundle);
             startActivity(netflixRecruit);
         });
@@ -61,7 +61,7 @@ public class FragmentRecruit extends Fragment {
         ibtDisneyPlus.setOnClickListener(v -> {
             Intent netflixRecruit = new Intent(rootView.getContext(), RecruitActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("platformId", 5);
+                bundle.putInt("platformId", 5);
             netflixRecruit.putExtras(bundle);
             startActivity(netflixRecruit);
         });
@@ -69,7 +69,7 @@ public class FragmentRecruit extends Fragment {
         ibtCoupangPlay.setOnClickListener(v -> {
             Intent netflixRecruit = new Intent(rootView.getContext(), RecruitActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("platformId", 6);
+                bundle.putInt("platformId", 6);
             netflixRecruit.putExtras(bundle);
             startActivity(netflixRecruit);
         });

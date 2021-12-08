@@ -40,7 +40,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dialog_eval"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"

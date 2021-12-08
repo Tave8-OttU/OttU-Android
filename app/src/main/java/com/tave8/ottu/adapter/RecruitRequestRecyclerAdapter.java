@@ -87,7 +87,7 @@ public class RecruitRequestRecyclerAdapter extends RecyclerView.Adapter<RecruitR
             tvRequesterNick.setOnClickListener(v -> {
                 View profileDialogView = View.inflate(context, R.layout.dialog_user_profile, null);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(profileDialogView);
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

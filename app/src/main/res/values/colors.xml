@@ -15,6 +15,7 @@
     <color name="bg_bt_color">#44FFFFFF</color>
     <color name="sub_text_color">#FFC2C2C2</color>
     <color name="sub_text_color2">#FF555555</color>
+    <color name="grey1">#FF8C8C8C</color>
     <color name="light_grey2">#FFC4C4C4</color>
     <color name="bg_black_color">#BB000000</color>
     <color name="bg_black_color2">#44000000</color>

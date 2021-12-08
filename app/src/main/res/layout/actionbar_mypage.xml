@@ -12,7 +12,8 @@
         android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/icon_back" />
+        android:src="@drawable/icon_back"
+        android:tint="@color/white" />
 
     <TextView
         android:id="@+id/tv_ab_mypage_title"
@@ -22,6 +23,5 @@
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/ibt_ab_mypage_back"
         android:text="My OTT Service"
-        android:textColor="@color/black"
         android:textSize="14sp" />
 </RelativeLayout>

@@ -11,7 +11,8 @@ import java.util.Objects;
 public class SingletonPlatform {
     private static SingletonPlatform platform;
     @NonNull private HashMap<Integer, Integer> platformLogoList;                    //platformId로 찾음
-    @NonNull private HashMap<Integer, ArrayList<RatePlanInfo>> platformInfoList;     //platformId로 찾음
+    @NonNull private HashMap<Integer, String> platformNameList;                     //platformId로 찾음
+    @NonNull private HashMap<Integer, ArrayList<RatePlanInfo>> platformInfoList;    //platformId로 찾음
 
     private SingletonPlatform() {
         platformLogoList = new HashMap<>();
@@ -21,6 +22,14 @@ public class SingletonPlatform {
         platformLogoList.put(4, R.drawable.icon_ott_watcha);
         platformLogoList.put(5, R.drawable.icon_ott_disney);
         platformLogoList.put(6, R.drawable.icon_ott_coupang_play);
+
+        platformNameList = new HashMap<>();
+        platformNameList.put(1, "넷플릭스");
+        platformNameList.put(2, "티빙");
+        platformNameList.put(3, "웨이브");
+        platformNameList.put(4, "왓챠");
+        platformNameList.put(5, "디즈니 플러스");
+        platformNameList.put(6, "쿠팡 플레이");
 
         platformInfoList = new HashMap<>();
         ArrayList<RatePlanInfo> netflixRatePlanInfoList = new ArrayList<>();
@@ -65,6 +74,11 @@ public class SingletonPlatform {
     @NonNull
     public HashMap<Integer, Integer> getPlatformLogoList() {
         return platformLogoList;
+    }
+
+    @NonNull
+    public HashMap<Integer, String> getPlatformNameList() {
+        return platformNameList;
     }
 
     @NonNull

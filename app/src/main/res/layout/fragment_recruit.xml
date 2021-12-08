@@ -33,7 +33,7 @@
                     android:id="@+id/ibt_frag_recruit_netflix"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="20dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_netflix" />
@@ -46,7 +46,7 @@
                     android:id="@+id/ibt_frag_recruit_wavve"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="15dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_wavve" />
@@ -59,7 +59,7 @@
                     android:id="@+id/ibt_frag_recruit_disneyplus"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="20dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_disney" />
@@ -79,7 +79,7 @@
                     android:id="@+id/ibt_frag_recruit_tving"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="27dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_tving" />
@@ -92,7 +92,7 @@
                     android:id="@+id/ibt_frag_recruit_watcha"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="18dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_watcha" />
@@ -105,7 +105,7 @@
                     android:id="@+id/ibt_frag_recruit_coupangplay"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:background="@drawable/bg_r5white"
+                    android:background="@drawable/selector_item"
                     android:padding="18dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_ott_coupang_play" />

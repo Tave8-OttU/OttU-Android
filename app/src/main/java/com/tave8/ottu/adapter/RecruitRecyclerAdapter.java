@@ -113,7 +113,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                         //TODO: 서버로부터 참여 정보 받음
                         View requestDialogView = View.inflate(context, R.layout.dialog_recruit_request, null);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setView(requestDialogView);
                         AlertDialog alertDialog = builder.create();
                         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -157,7 +157,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                     else {  //참여 다이얼로그가 뜸
                         View participateDialogView = View.inflate(context, R.layout.dialog_recruit_participate, null);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setView(participateDialogView);
                         AlertDialog alertDialog = builder.create();
                         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -186,7 +186,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
             tvWriterNick.setOnClickListener(v -> {
                 View profileDialogView = View.inflate(context, R.layout.dialog_user_profile, null);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(profileDialogView);
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

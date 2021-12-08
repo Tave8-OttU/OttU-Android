@@ -5,23 +5,26 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:orientation="vertical">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/ll_item_post_nick"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/ll_item_post_time"
-            android:text="@string/nickname"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:layout_toStartOf="@id/tv_item_community_post_time">
+            <TextView
+                android:id="@+id/tv_item_community_post_nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nickname"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/ll_item_post_time"
+            android:id="@+id/tv_item_community_post_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -36,7 +39,7 @@
         android:layout_height="15dp" />
 
     <TextView
-        android:id="@+id/ll_item_post_content"
+        android:id="@+id/tv_item_community_post_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -53,7 +56,6 @@
         android:layout_height="15dp" />
 
     <LinearLayout
-        android:id="@+id/ll_item_post_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -68,7 +70,7 @@
             android:contentDescription="@string/comment"
             app:tint="@color/white" />
         <TextView
-            android:id="@+id/ll_item_post_comment_num"
+            android:id="@+id/tv_item_community_post_comment_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

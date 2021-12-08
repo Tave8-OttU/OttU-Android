@@ -75,7 +75,7 @@ public class InitialSettingActivity extends AppCompatActivity {
     private void initialClickListener() {
         AppCompatButton btCheckNick = findViewById(R.id.bt_initial_check);
         btCheckNick.setOnClickListener(v -> {
-            if (etNick.getText().length() != 0) {
+            if (etNick.getText().toString().trim().length() != 0) {
                 //TODO: 서버에 전달
                 isCheckedNick = true;
                 tvNickInfo.setVisibility(View.VISIBLE);
@@ -120,7 +120,7 @@ public class InitialSettingActivity extends AppCompatActivity {
                 etNick.requestFocus();
                 Toast.makeText(this, "닉네임 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNick, 0);
-            } else if (etKakaoId.getText().length() == 0) {
+            } else if (etKakaoId.getText().toString().trim().length() == 0) {
                 etKakaoId.requestFocus();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etKakaoId, 0);
             } else if (selectedGenre.isEmpty()) {
