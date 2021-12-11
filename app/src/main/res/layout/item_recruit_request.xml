@@ -46,7 +46,7 @@
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/bg_r5grey"
+        android:background="@drawable/bg_r5black1_4"
         android:minHeight="0dp"
         android:minWidth="0dp"
         android:paddingTop="8dp"

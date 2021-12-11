@@ -57,7 +57,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
     public void onBindViewHolder(@NonNull RecruitRecyclerAdapter.ItemViewHolder holder, int position) {
         holder.tvWriterNick.setText(recruitPostList.get(position).getWriterInfo().getNick());
         if (recruitPostList.get(position).isCompleted()) {
-            holder.llitem.setBackgroundColor(context.getColor(R.color.main_bg_color));
+            holder.llitem.setBackgroundColor(context.getColor(R.color.bg_black_color1_4));
             holder.tvRecruitIng.setVisibility(View.GONE);
             holder.tvRecruitCompleted.setVisibility(View.VISIBLE);
             holder.tvChoiceNum.setTextColor(context.getColor(R.color.sub_text_color));
@@ -65,7 +65,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
             holder.tvHeadCount.setTextColor(context.getColor(R.color.sub_text_color));
         }
         else {
-            holder.llitem.setBackgroundColor(context.getColor(R.color.bg_black_color));
+            holder.llitem.setBackgroundColor(context.getColor(R.color.bg_black_color2_4));
             holder.tvRecruitIng.setVisibility(View.VISIBLE);
             holder.tvRecruitCompleted.setVisibility(View.GONE);
             holder.tvChoiceNum.setTextColor(context.getColor(R.color.white));

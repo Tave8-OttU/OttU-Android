@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_r5black_sblue"
+            android:background="@drawable/bg_r5black1_4_sblue"
             android:orientation="vertical"
             android:padding="15dp">
             <TextView
@@ -100,8 +100,8 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:background="@drawable/bg_button_select"
                 android:text="@string/genre_2"
                 android:textSize="12sp" />
@@ -131,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_r5black_sblue"
+            android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
             android:padding="15dp">
             <LinearLayout
@@ -199,7 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_r5black_sblue"
+            android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
             android:padding="15dp">
             <LinearLayout
@@ -293,7 +293,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_r5black_sblue"
+            android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
             android:padding="15dp">
             <LinearLayout

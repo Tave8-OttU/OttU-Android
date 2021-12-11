@@ -86,7 +86,11 @@ public class RecruitingActivity extends AppCompatActivity {
 
     private void recruitingClickListener(RatePlanRecyclerAdapter ratePlanAdapter) {
         NestedScrollView nsvRecruiting = findViewById(R.id.nsv_recruiting);
+
         CheckBox cbAgree = findViewById(R.id.cb_recruiting_agree);
+        TextView tvAgree = findViewById(R.id.tv_recruiting_agree);
+        tvAgree.setOnClickListener(v -> cbAgree.toggle());
+
         Button btSubmit = findViewById(R.id.bt_recruiting_submit);
         btSubmit.setOnClickListener(v -> {
             if (ratePlanAdapter.getSelectedRatePlanPosition() == -1) {

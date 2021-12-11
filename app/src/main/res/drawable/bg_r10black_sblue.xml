@@ -6,7 +6,7 @@
         android:left="5dp"
         android:right="5dp"/>
 
-    <solid android:color="@color/bg_black_color"/>
+    <solid android:color="@color/bg_black_color1_4"/>
 
     <stroke android:width="0.5dp"
         android:color="@color/main_color"/>

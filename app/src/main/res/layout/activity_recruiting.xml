@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_r5white"
-                android:backgroundTint="@color/bg_black_color2"
+                android:backgroundTint="@color/bg_black_color1_4"
                 android:orientation="vertical"
                 android:padding="15dp">
                 <TextView
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_r5white"
-                android:backgroundTint="@color/bg_black_color2"
+                android:backgroundTint="@color/bg_black_color1_4"
                 android:orientation="vertical"
                 android:padding="15dp">
                 <TextView
@@ -64,7 +64,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_r5black"
+                    android:background="@drawable/bg_r5black2_4"
                     android:layout_marginTop="15dp"
                     android:padding="20dp">
                     <TextView
@@ -94,7 +94,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_r5black"
+                    android:background="@drawable/bg_r5black2_4"
                     android:layout_marginTop="15dp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -138,7 +138,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_r5black"
+                    android:background="@drawable/bg_r5black2_4"
                     android:layout_marginTop="15dp"
                     android:padding="20dp">
                     <TextView
@@ -168,7 +168,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_r5black"
+                    android:background="@drawable/bg_r5black2_4"
                     android:layout_marginTop="15dp"
                     android:padding="20dp">
                     <TextView

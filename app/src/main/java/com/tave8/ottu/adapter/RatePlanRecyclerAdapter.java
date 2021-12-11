@@ -40,9 +40,9 @@ public class RatePlanRecyclerAdapter extends RecyclerView.Adapter<RatePlanRecycl
     @Override
     public void onBindViewHolder(@NonNull RatePlanRecyclerAdapter.ItemViewHolder holder, int position) {
         if (selectedRatePlanPosition == position)
-            holder.rlBackground.setBackgroundResource(R.drawable.bg_r5black_sblue);
+            holder.rlBackground.setBackgroundResource(R.drawable.bg_r5black2_4_sblue);
         else
-            holder.rlBackground.setBackgroundResource(R.drawable.bg_r5black);
+            holder.rlBackground.setBackgroundResource(R.drawable.bg_r5black2_4);
 
         holder.tvRatePlanName.setText(ratePlanInfoList.get(position).getRatePlanName());
         holder.tvHeadCount.setText(String.valueOf(ratePlanInfoList.get(position).getHeadCount()));

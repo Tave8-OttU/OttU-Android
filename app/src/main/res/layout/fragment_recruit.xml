@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/bg_r5black1_4"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:text="모집 관련 OTT 플랫폼"
         android:textSize="16sp"
         android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
