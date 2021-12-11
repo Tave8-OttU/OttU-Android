@@ -18,6 +18,7 @@
     <color name="grey1">#FF8C8C8C</color>
     <color name="light_grey2">#FFC4C4C4</color>
     <color name="bg_black_color">#BB000000</color>
+    <color name="bg_black_color1">#88000000</color>
     <color name="bg_black_color2">#44000000</color>
     <color name="bg_black_color3">#33000000</color>
     <color name="red_notice">#FFFFA49E</color>

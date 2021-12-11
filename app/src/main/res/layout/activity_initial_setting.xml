@@ -90,7 +90,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="카카오 아이디"
+                android:text="카카오톡 아이디"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
