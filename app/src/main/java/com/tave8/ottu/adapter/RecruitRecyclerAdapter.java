@@ -24,11 +24,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tave8.ottu.R;
 import com.tave8.ottu.data.Genre;
+import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.RecruitInfo;
 import com.tave8.ottu.data.RecruitRequestInfo;
+import com.tave8.ottu.data.SingletonPlatform;
 import com.tave8.ottu.data.UserEssentialInfo;
 import com.tave8.ottu.data.UserInfo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static com.tave8.ottu.MainActivity.myInfo;
@@ -99,7 +102,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
             itemView.setOnClickListener(v -> {
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION && !recruitPostList.get(pos).isCompleted()) {
-                    if (myInfo.getUserId().equals(recruitPostList.get(pos).getWriterInfo().getUserId())) {      //작성자이므로 참여 수락을 할 수 있는 다이얼로그 보임
+                    if (myInfo.getUserIdx().equals(recruitPostList.get(pos).getWriterInfo().getUserIdx())) {      //작성자이므로 참여 수락을 할 수 있는 다이얼로그 보임
                         ArrayList<RecruitRequestInfo> userRequestList = new ArrayList<>();
                         //TODO: 임시
                         userRequestList.add(new RecruitRequestInfo(new UserEssentialInfo(2L, "닉네임2"), false));
@@ -171,6 +174,24 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                         params.width = (int) (width*0.89);
                         alertDialog.getWindow().setAttributes(params);
 
+                        int headcount = recruitPostList.get(pos).getHeadCount();
+                        RatePlanInfo ratePlanInfo = SingletonPlatform.getPlatform().getPlatformRatePlanInfo(recruitPostList.get(pos).getPlatformIdx(), headcount);
+
+                        TextView tvRecruiter = participateDialogView.findViewById(R.id.tv_dialog_participate_recruiter);
+                        tvRecruiter.setText(recruitPostList.get(pos).getWriterInfo().getNick());
+
+                        DecimalFormat chargeFormatter = new DecimalFormat("###,##0");
+                        TextView tvRatePlan = participateDialogView.findViewById(R.id.tv_dialog_participate_rateplan);
+                        tvRatePlan.setText(ratePlanInfo.getRatePlanName());
+                        TextView tvRatePlanCharge = participateDialogView.findViewById(R.id.tv_dialog_participate_charge);
+                        tvRatePlanCharge.setText(chargeFormatter.format(ratePlanInfo.getCharge()));
+
+                        TextView tvTeamNum = participateDialogView.findViewById(R.id.tv_dialog_participate_team_num);
+                        tvTeamNum.setText(String.valueOf(headcount));
+                        TextView tvMyCharge = participateDialogView.findViewById(R.id.tv_dialog_participate_my_charge);
+                        int myCharge = ratePlanInfo.getCharge()/(headcount);
+                        tvMyCharge.setText(chargeFormatter.format(myCharge));
+
                         AppCompatButton btParticipateYes = participateDialogView.findViewById(R.id.bt_dialog_participate_yes);
                         btParticipateYes.setOnClickListener(view -> {
                             //TODO: 서버에 참여 요청을 전달함
@@ -204,8 +225,8 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                 //TODO: 임시
                 //
                 ArrayList<Genre> interestGenreList = new ArrayList<>();
-                interestGenreList.add(Genre.DRAMA);
-                interestGenreList.add(Genre.FANTASY);
+                interestGenreList.add(new Genre(1, "드라마"));
+                interestGenreList.add(new Genre(5, "사극"));
                 UserInfo writerInfo = new UserInfo(1L, "오뜨유", 7, false, interestGenreList);
                 //
 
@@ -218,8 +239,8 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                 ProgressBar pbOttULevel = profileDialogView.findViewById(R.id.pb_dialog_profile);
                 TextView tvOttULevel = profileDialogView.findViewById(R.id.tv_dialog_profile_level);
 
-                pbOttULevel.setProgress(writerInfo.getLevel());
-                tvOttULevel.setText(String.valueOf(writerInfo.getLevel()));
+                pbOttULevel.setProgress(writerInfo.getReliability());
+                tvOttULevel.setText(String.valueOf(writerInfo.getReliability()));
                 if (writerInfo.isFirst()) {
                     pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
                     tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));

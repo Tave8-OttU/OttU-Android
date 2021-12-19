@@ -86,8 +86,8 @@ public class SingletonPlatform {
         return platformInfoList;
     }
 
-    public RatePlanInfo getPlatformRatePlanInfo(int platformId, int headCount) {
-        ArrayList<RatePlanInfo> platformRatePlanInfoList = getPlatformInfoList().get(platformId);
+    public RatePlanInfo getPlatformRatePlanInfo(int platformIdx, int headCount) {
+        ArrayList<RatePlanInfo> platformRatePlanInfoList = getPlatformInfoList().get(platformIdx);
         for (RatePlanInfo ratePlanInfo : Objects.requireNonNull(platformRatePlanInfoList)) {
             if (ratePlanInfo.getHeadCount() == headCount)
                 return ratePlanInfo;

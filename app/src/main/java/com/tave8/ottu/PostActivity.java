@@ -58,8 +58,8 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         postInfo = getIntent().getExtras().getParcelable("postInfo");
-        postId = postInfo.getPostId();
-        if (myInfo.getUserId().equals(postInfo.getWriterInfo().getUserId()))
+        postId = postInfo.getPostIdx();
+        if (myInfo.getUserIdx().equals(postInfo.getWriterInfo().getUserIdx()))
             isWriter = true;
         commentInfoList = new ArrayList<>();
 
@@ -123,7 +123,7 @@ public class PostActivity extends AppCompatActivity {
         ibtBack.setOnClickListener(v -> finish());
 
         TextView tvPlatform = toolbar.findViewById(R.id.tv_ab_post_platform);
-        tvPlatform.setText(SingletonPlatform.getPlatform().getPlatformNameList().get(postInfo.getPlatformId()));
+        tvPlatform.setText(SingletonPlatform.getPlatform().getPlatformNameList().get(postInfo.getPlatformIdx()));
 
         AppCompatImageButton ibtMenu = toolbar.findViewById(R.id.ibt_ab_post_menu);
         if (isWriter) {

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">OttU</string>
 
+    <string name="KAKAO_APP_KEY">0ca72083a4052f745544db55efdd6ec3</string>
+    <string name="KAKAO_NATIVE_APP_KEY">kakao0ca72083a4052f745544db55efdd6ec3</string>
+
     <string name="logo">logo</string>
     <string name="nickname">닉네임</string>
     <string name="submit">제출</string>
@@ -28,6 +31,12 @@
     <string name="ott_disneyplus">Disney Plus</string>
     <string name="ott_coupangplay">Coupang Play</string>
 
+    <string name="nickname_rule1">닉네임에 공백이 포함되어 있습니다.</string>
+    <string name="nickname_rule2">닉네임을 입력하지 않았습니다.</string>
+    <string name="nickname_rule3">닉네임은 2자 이상 24자 이하여야 합니다.</string>
+    <string name="nickname_rule4">닉네임에 영문 소문자 혹은 한글이 1글자 이상 있어야 합니다.</string>
+    <string name="nickname_rule5">영문 소문자/한글/숫자/_/* 이외의 문자는 사용 불가합니다:)</string>
+
     <string name="recruit_ing">모집 중</string>
     <string name="recruit_completed">모집 완료</string>
 
@@ -48,7 +57,7 @@
     <string name="genre_12">기타</string>
 
     <string name="participate_question">참여 요청하시겠습니까?</string>
-    <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며, 이를 통해 팀원 간 연락이 가능합니다.</string>
+    <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며,\n이를 통해 팀원 간 연락이 가능합니다.</string>
     <string name="participate_notice2">작성자가 요청 수락 시, 팀원으로 모집됩니다.</string>
     
     <string name="recruiting_select_rateplan">요금제 선택</string>
@@ -78,11 +87,11 @@
     <string name="mypage_logout">로그아웃</string>
     <string name="mypage_withdrawal">회원 탈퇴</string>
     
-    <string name="change_nick_rule">* 오뜨유 닉네임 규칙 *</string>
-    <string name="change_nick_rule1">1. 영문 최대 16글자 혹은 한글 최대 8글자까지 가능</string>
-    <string name="change_nick_rule2">2. 소문자(a–z), 대문자(A–Z), 숫자, 한글, _* 사용 가능</string>
+    <string name="change_nick_rule">[ 오뜨유 닉네임 규칙 ]</string>
+    <string name="change_nick_rule1">· 영문 최대 16글자 혹은 한글 최대 8글자까지 가능</string>
+    <string name="change_nick_rule2">· 소문자(a–z), 숫자, 한글, _* 사용 가능</string>
 
-    <string name="change_kakaotalk_id_info">* 오뜨유에서의 카카오톡 아이디 *</string>
+    <string name="change_kakaotalk_id_info">[ 오뜨유에서의 카카오톡 아이디 ]</string>
     <string name="change_kakaotalk_id_info1">- 해당 카톡 아이디는 모집에서 사용됩니다.</string>
     <string name="change_kakaotalk_id_info2">- 모집 완료 시 모집자가 팀원들의 카톡 아이디를 받게 됩니다.</string>
 </resources>

@@ -38,7 +38,7 @@ public class ChangeKakaoTalkIdActivity extends AppCompatActivity {
         toolbarListener(toolbar);
 
         EditText etCurrentKakaoTalkId = findViewById(R.id.et_change_kakaotalk_id_current);
-        etCurrentKakaoTalkId.setText(myInfo.getKakaoID());
+        etCurrentKakaoTalkId.setText(myInfo.getKakaotalkId());
 
         changeNickClickListener();
     }
@@ -77,7 +77,7 @@ public class ChangeKakaoTalkIdActivity extends AppCompatActivity {
                 etNewKakaoTalkId.setEnabled(true);
                 etNewKakaoTalkId.requestFocus();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNewKakaoTalkId, 0);
-            } else if (newKakaoTalkId.equals(myInfo.getKakaoID())) {
+            } else if (newKakaoTalkId.equals(myInfo.getKakaotalkId())) {
                 Toast.makeText(this, "기존 카카오톡 아이디와 일치합니다.", Toast.LENGTH_SHORT).show();
                 etNewKakaoTalkId.setEnabled(true);
             } else {

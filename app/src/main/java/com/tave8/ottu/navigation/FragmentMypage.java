@@ -38,8 +38,8 @@ public class FragmentMypage extends Fragment {
 
         ProgressBar pbOttULevel = rootView.findViewById(R.id.pb_frag_mypage_level);
         TextView tvOttULevel = rootView.findViewById(R.id.tv_frag_mypage_level);
-        pbOttULevel.setProgress(myInfo.getLevel());
-        tvOttULevel.setText(String.valueOf(myInfo.getLevel()));
+        pbOttULevel.setProgress(myInfo.getReliability());
+        tvOttULevel.setText(String.valueOf(myInfo.getReliability()));
         if (myInfo.isFirst()) {
             pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.bg_progress_first));
             tvOttULevel.setTextColor(requireContext().getColor(R.color.sub_text_color));

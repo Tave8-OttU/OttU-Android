@@ -105,8 +105,8 @@ public class RecruitRequestRecyclerAdapter extends RecyclerView.Adapter<RecruitR
                 //TODO: 임시
                 //
                 ArrayList<Genre> interestGenreList = new ArrayList<>();
-                interestGenreList.add(Genre.DRAMA);
-                interestGenreList.add(Genre.FANTASY);
+                interestGenreList.add(new Genre(1, "드라마"));
+                interestGenreList.add(new Genre(5, "사극"));
                 UserInfo writerInfo = new UserInfo(1L, "오뜨유", 7, false, interestGenreList);
                 //
 
@@ -119,8 +119,8 @@ public class RecruitRequestRecyclerAdapter extends RecyclerView.Adapter<RecruitR
                 ProgressBar pbOttULevel = profileDialogView.findViewById(R.id.pb_dialog_profile);
                 TextView tvOttULevel = profileDialogView.findViewById(R.id.tv_dialog_profile_level);
 
-                pbOttULevel.setProgress(writerInfo.getLevel());
-                tvOttULevel.setText(String.valueOf(writerInfo.getLevel()));
+                pbOttULevel.setProgress(writerInfo.getReliability());
+                tvOttULevel.setText(String.valueOf(writerInfo.getReliability()));
                 if (writerInfo.isFirst()) {
                     pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
                     tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));

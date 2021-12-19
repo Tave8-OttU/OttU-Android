@@ -6,16 +6,16 @@ import android.os.Parcelable;
 import java.time.LocalDateTime;
 
 public class CommunityPostInfo implements Parcelable {
-    private Long postId;
-    private int platformId;
+    private Long postIdx;
+    private int platformIdx;
     private UserEssentialInfo writerInfo;
     private String content;
     private LocalDateTime postDateTime;
     private int commentNum;
 
-    public CommunityPostInfo(Long postId, int platformId, UserEssentialInfo writerInfo, String content, LocalDateTime postDateTime, int commentNum) {
-        this.postId = postId;
-        this.platformId = platformId;
+    public CommunityPostInfo(Long postIdx, int platformIdx, UserEssentialInfo writerInfo, String content, LocalDateTime postDateTime, int commentNum) {
+        this.postIdx = postIdx;
+        this.platformIdx = platformIdx;
         this.writerInfo = writerInfo;
         this.content = content;
         this.postDateTime = postDateTime;
@@ -25,8 +25,8 @@ public class CommunityPostInfo implements Parcelable {
     @Override
     public String toString() {
         return "CommunityPostInfo{" +
-                "postId=" + postId +
-                ", platformId=" + platformId +
+                "postIdx=" + postIdx +
+                ", platformIdx=" + platformIdx +
                 ", writerInfo=" + writerInfo +
                 ", content='" + content + '\'' +
                 ", postDateTime=" + postDateTime +
@@ -36,11 +36,11 @@ public class CommunityPostInfo implements Parcelable {
 
     protected CommunityPostInfo(Parcel in) {
         if (in.readByte() == 0) {
-            postId = null;
+            postIdx = null;
         } else {
-            postId = in.readLong();
+            postIdx = in.readLong();
         }
-        platformId = in.readInt();
+        platformIdx = in.readInt();
         writerInfo = in.readParcelable(UserEssentialInfo.class.getClassLoader());
         content = in.readString();
         postDateTime = LocalDateTime.parse(in.readString());
@@ -59,12 +59,12 @@ public class CommunityPostInfo implements Parcelable {
         }
     };
 
-    public Long getPostId() {
-        return postId;
+    public Long getPostIdx() {
+        return postIdx;
     }
 
-    public int getPlatformId() {
-        return platformId;
+    public int getPlatformIdx() {
+        return platformIdx;
     }
 
     public UserEssentialInfo getWriterInfo() {
@@ -90,13 +90,13 @@ public class CommunityPostInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (postId == null) {
+        if (postIdx == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeLong(postId);
+            dest.writeLong(postIdx);
         }
-        dest.writeInt(platformId);
+        dest.writeInt(platformIdx);
         dest.writeParcelable(writerInfo, flags);
         dest.writeString(content);
         dest.writeString(postDateTime.toString());

@@ -41,7 +41,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edittext"
-                    android:hint="2~20자"
                     android:inputType="text"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
@@ -73,10 +72,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="사용가능한 닉네임입니다."
-                android:textColor="@color/red_notice"
+                android:text="사용 가능한 닉네임입니다."
+                android:textColor="@color/light_skyblue"
                 android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"/>
         </LinearLayout>
 
         <View

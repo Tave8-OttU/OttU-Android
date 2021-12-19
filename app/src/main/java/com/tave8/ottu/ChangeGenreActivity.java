@@ -57,7 +57,7 @@ public class ChangeGenreActivity extends AppCompatActivity {
         genreIdList.add(R.id.bt_change_genre_genre11);
         genreIdList.add(R.id.bt_change_genre_genre12);
         for (Genre genre : myInfo.getInterestGenre()) {
-            int genreBtIndex = genre.getGenreId()-1;
+            int genreBtIndex = genre.getGenreIdx()-1;
             AppCompatButton btSelectedGenre = findViewById(genreIdList.get(genreBtIndex));
             btSelectedGenre.setBackgroundResource(R.drawable.bg_button_select);
             selectedGenre.add(btSelectedGenre);

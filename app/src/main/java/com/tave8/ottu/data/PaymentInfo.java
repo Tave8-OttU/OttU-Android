@@ -3,24 +3,24 @@ package com.tave8.ottu.data;
 import java.time.LocalDate;
 
 public class PaymentInfo {
-    private Long paymentId;     //teamIdx와 동일함
-    private int platformId;
+    private Long paymentIdx;     //teamIdx와 동일함
+    private int platformIdx;
     private int headCount;
     private LocalDate paymentDate;
 
-    public PaymentInfo(Long paymentId, int platformId, int headCount, LocalDate paymentDate) {
-        this.paymentId = paymentId;
-        this.platformId = platformId;
+    public PaymentInfo(Long paymentIdx, int platformIdx, int headCount, LocalDate paymentDate) {
+        this.paymentIdx = paymentIdx;
+        this.platformIdx = platformIdx;
         this.headCount = headCount;
         this.paymentDate = paymentDate;
     }
 
-    public Long getPaymentId() {
-        return paymentId;
+    public Long getPaymentIdx() {
+        return paymentIdx;
     }
 
-    public int getPlatformId() {
-        return platformId;
+    public int getPlatformIdx() {
+        return platformIdx;
     }
 
     public int getHeadCount() {

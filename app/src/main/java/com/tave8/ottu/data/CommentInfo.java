@@ -3,26 +3,26 @@ package com.tave8.ottu.data;
 import java.time.LocalDateTime;
 
 public class CommentInfo {
-    private Long commentId;
-    private Long postId;
+    private Long commentIdx;
+    private Long postIdx;
     private UserEssentialInfo writerInfo;
     private String content;
     private LocalDateTime commentDateTime;
 
-    public CommentInfo(Long commentId, Long postId, UserEssentialInfo writerInfo, String content, LocalDateTime commentDateTime) {
-        this.commentId = commentId;
-        this.postId = postId;
+    public CommentInfo(Long commentIdx, Long postIdx, UserEssentialInfo writerInfo, String content, LocalDateTime commentDateTime) {
+        this.commentIdx = commentIdx;
+        this.postIdx = postIdx;
         this.writerInfo = writerInfo;
         this.content = content;
         this.commentDateTime = commentDateTime;
     }
 
-    public Long getCommentId() {
-        return commentId;
+    public Long getCommentIdx() {
+        return commentIdx;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getPostIdx() {
+        return postIdx;
     }
 
     public UserEssentialInfo getWriterInfo() {

@@ -48,7 +48,7 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
 
     @Override
     public void onBindViewHolder(@NonNull HomePaymentPagerAdapter.ItemViewHolder holder, int position) {
-        holder.ivOttIcon.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformId()));
+        holder.ivOttIcon.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformIdx()));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         holder.tvOttPaymentDate.setText(ottPaymentList.get(position).getPaymentDate().format(dateTimeFormatter));
     }
@@ -72,7 +72,7 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                     PaymentInfo paymentInfo = ottPaymentList.get(pos);
-                    RatePlanInfo ratePlanInfo = SingletonPlatform.getPlatform().getPlatformRatePlanInfo(paymentInfo.getPlatformId(), paymentInfo.getHeadCount());
+                    RatePlanInfo ratePlanInfo = SingletonPlatform.getPlatform().getPlatformRatePlanInfo(paymentInfo.getPlatformIdx(), paymentInfo.getHeadCount());
 
                     View paymentDialogView = View.inflate(context, R.layout.dialog_ott_payment_info, null);
 
@@ -91,7 +91,7 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
                     alertDialog.getWindow().setAttributes(params);
 
                     ImageView ivPaymentPlatform = paymentDialogView.findViewById(R.id.iv_dialog_payment_platform);
-                    ivPaymentPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(paymentInfo.getPlatformId()));
+                    ivPaymentPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(paymentInfo.getPlatformIdx()));
 
                     TextView tvPaymentDay = paymentDialogView.findViewById(R.id.tv_dialog_payment_date);
                     tvPaymentDay.setText(String.valueOf(paymentInfo.getPaymentDate().getDayOfMonth()));

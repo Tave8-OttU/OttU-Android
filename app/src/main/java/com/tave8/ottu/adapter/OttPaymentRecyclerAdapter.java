@@ -48,7 +48,7 @@ public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRe
 
     @Override
     public void onBindViewHolder(@NonNull OttPaymentRecyclerAdapter.ItemViewHolder holder, int position) {
-        int imageResourceId = SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformId());
+        int imageResourceId = SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformIdx());
         holder.ivPlatform.setImageResource(imageResourceId);
     }
 
@@ -71,7 +71,7 @@ public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRe
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                     PaymentInfo paymentInfo = ottPaymentList.get(pos);
-                    RatePlanInfo ratePlanInfo = SingletonPlatform.getPlatform().getPlatformRatePlanInfo(paymentInfo.getPlatformId(), paymentInfo.getHeadCount());
+                    RatePlanInfo ratePlanInfo = SingletonPlatform.getPlatform().getPlatformRatePlanInfo(paymentInfo.getPlatformIdx(), paymentInfo.getHeadCount());
 
                     View paymentDialogView = View.inflate(context, R.layout.dialog_ott_payment_info, null);
 
@@ -90,7 +90,7 @@ public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRe
                     alertDialog.getWindow().setAttributes(params);
 
                     ImageView ivPaymentPlatform = paymentDialogView.findViewById(R.id.iv_dialog_payment_platform);
-                    ivPaymentPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(paymentInfo.getPlatformId()));
+                    ivPaymentPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(paymentInfo.getPlatformIdx()));
 
                     TextView tvPaymentDay = paymentDialogView.findViewById(R.id.tv_dialog_payment_date);
                     tvPaymentDay.setText(String.valueOf(paymentInfo.getPaymentDate().getDayOfMonth()));

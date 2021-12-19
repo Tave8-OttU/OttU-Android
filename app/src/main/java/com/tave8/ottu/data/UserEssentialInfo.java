@@ -4,19 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class UserEssentialInfo implements Parcelable {
-    private Long userId;
+    private Long userIdx;
     private String nick;
 
-    public UserEssentialInfo(Long userId, String nick) {
-        this.userId = userId;
+    public UserEssentialInfo(Long userIdx, String nick) {
+        this.userIdx = userIdx;
         this.nick = nick;
     }
 
     protected UserEssentialInfo(Parcel in) {
         if (in.readByte() == 0) {
-            userId = null;
+            userIdx = null;
         } else {
-            userId = in.readLong();
+            userIdx = in.readLong();
         }
         nick = in.readString();
     }
@@ -33,8 +33,8 @@ public class UserEssentialInfo implements Parcelable {
         }
     };
 
-    public Long getUserId() {
-        return userId;
+    public Long getUserIdx() {
+        return userIdx;
     }
 
     public String getNick() {
@@ -48,11 +48,11 @@ public class UserEssentialInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (userId == null) {
+        if (userIdx == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeLong(userId);
+            dest.writeLong(userIdx);
         }
         dest.writeString(nick);
     }

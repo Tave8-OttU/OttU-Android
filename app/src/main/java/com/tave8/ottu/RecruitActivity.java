@@ -56,7 +56,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         //TODO: 임시 recruitList
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        recruitList.add(new RecruitInfo(3L, platformId, new UserEssentialInfo(4L, "nick4"), false, 3, 1, LocalDateTime.parse("2021-12-03 07:20:23",formatter)));
+        recruitList.add(new RecruitInfo(3L, platformId, new UserEssentialInfo(4L, "nick4"), false, 2, 1, LocalDateTime.parse("2021-12-03 07:20:23",formatter)));
         recruitList.add(new RecruitInfo(2L, platformId, new UserEssentialInfo(3L, "nick3"), true, 4, 4, LocalDateTime.parse("2021-11-23 14:20:23", formatter)));
         recruitList.add(new RecruitInfo(1L, platformId, new UserEssentialInfo(1L, "nick1"), false, 4, 2, LocalDateTime.parse("2021-11-08 12:03:10", formatter)));
         //

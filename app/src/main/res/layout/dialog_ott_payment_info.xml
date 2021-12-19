@@ -67,7 +67,7 @@
         android:textSize="16sp" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="@drawable/bg_r5white_sblue"
         android:layout_marginTop="15dp"
         android:paddingTop="25dp"
@@ -115,7 +115,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"

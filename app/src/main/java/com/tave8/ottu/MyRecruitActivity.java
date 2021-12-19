@@ -45,7 +45,7 @@ public class MyRecruitActivity extends AppCompatActivity {
         //TODO: 서버로부터 내가 쓴 모집글 받아오기!
         //TODO: 임시 recruitList
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        myRecruitList.add(new RecruitInfo(3L, 6, myInfo.getUserEssentialInfo(), false, 3, 1, LocalDateTime.parse("2021-12-03 07:20:23",formatter)));
+        myRecruitList.add(new RecruitInfo(3L, 6, myInfo.getUserEssentialInfo(), false, 2, 1, LocalDateTime.parse("2021-12-03 07:20:23",formatter)));
         myRecruitList.add(new RecruitInfo(2L, 2, myInfo.getUserEssentialInfo(), true, 4, 4, LocalDateTime.parse("2021-11-23 14:20:23", formatter)));
         myRecruitList.add(new RecruitInfo(1L, 3, myInfo.getUserEssentialInfo(), false, 4, 2, LocalDateTime.parse("2021-11-08 12:03:10", formatter)));
 
