@@ -1,7 +1,5 @@
 package com.tave8.ottu.data;
 
-import java.time.LocalDateTime;
-
 public class RecruitInfo {
     private Long recruitIdx;
     private int platformIdx;
@@ -9,9 +7,9 @@ public class RecruitInfo {
     private boolean isCompleted;
     private int headCount;
     private int choiceNum;
-    private LocalDateTime recruitDateTime;
+    private String recruitDateTime;
 
-    public RecruitInfo(Long recruitIdx, int platformIdx, UserEssentialInfo writerInfo, boolean isCompleted, int headCount, int choiceNum, LocalDateTime recruitDateTime) {
+    public RecruitInfo(Long recruitIdx, int platformIdx, UserEssentialInfo writerInfo, boolean isCompleted, int headCount, int choiceNum, String recruitDateTime) {
         this.recruitIdx = recruitIdx;
         this.platformIdx = platformIdx;
         this.writerInfo = writerInfo;
@@ -45,7 +43,7 @@ public class RecruitInfo {
         return choiceNum;
     }
 
-    public LocalDateTime getRecruitDateTime() {
+    public String getRecruitDateTime() {
         return recruitDateTime;
     }
 }

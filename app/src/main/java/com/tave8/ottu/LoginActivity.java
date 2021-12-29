@@ -40,14 +40,13 @@ public class LoginActivity extends AppCompatActivity {
         btLogin.setEnabled(false);
 
         if (!PreferenceManager.getString(LoginActivity.this, "jwt").equals("")) {
-            Log.i("확인용1 jwt", PreferenceManager.getString(this,"jwt"));
             OttURetrofitClient.getApiService().postAutoLogin(PreferenceManager.getString(LoginActivity.this, "jwt")).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                     if (response.code() == 200) {
                         try {
                             JSONObject loginInfo = new JSONObject(Objects.requireNonNull(response.body()));
-                            Long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
+                            long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
 
                             if (loginInfo.getJSONObject("user").isNull("nickname")) {
                                 Intent showInitialSetting = new Intent(LoginActivity.this, InitialSettingActivity.class);
@@ -55,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                                     bundle.putLong("userIdx", userIdx);
                                 showInitialSetting.putExtras(bundle);
                                 startActivity(showInitialSetting);
-                                Log.i("확인용1", "initial o");
                             }
                             else {
                                 ArrayList<Genre> interestGenreList = new ArrayList<>();
@@ -69,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                                         user.getBoolean("isFirst"), interestGenreList);
 
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                Log.i("확인용1", "initial x");
                             }
                             finish();
                         } catch (JSONException e) { e.printStackTrace(); }
@@ -81,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         btLogin.setEnabled(true);
-                        Toast.makeText(LoginActivity.this, "다시 로그인 부탁드립니다.1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "다시 로그인 부탁드립니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -112,11 +109,10 @@ public class LoginActivity extends AppCompatActivity {
             OttURetrofitClient.getApiService().postLogin(kakaoToken).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                    Log.i("확인용", response.body());
                     if (response.code() == 200) {
                         try {
                             JSONObject loginInfo = new JSONObject(Objects.requireNonNull(response.body()));
-                            Long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
+                            long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
                             PreferenceManager.setString(LoginActivity.this, "jwt", loginInfo.getString("jwt"));
 
                             if (loginInfo.getJSONObject("user").isNull("nickname")) {
@@ -141,13 +137,11 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             finish();
                         } catch (JSONException e) { e.printStackTrace(); }
-                        Log.i("확인용2", "initial x");
-                        //TODO:
                     }
                     else if (response.code() == 201) {
                         try {
                             JSONObject loginInfo = new JSONObject(Objects.requireNonNull(response.body()));
-                            Long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
+                            long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
 
                             Intent showInitialSetting = new Intent(LoginActivity.this, InitialSettingActivity.class);
                             Bundle bundle = new Bundle();
@@ -155,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
                             showInitialSetting.putExtras(bundle);
                             startActivity(showInitialSetting);
                         } catch (JSONException e) { e.printStackTrace(); }
-                        Log.i("확인용2", "initial o");
                     }
                     else
                         Toast.makeText(LoginActivity.this, "다시 로그인 부탁드립니다.", Toast.LENGTH_SHORT).show();

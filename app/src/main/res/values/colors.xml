@@ -14,6 +14,7 @@
     <color name="main_color_transparent">#4445C7FF</color>
     <color name="light_skyblue">#FFBBEBFF</color>
     <color name="red_notice">#FFFFA49E</color>
+    <color name="bg_white_transparent">#77FFFFFF</color>
     <color name="bg_bt_color">#44FFFFFF</color>
     <color name="bg_bt_grey">#FF6D6D6D</color>
     <color name="grey1">#FF8C8C8C</color>

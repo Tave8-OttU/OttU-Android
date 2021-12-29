@@ -10,9 +10,9 @@ import java.util.Objects;
 
 public class SingletonPlatform {
     private static SingletonPlatform platform;
-    @NonNull private HashMap<Integer, Integer> platformLogoList;                    //platformId로 찾음
-    @NonNull private HashMap<Integer, String> platformNameList;                     //platformId로 찾음
-    @NonNull private HashMap<Integer, ArrayList<RatePlanInfo>> platformInfoList;    //platformId로 찾음
+    @NonNull private HashMap<Integer, Integer> platformLogoList;                    //platformIdx로 찾음
+    @NonNull private HashMap<Integer, String> platformNameList;                     //platformIdx로 찾음
+    @NonNull private HashMap<Integer, ArrayList<RatePlanInfo>> platformInfoList;    //platformIdx로 찾음
 
     private SingletonPlatform() {
         platformLogoList = new HashMap<>();

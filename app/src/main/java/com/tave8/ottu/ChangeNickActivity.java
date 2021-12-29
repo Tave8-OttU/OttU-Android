@@ -33,7 +33,7 @@ public class ChangeNickActivity extends AppCompatActivity {
             Objects.requireNonNull(actionBar).setDisplayShowCustomEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
-        View customView = View.inflate(this, R.layout.actionbar_change, null);
+        View customView = View.inflate(this, R.layout.actionbar_mypage, null);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
@@ -59,10 +59,10 @@ public class ChangeNickActivity extends AppCompatActivity {
     }
 
     private void toolbarListener(Toolbar toolbar) {
-        AppCompatImageButton ibtBack = toolbar.findViewById(R.id.ibt_ab_change_back);
+        AppCompatImageButton ibtBack = toolbar.findViewById(R.id.ibt_ab_mypage_back);
         ibtBack.setOnClickListener(v -> finish());
 
-        TextView tvTitle = toolbar.findViewById(R.id.tv_ab_change_title);
+        TextView tvTitle = toolbar.findViewById(R.id.tv_ab_mypage_title);
         tvTitle.setText("닉네임 변경");
     }
 

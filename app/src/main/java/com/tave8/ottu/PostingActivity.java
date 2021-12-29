@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class PostingActivity extends AppCompatActivity {
     private boolean isEditing = false, isSubmitted = false;
-    private int platformId = 0;                                 //글 등록 시 사용
+    private int platformIdx = 0;                                 //글 등록 시 사용
     private CommunityPostInfo postInfo = null;
 
     @Override
@@ -35,7 +35,7 @@ public class PostingActivity extends AppCompatActivity {
             postInfo = getIntent().getExtras().getParcelable("postInfo");
             etPostContent.setText(postInfo.getContent());
         } else {
-            platformId = getIntent().getExtras().getInt("platformId");
+            platformIdx = getIntent().getExtras().getInt("platformIdx");
         }
 
         Toolbar toolbar = findViewById(R.id.tb_posting_toolbar);
@@ -93,7 +93,7 @@ public class PostingActivity extends AppCompatActivity {
                     finish();
                 }
             } else {
-                //TODO: 서버에 글을 등록함(platformId 사용함!)
+                //TODO: 서버에 글을 등록함(platformIdx 사용함!)
                 finish();
             }
         });

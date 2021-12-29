@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -17,6 +18,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonObject;
 import com.tave8.ottu.adapter.RatePlanRecyclerAdapter;
 import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.SingletonPlatform;
@@ -24,18 +26,23 @@ import com.tave8.ottu.data.SingletonPlatform;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.tave8.ottu.MainActivity.myInfo;
+
 public class RecruitingActivity extends AppCompatActivity {
     private boolean isSubmitted = false;
-    private int platformId = 0;
-    private ArrayList<RatePlanInfo> ratePlanInfoList = null;
+    private int platformIdx = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recruiting);
 
-        platformId = getIntent().getExtras().getInt("platformId");
-        ratePlanInfoList = SingletonPlatform.getPlatform().getPlatformInfoList().get(platformId);
+        platformIdx = getIntent().getExtras().getInt("platformIdx");
+        ArrayList<RatePlanInfo> ratePlanInfoList = SingletonPlatform.getPlatform().getPlatformInfoList().get(platformIdx);
 
         Toolbar toolbar = findViewById(R.id.tb_recruiting_toolbar);
         setSupportActionBar(toolbar);
@@ -81,7 +88,7 @@ public class RecruitingActivity extends AppCompatActivity {
         ibtBack.setOnClickListener(v -> finish());
 
         ImageView ivPlatform = toolbar.findViewById(R.id.iv_ab_recruiting_platform);
-        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformId));
+        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformIdx));
     }
 
     private void recruitingClickListener(RatePlanRecyclerAdapter ratePlanAdapter) {
@@ -100,9 +107,34 @@ public class RecruitingActivity extends AppCompatActivity {
                 nsvRecruiting.post(() -> nsvRecruiting.fullScroll(View.FOCUS_DOWN));
                 Toast.makeText(this, "항목 확인을 체크해 주세요.", Toast.LENGTH_SHORT).show();
             } else {
-                //TODO: 서버로 입력사항 제출함
-                isSubmitted = true;
-                finish();
+                JsonObject requestData = new JsonObject();
+                requestData.addProperty("userIdx", myInfo.getUserIdx());
+                requestData.addProperty("userIdx", 7);
+                requestData.addProperty("headcount", ratePlanAdapter.getSelectedRatePlanHeadCount());
+                OttURetrofitClient.getApiService().postRecruitUpload(PreferenceManager.getString(this, "jwt"), requestData).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 201) {
+                            isSubmitted = true;
+                            finish();
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(RecruitingActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(RecruitingActivity.this, "jwt");
+                            Intent reLogin = new Intent(RecruitingActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else
+                            Toast.makeText(RecruitingActivity.this, "모집글 제출에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        Toast.makeText(RecruitingActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

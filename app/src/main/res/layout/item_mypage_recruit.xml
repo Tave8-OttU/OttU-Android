@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_mypage_recruit_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:padding="20dp"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+        <ImageView
+            android:id="@+id/iv_item_mypage_recruit_platform"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_ott_netflix" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_item_mypage_recruit_ing"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_r5blue"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/recruit_ing"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_item_mypage_recruit_completed"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_r5grey"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/recruit_completed"
+        android:textAlignment="center"
+        android:textColor="@color/sub_text_color"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+        <TextView
+            android:id="@+id/tv_item_mypage_recruit_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="@color/sub_text_color2"
+            android:textSize="19sp" />
+        <TextView
+            android:id="@+id/tv_item_mypage_recruit_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:text="/"
+            android:textColor="@color/main_color"
+            android:textSize="19sp" />
+        <TextView
+            android:id="@+id/tv_item_mypage_recruit_headcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textColor="@color/main_color"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

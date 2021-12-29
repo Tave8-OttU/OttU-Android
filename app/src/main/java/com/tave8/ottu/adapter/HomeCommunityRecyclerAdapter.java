@@ -62,7 +62,7 @@ public class HomeCommunityRecyclerAdapter extends RecyclerView.Adapter<HomeCommu
                 if (pos != RecyclerView.NO_POSITION) {
                     Intent showOttCommunity = new Intent(context, CommunityActivity.class);
                     Bundle bundle = new Bundle();
-                        bundle.putInt("platformId", simpleOttCommunityList.get(pos).getPlatformIdx());
+                        bundle.putInt("platformIdx", simpleOttCommunityList.get(pos).getPlatformIdx());
                     showOttCommunity.putExtras(bundle);
                     context.startActivity(showOttCommunity);
                 }

@@ -48,7 +48,11 @@ public class FragmentMypage extends Fragment {
         AppCompatButton btGenre1 = rootView.findViewById(R.id.bt_frag_mypage_genre1);
         AppCompatButton btGenre2 = rootView.findViewById(R.id.bt_frag_mypage_genre2);
         AppCompatButton btGenre3 = rootView.findViewById(R.id.bt_frag_mypage_genre3);
-        if (myInfo.getInterestGenre().size() == 1) {
+        if (myInfo.getInterestGenre().size() == 0) {
+            btGenre1.setText("없음");
+            btGenre2.setVisibility(View.INVISIBLE);
+            btGenre3.setVisibility(View.INVISIBLE);
+        } else if (myInfo.getInterestGenre().size() == 1) {
             btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
             btGenre2.setVisibility(View.INVISIBLE);
             btGenre3.setVisibility(View.INVISIBLE);

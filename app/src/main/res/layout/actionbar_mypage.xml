@@ -17,11 +17,10 @@
 
     <TextView
         android:id="@+id/tv_ab_mypage_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@id/ibt_ab_mypage_back"
+        android:layout_centerHorizontal="true"
         android:text="My OTT Service"
-        android:textSize="14sp" />
+        android:textSize="18sp" />
 </RelativeLayout>

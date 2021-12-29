@@ -29,7 +29,7 @@ public class FragmentCommunity extends Fragment {
         rlNetflix.setOnClickListener(v -> {
             Intent netflixCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 1);
+                bundle.putInt("platformIdx", 1);
             netflixCommunity.putExtras(bundle);
             startActivity(netflixCommunity);
         });
@@ -37,7 +37,7 @@ public class FragmentCommunity extends Fragment {
         rlTving.setOnClickListener(v -> {
             Intent tvingCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 2);
+                bundle.putInt("platformIdx", 2);
             tvingCommunity.putExtras(bundle);
             startActivity(tvingCommunity);
         });
@@ -45,7 +45,7 @@ public class FragmentCommunity extends Fragment {
         rlWavve.setOnClickListener(v -> {
             Intent wavveCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 3);
+                bundle.putInt("platformIdx", 3);
             wavveCommunity.putExtras(bundle);
             startActivity(wavveCommunity);
         });
@@ -53,7 +53,7 @@ public class FragmentCommunity extends Fragment {
         rlWatcha.setOnClickListener(v -> {
             Intent watchaCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 4);
+                bundle.putInt("platformIdx", 4);
             watchaCommunity.putExtras(bundle);
             startActivity(watchaCommunity);
         });
@@ -61,7 +61,7 @@ public class FragmentCommunity extends Fragment {
         rlDisneyPlus.setOnClickListener(v -> {
             Intent disneyPlusCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 5);
+                bundle.putInt("platformIdx", 5);
             disneyPlusCommunity.putExtras(bundle);
             startActivity(disneyPlusCommunity);
         });
@@ -69,7 +69,7 @@ public class FragmentCommunity extends Fragment {
         rlCoupangPlay.setOnClickListener(v -> {
             Intent coupangPlayCommunity = new Intent(rootView.getContext(), CommunityActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", 6);
+                bundle.putInt("platformIdx", 6);
             coupangPlayCommunity.putExtras(bundle);
             startActivity(coupangPlayCommunity);
         });

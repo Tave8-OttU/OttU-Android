@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CommunityActivity extends AppCompatActivity {
-    private int platformId = 0;
+    private int platformIdx = 0;
     private ArrayList<CommunityPostInfo> communityPostList = null;
 
     private CommunityPostRecyclerAdapter postRecyclerAdapter;
@@ -41,7 +41,7 @@ public class CommunityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_community);
 
         communityPostList = new ArrayList<>();
-        platformId = getIntent().getExtras().getInt("platformId");
+        platformIdx = getIntent().getExtras().getInt("platformIdx");
 
         Toolbar toolbar = findViewById(R.id.tb_community_toolbar);
         setSupportActionBar(toolbar);
@@ -56,9 +56,9 @@ public class CommunityActivity extends AppCompatActivity {
 
         //TODO: 임시 communityPostList
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        communityPostList.add(new CommunityPostInfo(3L, platformId, new UserEssentialInfo(4L, "닉네임4"), "넷플릭스에 드라마 많이 있나요?", LocalDateTime.parse("2021-12-03 07:20:23",formatter), 1));
-        communityPostList.add(new CommunityPostInfo(2L, platformId, new UserEssentialInfo(3L, "닉네임3"), "넷플릭스가 티빙보다 좋나요?", LocalDateTime.parse("2021-11-23 14:20:23", formatter), 5));
-        communityPostList.add(new CommunityPostInfo(1L, platformId, new UserEssentialInfo(1L, "닉네임1"), "넷플릭스에 해리포터 있나요?", LocalDateTime.parse("2021-11-08 12:03:10", formatter), 3));
+        communityPostList.add(new CommunityPostInfo(3L, platformIdx, new UserEssentialInfo(4L, "닉네임4"), "넷플릭스에 드라마 많이 있나요?", LocalDateTime.parse("2021-12-03 07:20:23",formatter), 1));
+        communityPostList.add(new CommunityPostInfo(2L, platformIdx, new UserEssentialInfo(3L, "닉네임3"), "넷플릭스가 티빙보다 좋나요?", LocalDateTime.parse("2021-11-23 14:20:23", formatter), 5));
+        communityPostList.add(new CommunityPostInfo(1L, platformIdx, new UserEssentialInfo(1L, "닉네임1"), "넷플릭스에 해리포터 있나요?", LocalDateTime.parse("2021-11-08 12:03:10", formatter), 3));
         //
 
         ActivityResultLauncher<Intent> startActivityResultPost = registerForActivityResult(
@@ -89,7 +89,7 @@ public class CommunityActivity extends AppCompatActivity {
         ibtBack.setOnClickListener(v -> finish());
 
         ImageView ivPlatform = toolbar.findViewById(R.id.iv_ab_community_platform);
-        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformId));
+        ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformIdx));
     }
     
     private void communityClickListener() {
@@ -104,7 +104,7 @@ public class CommunityActivity extends AppCompatActivity {
         fabAddCommunityPost.setOnClickListener(v -> {
             Intent postingIntent = new Intent(this, PostingActivity.class);
             Bundle bundle = new Bundle();
-                bundle.putInt("platformId", platformId);
+                bundle.putInt("platformIdx", platformIdx);
             postingIntent.putExtras(bundle);
             startActivityResultPosting.launch(postingIntent);
         });

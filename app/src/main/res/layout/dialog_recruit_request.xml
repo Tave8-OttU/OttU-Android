@@ -97,7 +97,7 @@
             android:layout_width="30dp"
             android:layout_height="0dp"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_dialog_request_no"
+            android:id="@+id/bt_dialog_request_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_no"

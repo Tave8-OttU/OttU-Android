@@ -28,7 +28,7 @@ import java.util.Objects;
 
 public class AddMyOTTActivity extends AppCompatActivity {
     private boolean isAdded = false;
-    private int platformId = 0;
+    private int platformIdx = 0;
     private View ibtSelectedPlatform;
     private ArrayList<RatePlanInfo> ratePlanInfoList = null;
 
@@ -88,22 +88,22 @@ public class AddMyOTTActivity extends AppCompatActivity {
             if (ibtSelectedPlatform != ibtPlatformView) {
                 switch (ibtPlatformView.getId()) {
                     case R.id.ibt_addmyott_netflix: {
-                        platformId = 1;
+                        platformIdx = 1;
                         break;
                     } case R.id.ibt_addmyott_tving: {
-                        platformId = 2;
+                        platformIdx = 2;
                         break;
                     } case R.id.ibt_addmyott_wavve: {
-                        platformId = 3;
+                        platformIdx = 3;
                         break;
                     } case R.id.ibt_addmyott_watcha: {
-                        platformId = 4;
+                        platformIdx = 4;
                         break;
                     } case R.id.ibt_addmyott_disney: {
-                        platformId = 5;
+                        platformIdx = 5;
                         break;
                     } case R.id.ibt_addmyott_coupangplay: {
-                        platformId = 6;
+                        platformIdx = 6;
                         break;
                     }
                 }
@@ -113,7 +113,7 @@ public class AddMyOTTActivity extends AppCompatActivity {
                 ibtSelectedPlatform = ibtPlatformView;
 
                 ratePlanInfoList.clear();
-                ratePlanInfoList.addAll(SingletonPlatform.getPlatform().getPlatformInfoList().get(platformId));
+                ratePlanInfoList.addAll(SingletonPlatform.getPlatform().getPlatformInfoList().get(platformIdx));
                 ratePlanAdapter.notifyDataSetChanged();
             }
         };
@@ -151,7 +151,7 @@ public class AddMyOTTActivity extends AppCompatActivity {
 
         Button btSubmit = findViewById(R.id.bt_addmyott_submit);
         btSubmit.setOnClickListener(v -> {
-            if (platformId == 0) {
+            if (platformIdx == 0) {
                 nsvAddMyOtt.post(() -> nsvAddMyOtt.fullScroll(View.FOCUS_UP));
                 Toast.makeText(this, "OTT 서비스 플랫폼을 선택해 주세요.", Toast.LENGTH_SHORT).show();
             }
