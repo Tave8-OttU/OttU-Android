@@ -222,6 +222,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void updatePostInfo(boolean isCommentAdded) {
+        //commentInfoList.clear();
         //TODO: 서버로부터 post내용+댓글 받음
         //tvWriterNick, tvPostDateTime, tvContent, tvCommentNum바꿔줘야 함
         //isCommentAdded가 true이면   nsvPost.post(() -> nsvPost.fullScroll(View.FOCUS_DOWN));

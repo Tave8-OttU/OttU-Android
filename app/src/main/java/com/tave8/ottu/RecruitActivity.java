@@ -108,7 +108,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitList.clear();
         recruitRecyclerAdapter.notifyDataSetChanged();
 
-        OttURetrofitClient.getApiService().getRecruitLists(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
+        OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {

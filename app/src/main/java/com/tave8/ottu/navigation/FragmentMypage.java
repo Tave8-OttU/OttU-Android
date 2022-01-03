@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,21 +24,38 @@ import com.tave8.ottu.ChangeNickActivity;
 import com.tave8.ottu.LoginActivity;
 import com.tave8.ottu.MyOTTActivity;
 import com.tave8.ottu.MyRecruitActivity;
+import com.tave8.ottu.OttURetrofitClient;
+import com.tave8.ottu.PreferenceManager;
 import com.tave8.ottu.R;
+import com.tave8.ottu.data.Genre;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 import static com.tave8.ottu.MainActivity.myInfo;
 
 public class FragmentMypage extends Fragment {
+    private AppCompatButton btGenre1, btGenre2, btGenre3;
+    private ProgressBar pbOttULevel;
+    private TextView tvNick, tvOttULevel;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_mypage, container, false);
 
-        TextView tvNick = rootView.findViewById(R.id.tv_frag_mypage_nick);
+        tvNick = rootView.findViewById(R.id.tv_frag_mypage_nick);
         tvNick.setText(myInfo.getNick());
 
-        ProgressBar pbOttULevel = rootView.findViewById(R.id.pb_frag_mypage_level);
-        TextView tvOttULevel = rootView.findViewById(R.id.tv_frag_mypage_level);
+        pbOttULevel = rootView.findViewById(R.id.pb_frag_mypage_level);
+        tvOttULevel = rootView.findViewById(R.id.tv_frag_mypage_level);
         pbOttULevel.setProgress(myInfo.getReliability());
         tvOttULevel.setText(String.valueOf(myInfo.getReliability()));
         if (myInfo.isFirst()) {
@@ -45,9 +63,9 @@ public class FragmentMypage extends Fragment {
             tvOttULevel.setTextColor(requireContext().getColor(R.color.sub_text_color));
         }
 
-        AppCompatButton btGenre1 = rootView.findViewById(R.id.bt_frag_mypage_genre1);
-        AppCompatButton btGenre2 = rootView.findViewById(R.id.bt_frag_mypage_genre2);
-        AppCompatButton btGenre3 = rootView.findViewById(R.id.bt_frag_mypage_genre3);
+        btGenre1 = rootView.findViewById(R.id.bt_frag_mypage_genre1);
+        btGenre2 = rootView.findViewById(R.id.bt_frag_mypage_genre2);
+        btGenre3 = rootView.findViewById(R.id.bt_frag_mypage_genre3);
         if (myInfo.getInterestGenre().size() == 0) {
             btGenre1.setText("없음");
             btGenre2.setVisibility(View.INVISIBLE);
@@ -65,6 +83,8 @@ public class FragmentMypage extends Fragment {
             btGenre2.setText(myInfo.getInterestGenre().get(1).getGenreName());
             btGenre3.setText(myInfo.getInterestGenre().get(2).getGenreName());
         }
+
+        getMyInfo();
 
         LinearLayout llMyOTT = rootView.findViewById(R.id.ll_frag_mypage_my_ott);
         llMyOTT.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyOTTActivity.class)));
@@ -90,8 +110,7 @@ public class FragmentMypage extends Fragment {
 
         LinearLayout llLogout = rootView.findViewById(R.id.ll_frag_mypage_logout);
         llLogout.setOnClickListener(v -> {
-            //TODO: 서버에 전달 혹은 jwt 키 삭제
-            //PreferenceManager.removeKey(this, "jwt");
+            PreferenceManager.removeKey(getContext(), "jwt");
             startActivity(new Intent(getContext(), LoginActivity.class));
             requireActivity().finish();
         });
@@ -106,7 +125,74 @@ public class FragmentMypage extends Fragment {
         return rootView;
     }
 
+    private void getMyInfo() {
+        OttURetrofitClient.getApiService().getUser(PreferenceManager.getString(getContext(), "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if (response.code() == 200) {
+                    try {
+                        JSONObject userInfo = new JSONObject(Objects.requireNonNull(response.body()));
+                        JSONObject user = userInfo.getJSONObject("user");
+                        myInfo.getUserEssentialInfo().setNick(user.getString("nickname"));
+                        myInfo.setKakaotalkId(user.getString("kakaotalkId"));
+                        myInfo.setReliability(user.getInt("reliability"));
+                        myInfo.setIsFirst(user.getBoolean("isFirst"));
+
+                        JSONArray genres = user.getJSONArray("genres");
+                        myInfo.getInterestGenre().clear();
+                        for (int i=0; i<genres.length(); i++) {
+                            JSONObject genre = genres.getJSONObject(i);
+                            myInfo.getInterestGenre().add(new Genre(genre.getInt("genreIdx"), genre.getString("genreName")));
+                        }
+
+                        updateMyInfo();
+                    } catch (JSONException e) { e.printStackTrace(); }
+                }
+                else if (response.code() == 401) {
+                    Toast.makeText(getContext(), "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                    PreferenceManager.removeKey(getContext(), "jwt");
+                    Intent reLogin = new Intent(getContext(), LoginActivity.class);
+                    reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    requireContext().startActivity(reLogin);
+                    requireActivity().finish();
+                }
+                else
+                    Toast.makeText(getContext(), "회원 정보 불러오기에 문제가 생겼습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Toast.makeText(getContext(), "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void updateMyInfo() {
-        //TODO: 서버로부터 내 정보를 받음(userId, 닉네임, 이메일, 카카오아이디, 오뜨레벨, isFirst, 관심 장르) -> myInfo 내용을 변경해야 함!
+        tvNick.setText(myInfo.getNick());
+
+        pbOttULevel.setProgress(myInfo.getReliability());
+        tvOttULevel.setText(String.valueOf(myInfo.getReliability()));
+        if (myInfo.isFirst()) {
+            pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.bg_progress_first));
+            tvOttULevel.setTextColor(requireContext().getColor(R.color.sub_text_color));
+        }
+
+        if (myInfo.getInterestGenre().size() == 0) {
+            btGenre1.setText("없음");
+            btGenre2.setVisibility(View.INVISIBLE);
+            btGenre3.setVisibility(View.INVISIBLE);
+        } else if (myInfo.getInterestGenre().size() == 1) {
+            btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
+            btGenre2.setVisibility(View.INVISIBLE);
+            btGenre3.setVisibility(View.INVISIBLE);
+        } else if (myInfo.getInterestGenre().size() == 2) {
+            btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
+            btGenre2.setText(myInfo.getInterestGenre().get(1).getGenreName());
+            btGenre3.setVisibility(View.INVISIBLE);
+        } else {
+            btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
+            btGenre2.setText(myInfo.getInterestGenre().get(1).getGenreName());
+            btGenre3.setText(myInfo.getInterestGenre().get(2).getGenreName());
+        }
     }
 }

@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -126,7 +129,9 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
             userRequestList = new ArrayList<>();
             itemView.setOnClickListener(v -> {
                 int pos = getAdapterPosition();
-                if (pos != RecyclerView.NO_POSITION && !recruitPostList.get(pos).isCompleted()) {
+                if (pos != RecyclerView.NO_POSITION) {
+                    Long recruitIdx = recruitPostList.get(pos).getRecruitIdx();
+
                     if (myInfo.getUserIdx().equals(recruitPostList.get(pos).getWriterInfo().getUserIdx())) {      //작성자이므로 참여 수락을 할 수 있는 다이얼로그 보임
                         View requestDialogView = View.inflate(context, R.layout.dialog_recruit_request, null);
 
@@ -166,17 +171,109 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                         rvRecruitRequest.setAdapter(recruitRequestRecyclerAdapter);
 
                         //참여 정보 받아옴
-                        updateRequestInfo(recruitPostList.get(pos).getRecruitIdx(), recruitPostList.get(pos).getHeadCount());
+                        updateRequestInfo(recruitIdx, recruitPostList.get(pos).getHeadCount());
                         alertDialog.show();
 
                         btRequestYes.setOnClickListener(view -> alertDialog.dismiss());
                         btRequestConfirmed.setOnClickListener(view -> {
-                            //TODO: 서버에 멤버 확정을 전달함
                             alertDialog.dismiss();
+
+                            View teamDialogView = View.inflate(context, R.layout.dialog_confirmed_team, null);
+
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(context);
+                            builder2.setView(teamDialogView);
+                            AlertDialog alertDialogTeam = builder2.create();
+                            alertDialogTeam.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                            WindowManager.LayoutParams params2 = alertDialogTeam.getWindow().getAttributes();
+                            Display display2 = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                            Point size2 = new Point();
+                            display2.getRealSize(size2);
+                            int width2 = size2.x;
+                            params2.width = (int) (width2*0.89);
+                            alertDialogTeam.getWindow().setAttributes(params2);
+
+                            ArrayList<UserInfo> recruitMemberList = new ArrayList<>();
+                            RecyclerView rvRecruitMembers = teamDialogView.findViewById(R.id.rv_dialog_confirmed_members);
+                            LinearLayoutManager teamManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+                            rvRecruitMembers.setLayoutManager(teamManager);
+                            TeamMemberRecyclerAdapter teamMemberRecyclerAdapter = new TeamMemberRecyclerAdapter(recruitMemberList);
+                            rvRecruitMembers.setAdapter(teamMemberRecyclerAdapter);
+
+                            //수락된 멤버들의 정보를 조회
+                            alertDialogTeam.show();
+                            updateTeamMemberInfo(recruitIdx, recruitMemberList, teamMemberRecyclerAdapter, alertDialogTeam);
+
+                            EditText etPaymentDay = teamDialogView.findViewById(R.id.et_dialog_confirmed_team_day);
+                            etPaymentDay.setOnClickListener(viewTeam -> {
+                                final NumberPicker dayPick = new NumberPicker(context);
+                                dayPick.setMinValue(1);
+                                dayPick.setMaxValue(30);
+                                if (etPaymentDay.getText().toString().equals(""))
+                                    dayPick.setValue(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                                else
+                                    dayPick.setValue(Integer.parseInt(etPaymentDay.getText().toString()));
+
+                                androidx.appcompat.app.AlertDialog.Builder dialog = new androidx.appcompat.app.AlertDialog.Builder(context);
+                                dialog.setTitle("결제일 입력");
+                                dialog.setView(dayPick);
+                                dialog.setPositiveButton("확인", (dialogInterface, which) -> etPaymentDay.setText(String.valueOf(dayPick.getValue())));
+                                dialog.setNegativeButton("취소", (dialogInterface, which) -> dialogInterface.dismiss());
+                                dialog.show();
+                            });
+
+                            AppCompatImageButton btCancel = teamDialogView.findViewById(R.id.ibt_dialog_confirmed_team_cancel);
+                            btCancel.setOnClickListener(viewTeam -> alertDialogTeam.dismiss());
+
+                            AppCompatButton btSubmit = teamDialogView.findViewById(R.id.bt_dialog_confirmed_team_submit);
+                            btSubmit.setOnClickListener(viewTeam -> {
+                                if (etPaymentDay.getText().length() == 0) {
+                                    Toast.makeText(context, "결제일을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    JsonObject requestData = new JsonObject();
+                                    requestData.addProperty("recruitIdx", recruitIdx);
+                                    requestData.addProperty("userIdx", myInfo.getUserIdx());
+                                    requestData.addProperty("paymentDay", etPaymentDay.getText().toString());
+                                    OttURetrofitClient.getApiService().postRecruitTeam(PreferenceManager.getString(context, "jwt"), requestData).enqueue(new Callback<String>() {
+                                        @Override
+                                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                                            if (response.code() == 201) {
+                                                alertDialogTeam.dismiss();
+                                                Toast.makeText(context, "Ott 서비스 팀 생성에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                                ((RecruitActivity) context).updateRecruitList(false);
+                                            }
+                                            else if (response.code() == 400) {
+                                                Toast.makeText(context, "이전에 이미 팀이 생성되었습니다.", Toast.LENGTH_SHORT).show();
+                                                alertDialogTeam.dismiss();
+                                            }
+                                            else if (response.code() == 403) {
+                                                Toast.makeText(context, "모집 확정 후 7일이 지났습니다.", Toast.LENGTH_SHORT).show();
+                                                alertDialogTeam.dismiss();
+                                            }
+                                            else if (response.code() == 401) {
+                                                Toast.makeText(context, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                                                PreferenceManager.removeKey(context, "jwt");
+                                                Intent reLogin = new Intent(context, LoginActivity.class);
+                                                reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                context.startActivity(reLogin);
+                                                ((RecruitActivity) context).finish();
+                                            }
+                                            else
+                                                Toast.makeText(context, "팀 확정에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                            Toast.makeText(context, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
                         });
 
                         btRequestDelete.setOnClickListener(view -> {
-                            OttURetrofitClient.getApiService().deleteRecruit(PreferenceManager.getString(context, "jwt"), recruitPostList.get(pos).getRecruitIdx()).enqueue(new Callback<String>() {
+                            OttURetrofitClient.getApiService().deleteRecruit(PreferenceManager.getString(context, "jwt"), recruitIdx).enqueue(new Callback<String>() {
                                 @Override
                                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                                     if (response.code() == 200) {
@@ -241,7 +338,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                         AppCompatButton btParticipateYes = participateDialogView.findViewById(R.id.bt_dialog_participate_yes);
                         btParticipateYes.setOnClickListener(view -> {
                             JsonObject requestData = new JsonObject();
-                            requestData.addProperty("recruitIdx", recruitPostList.get(pos).getRecruitIdx());
+                            requestData.addProperty("recruitIdx", recruitIdx);
                             requestData.addProperty("userIdx", myInfo.getUserIdx());
                             OttURetrofitClient.getApiService().postRecruitParticipate(PreferenceManager.getString(context, "jwt"), requestData).enqueue(new Callback<String>() {
                                 @Override
@@ -391,7 +488,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                                 userRequestList.add(new RecruitRequestInfo(waitlistIdx, new UserEssentialInfo(userIdx, nickname), isAccepted));
                             }
 
-                            if (choiceNum == headcount) {
+                            if (choiceNum == headcount && !result.getBoolean("timeout")) {
                                 btRequestYes.setVisibility(View.GONE);
                                 btRequestConfirmed.setVisibility(View.VISIBLE);
                             }
@@ -413,6 +510,50 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
 
                 @Override
                 public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    Toast.makeText(context, "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        private void updateTeamMemberInfo(Long recruitIdx, ArrayList<UserInfo> recruitMemberList, TeamMemberRecyclerAdapter teamMemberRecyclerAdapter, AlertDialog alertDialogTeam) {
+            OttURetrofitClient.getApiService().getRecruitMembers(PreferenceManager.getString(context, "jwt"), recruitIdx).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    if (response.code() == 200) {
+                        try {
+                            JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
+                            JSONArray members = result.getJSONArray("members");
+                            for (int i=0; i<members.length(); i++) {
+                                JSONObject waitingMember = members.getJSONObject(i);
+                                JSONObject member = waitingMember.getJSONObject("user");
+                                Long userIdx = member.getLong("userIdx");
+                                String nickname = member.getString("nickname");
+                                String kakaotalkId = member.getString("kakaotalkId");
+                                recruitMemberList.add(new UserInfo(userIdx, nickname, kakaotalkId));
+                            }
+
+                            teamMemberRecyclerAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) { e.printStackTrace(); }
+                    }
+                    else if (response.code() == 400) {
+                        alertDialogTeam.dismiss();
+                        Toast.makeText(context, "모집 인원 수와 수락 인원 수가 같지 않습니다. 확인 부탁드립니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (response.code() == 401) {
+                        Toast.makeText(context, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                        PreferenceManager.removeKey(context, "jwt");
+                        Intent reLogin = new Intent(context, LoginActivity.class);
+                        reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        context.startActivity(reLogin);
+                        ((RecruitActivity) context).finish();
+                    }
+                    else
+                        Toast.makeText(context, "모집글 팀원 정보 불러오기에 문제가 생겼습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    alertDialogTeam.dismiss();
                     Toast.makeText(context, "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
                 }
             });

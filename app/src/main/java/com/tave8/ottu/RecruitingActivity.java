@@ -108,8 +108,8 @@ public class RecruitingActivity extends AppCompatActivity {
                 Toast.makeText(this, "항목 확인을 체크해 주세요.", Toast.LENGTH_SHORT).show();
             } else {
                 JsonObject requestData = new JsonObject();
+                requestData.addProperty("platformIdx", platformIdx);
                 requestData.addProperty("userIdx", myInfo.getUserIdx());
-                requestData.addProperty("userIdx", 7);
                 requestData.addProperty("headcount", ratePlanAdapter.getSelectedRatePlanHeadCount());
                 OttURetrofitClient.getApiService().postRecruitUpload(PreferenceManager.getString(this, "jwt"), requestData).enqueue(new Callback<String>() {
                     @Override

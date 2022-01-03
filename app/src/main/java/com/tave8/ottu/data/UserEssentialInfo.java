@@ -41,6 +41,10 @@ public class UserEssentialInfo implements Parcelable {
         return nick;
     }
 
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
     @Override
     public int describeContents() {
         return 0;

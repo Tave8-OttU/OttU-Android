@@ -5,8 +5,8 @@
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp">
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="kakao123"
+            android:text="kakaoid"
             android:textColor="@color/black"
             android:textSize="14sp"/>
     </LinearLayout>

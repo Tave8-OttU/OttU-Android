@@ -2,6 +2,7 @@ package com.tave8.ottu.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -12,26 +13,38 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tave8.ottu.LoginActivity;
+import com.tave8.ottu.MainActivity;
+import com.tave8.ottu.OttURetrofitClient;
+import com.tave8.ottu.PreferenceManager;
 import com.tave8.ottu.R;
 import com.tave8.ottu.data.PaymentInfo;
 import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.SingletonPlatform;
+import com.tave8.ottu.navigation.FragmentHome;
 
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPagerAdapter.ItemViewHolder> {
     private Context context;
     private ArrayList<PaymentInfo> ottPaymentList;
+    private final FragmentHome fragmentHome;
 
-    public HomePaymentPagerAdapter(ArrayList<PaymentInfo> ottPaymentList) {
+    public HomePaymentPagerAdapter(ArrayList<PaymentInfo> ottPaymentList, FragmentHome fragmentHome) {
         this.ottPaymentList = ottPaymentList;
+        this.fragmentHome = fragmentHome;
     }
 
     @NonNull
@@ -94,7 +107,7 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
                     ivPaymentPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(paymentInfo.getPlatformIdx()));
 
                     TextView tvPaymentDay = paymentDialogView.findViewById(R.id.tv_dialog_payment_date);
-                    tvPaymentDay.setText(String.valueOf(paymentInfo.getPaymentDate().getDayOfMonth()));
+                    tvPaymentDay.setText(String.valueOf(paymentInfo.getPaymentDay()));
 
                     DecimalFormat chargeFormatter = new DecimalFormat("###,##0");
                     TextView tvRatePlan = paymentDialogView.findViewById(R.id.tv_dialog_payment_rateplan);
@@ -113,8 +126,31 @@ public class HomePaymentPagerAdapter extends RecyclerView.Adapter<HomePaymentPag
 
                     AppCompatButton btPaymentTerminate = paymentDialogView.findViewById(R.id.bt_dialog_payment_terminate);
                     btPaymentTerminate.setOnClickListener(view -> {
-                        //TODO: 요금 결제 해지를 서버에 전달함!(update 해야 함!)
-                        alertDialog.dismiss();
+                        OttURetrofitClient.getApiService().deleteTeam(PreferenceManager.getString(context, "jwt"), paymentInfo.getPaymentIdx()).enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                                if (response.code() == 200) {
+                                    alertDialog.dismiss();
+                                    Toast.makeText(context, "OTT 서비스 해지에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                    fragmentHome.updateMyUrgentOttList();
+                                }
+                                else if (response.code() == 401) {
+                                    Toast.makeText(context, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                                    PreferenceManager.removeKey(context, "jwt");
+                                    Intent reLogin = new Intent(context, LoginActivity.class);
+                                    reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    context.startActivity(reLogin);
+                                    ((MainActivity) context).finish();
+                                }
+                                else
+                                    Toast.makeText(context, "해당 OTT 서비스 해지에 문제가 생겼습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                Toast.makeText(context, "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     });
                 }
             });

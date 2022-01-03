@@ -76,7 +76,7 @@ public class MyRecruitActivity extends AppCompatActivity {
     }
 
     public void updateMyRecruitList() {
-        OttURetrofitClient.getApiService().getMyRecruitLists(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
+        OttURetrofitClient.getApiService().getMyRecruitList(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {

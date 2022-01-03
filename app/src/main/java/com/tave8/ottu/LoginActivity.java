@@ -2,7 +2,6 @@ package com.tave8.ottu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject genre = genres.getJSONObject(i);
                                     interestGenreList.add(new Genre(genre.getInt("genreIdx"), genre.getString("genreName")));
                                 }
-                                myInfo = new UserInfo(userIdx, user.getString("kakaotalkId"), user.getString("nickname"), user.getInt("reliability"),
+                                myInfo = new UserInfo(userIdx, user.getString("nickname"), user.getString("kakaotalkId"), user.getInt("reliability"),
                                         user.getBoolean("isFirst"), interestGenreList);
 
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -130,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject genre = genres.getJSONObject(i);
                                     interestGenreList.add(new Genre(genre.getInt("genreIdx"), genre.getString("genreName")));
                                 }
-                                myInfo = new UserInfo(userIdx, user.getString("kakaotalkId"), user.getString("nickname"), user.getInt("reliability"),
+                                myInfo = new UserInfo(userIdx, user.getString("nickname"), user.getString("kakaotalkId"), user.getInt("reliability"),
                                         user.getBoolean("isFirst"), interestGenreList);
 
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -142,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject loginInfo = new JSONObject(Objects.requireNonNull(response.body()));
                             long userIdx = loginInfo.getJSONObject("user").getLong("userIdx");
+                            PreferenceManager.setString(LoginActivity.this, "jwt", loginInfo.getString("jwt"));
 
                             Intent showInitialSetting = new Intent(LoginActivity.this, InitialSettingActivity.class);
                             Bundle bundle = new Bundle();

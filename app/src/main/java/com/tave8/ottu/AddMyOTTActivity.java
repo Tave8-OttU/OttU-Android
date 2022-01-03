@@ -9,6 +9,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonObject;
 import com.tave8.ottu.adapter.RatePlanRecyclerAdapter;
 import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.SingletonPlatform;
@@ -25,6 +27,12 @@ import com.tave8.ottu.data.SingletonPlatform;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.tave8.ottu.MainActivity.myInfo;
 
 public class AddMyOTTActivity extends AppCompatActivity {
     private boolean isAdded = false;
@@ -135,14 +143,14 @@ public class AddMyOTTActivity extends AppCompatActivity {
         etPaymentDay.setOnClickListener(v -> {
             final NumberPicker dayPick = new NumberPicker(getApplicationContext());
             dayPick.setMinValue(1);
-            dayPick.setMaxValue(31);
+            dayPick.setMaxValue(30);
             if (etPaymentDay.getText().toString().equals(""))
                 dayPick.setValue(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             else
                 dayPick.setValue(Integer.parseInt(etPaymentDay.getText().toString()));
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setTitle("출생년도 입력");
+            dialog.setTitle("결제일 입력");
             dialog.setView(dayPick);
             dialog.setPositiveButton("확인", (dialogInterface, which) -> etPaymentDay.setText(String.valueOf(dayPick.getValue())));
             dialog.setNegativeButton("취소", (dialogInterface, which) -> dialogInterface.dismiss());
@@ -158,11 +166,37 @@ public class AddMyOTTActivity extends AppCompatActivity {
             else if (ratePlanAdapter.getSelectedRatePlanPosition() == -1)
                 Toast.makeText(this, "요금제를 선택해 주세요.", Toast.LENGTH_SHORT).show();
             else if (etPaymentDay.getText().length() == 0)
-                Toast.makeText(this, "결제 일자를 선택해 주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "결제일을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             else {
-                //TODO: 서버로 입력사항 제출함
-                isAdded = true;
-                finish();
+                JsonObject requestData = new JsonObject();
+                requestData.addProperty("platformIdx", platformIdx);
+                requestData.addProperty("userIdx", myInfo.getUserIdx());
+                requestData.addProperty("headcount", ratePlanAdapter.getSelectedRatePlanHeadCount());
+                requestData.addProperty("paymentDay", etPaymentDay.getText().toString());
+                OttURetrofitClient.getApiService().postAddMyOtt(PreferenceManager.getString(this, "jwt"), requestData).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 201) {
+                            isAdded = true;
+                            finish();
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(AddMyOTTActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(AddMyOTTActivity.this, "jwt");
+                            Intent reLogin = new Intent(AddMyOTTActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else
+                            Toast.makeText(AddMyOTTActivity.this, "나의 모집글 추가에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        Toast.makeText(AddMyOTTActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

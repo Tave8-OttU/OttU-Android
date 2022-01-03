@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822624777680",
+    "project_id": "ottu-e2c04",
+    "storage_bucket": "ottu-e2c04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822624777680:android:f5d0d287df04a5fcb2f5d5",
+        "android_client_info": {
+          "package_name": "com.tave8.ottu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822624777680-cgcp7e751cirmae3j09v6ricca2e7ia3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnzSNx9Gs6QaEcgREGwCxRiwLBcrU4OuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822624777680-cgcp7e751cirmae3j09v6ricca2e7ia3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

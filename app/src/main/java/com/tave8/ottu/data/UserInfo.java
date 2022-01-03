@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class UserInfo {
     private UserEssentialInfo userEssentialInfo;
     private String kakaotalkId = "";
-    private int reliability;
-    private boolean isFirst;
-    private ArrayList<Genre> interestGenre;
+    private int reliability = 10;
+    private boolean isFirst = true;
+    private ArrayList<Genre> interestGenre = null;
+
+    public UserInfo(Long userIdx, String nick, String kakaotalkId) {
+        userEssentialInfo = new UserEssentialInfo(userIdx, nick);
+        this.kakaotalkId = kakaotalkId;
+    }
 
     public UserInfo(Long userIdx, String nick, int reliability, boolean isFirst, ArrayList<Genre> interestGenre) {
         userEssentialInfo = new UserEssentialInfo(userIdx, nick);
@@ -16,7 +21,7 @@ public class UserInfo {
         this.interestGenre = interestGenre;
     }
 
-    public UserInfo(Long userIdx, String kakaotalkId, String nick, int reliability, boolean isFirst, ArrayList<Genre> interestGenre) {
+    public UserInfo(Long userIdx, String nick, String kakaotalkId, int reliability, boolean isFirst, ArrayList<Genre> interestGenre) {
         userEssentialInfo = new UserEssentialInfo(userIdx, nick);
         this.kakaotalkId = kakaotalkId;
         this.reliability = reliability;
@@ -50,5 +55,21 @@ public class UserInfo {
 
     public ArrayList<Genre> getInterestGenre() {
         return interestGenre;
+    }
+
+    public void setKakaotalkId(String kakaotalkId) {
+        this.kakaotalkId = kakaotalkId;
+    }
+
+    public void setReliability(int reliability) {
+        this.reliability = reliability;
+    }
+
+    public void setIsFirst(boolean isFirst) {
+        this.isFirst = isFirst;
+    }
+
+    public void setInterestGenre(ArrayList<Genre> interestGenre) {
+        this.interestGenre = interestGenre;
     }
 }

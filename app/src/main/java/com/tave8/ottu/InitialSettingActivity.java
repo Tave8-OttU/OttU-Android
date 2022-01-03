@@ -120,7 +120,6 @@ public class InitialSettingActivity extends AppCompatActivity {
                 OttURetrofitClient.getApiService().getCheckNick(PreferenceManager.getString(this, "jwt"), nickname).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        Log.i("InitialSetting 확인용", response.body());
                         if (response.code() == 200) {
                             try {
                                 JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
@@ -207,7 +206,7 @@ public class InitialSettingActivity extends AppCompatActivity {
                 ArrayList<Genre> interestGenreList = new ArrayList<>();
                 interestGenreList.add(new Genre(1, "드라마"));
                 interestGenreList.add(new Genre(5, "사극"));
-                myInfo = new UserInfo(1L, "youngeun", "영은", 10, true, interestGenreList);
+                myInfo = new UserInfo(1L, "영은", "youngeun", 10, true, interestGenreList);
 
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
