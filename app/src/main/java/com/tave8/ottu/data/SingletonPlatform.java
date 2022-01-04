@@ -71,6 +71,10 @@ public class SingletonPlatform {
         return platform;
     }
 
+    public int getPlatformNum() {
+        return platformNameList.size();
+    }
+
     @NonNull
     public HashMap<Integer, Integer> getPlatformLogoList() {
         return platformLogoList;

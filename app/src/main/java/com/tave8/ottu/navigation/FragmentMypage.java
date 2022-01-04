@@ -22,6 +22,7 @@ import com.tave8.ottu.ChangeGenreActivity;
 import com.tave8.ottu.ChangeKakaoTalkIdActivity;
 import com.tave8.ottu.ChangeNickActivity;
 import com.tave8.ottu.LoginActivity;
+import com.tave8.ottu.MyCommunityActivity;
 import com.tave8.ottu.MyOTTActivity;
 import com.tave8.ottu.MyRecruitActivity;
 import com.tave8.ottu.OttURetrofitClient;
@@ -86,11 +87,14 @@ public class FragmentMypage extends Fragment {
 
         getMyInfo();
 
-        LinearLayout llMyOTT = rootView.findViewById(R.id.ll_frag_mypage_my_ott);
-        llMyOTT.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyOTTActivity.class)));
-
         LinearLayout llMyRecruit = rootView.findViewById(R.id.ll_frag_mypage_my_recruit);
         llMyRecruit.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyRecruitActivity.class)));
+
+        LinearLayout llMyCommunityPost = rootView.findViewById(R.id.ll_frag_mypage_my_community_post);
+        llMyCommunityPost.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyCommunityActivity.class)));
+
+        LinearLayout llMyOTT = rootView.findViewById(R.id.ll_frag_mypage_my_ott);
+        llMyOTT.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyOTTActivity.class)));
 
         ActivityResultLauncher<Intent> startChangeActivityResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -117,9 +121,31 @@ public class FragmentMypage extends Fragment {
 
         LinearLayout llWithdrawal = rootView.findViewById(R.id.ll_frag_mypage_withdrawal);
         llWithdrawal.setOnClickListener(v -> {
-            //TODO: 서버에 전달
-            startActivity(new Intent(getContext(), LoginActivity.class));
-            requireActivity().finish();
+            OttURetrofitClient.getApiService().deleteUser(PreferenceManager.getString(requireContext(), "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    if (response.code() == 200) {
+                        PreferenceManager.removeKey(getContext(), "jwt");
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                        requireActivity().finish();
+                    }
+                    else if (response.code() == 401) {
+                        Toast.makeText(requireContext(), "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                        PreferenceManager.removeKey(requireContext(), "jwt");
+                        Intent reLogin = new Intent(requireContext(), LoginActivity.class);
+                        reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        requireContext().startActivity(reLogin);
+                        requireActivity().finish();
+                    }
+                    else
+                        Toast.makeText(requireContext(), "회원 삭제에 문제가 생겼습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    Toast.makeText(requireContext(), "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         return rootView;

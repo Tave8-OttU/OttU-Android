@@ -92,11 +92,11 @@ public class MyOTTActivity extends AppCompatActivity {
     }
 
     public void updateMyOTTList() {
-        myOttPaymentList.clear();
         OttURetrofitClient.getApiService().getMyOttList(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
+                    myOttPaymentList.clear();
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonOttList = result.getJSONArray("ottlist");

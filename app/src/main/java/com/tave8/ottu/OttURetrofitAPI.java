@@ -23,6 +23,13 @@ public interface OttURetrofitAPI {
     @GET("/user/{uid}")
     Call<String> getUser(@Header("authorization") String jwt, @Path("uid") Long userIdx);           //사용자 정보 조회
 
+    //TODO: 정의 요망!!
+    @PATCH("/user/{uid}")
+    Call<String> patchUser(@Header("authorization") String jwt, @Path("uid") Long userIdx, @Body JsonObject request);       //사용자 정보 수정
+
+    @DELETE("/user/{uid}")
+    Call<String> deleteUser(@Header("authorization") String jwt, @Path("uid") Long userIdx);        //사용자 정보 삭제
+
     @GET("/user/nickname/{nickname}")
     Call<String> getCheckNick(@Header("authorization") String jwt, @Path("nickname") String nick);  //닉네임 중복 확인
 
@@ -43,6 +50,9 @@ public interface OttURetrofitAPI {
 
     @GET("/user/{uid}/notice")
     Call<String> getMyNoticeList(@Header("authorization") String jwt, @Path("uid") Long userIdx);   //나의 알림 조회
+
+    @GET("/user/{uid}/post")
+    Call<String> getMyPostList(@Header("authorization") String jwt, @Path("uid") Long userIdx);     //나의 게시글 조회
 
 
     @GET("/recruit/{pid}/list")
@@ -79,4 +89,33 @@ public interface OttURetrofitAPI {
 
     @DELETE("/team/{tid}")
     Call<String> deleteTeam(@Header("authorization") String jwt, @Path("tid") Long teamIdx);        //OTT 서비스 해지
+
+
+    //TODO: 신뢰도 평가
+    
+    
+    @GET("/community/post/current")
+    Call<String> getCurrentCommunityPostList(@Header("authorization") String jwt);                  //각 플랫폼별 최신 커뮤니티 글 조회
+
+    @GET("/community/post/{pid}/list")
+    Call<String> getCommunityPostList(@Header("authorization") String jwt, @Path("pid") int platformIdx);               //해당 플랫폼의 커뮤니티글 조회
+
+    @GET("/community/post/{cpid}")
+    Call<String> getPost(@Header("authorization") String jwt, @Path("cpid") Long postIdx);
+
+    @POST("/community/post/upload")
+    Call<String> postPostUpload(@Header("authorization") String jwt, @Body JsonObject request);     //커뮤니티 글 추가
+
+    @PATCH("/community/post/{cpid}")
+    Call<String> patchPost(@Header("authorization") String jwt, @Path("cpid") Long postIdx, @Body JsonObject request);  //커뮤니티 글 수정
+
+    @DELETE("/community/post/{cpid}")
+    Call<String> deletePost(@Header("authorization") String jwt, @Path("cpid") Long postIdx);       //커뮤니티 글 삭제
+
+
+    @POST("/community/comment/upload")
+    Call<String> postCommentUpload(@Header("authorization") String jwt, @Body JsonObject request);  //댓글 추가
+
+    @DELETE("/community/comment/{ccid}")
+    Call<String> deleteComment(@Header("authorization") String jwt, @Path("ccid") Long commentIdx); //댓글 삭제
 }

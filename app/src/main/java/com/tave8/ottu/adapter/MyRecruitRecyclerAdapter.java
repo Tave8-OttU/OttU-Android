@@ -297,12 +297,12 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
         }
 
         public void updateRequestInfo(Long recruitIdx, int headcount) {
-            userRequestList.clear();
             OttURetrofitClient.getApiService().getRecruitWaitlist(PreferenceManager.getString(context, "jwt"), recruitIdx).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                     Log.i("MyRecruitRecyclerAdapter 확인용", response.body());
                     if (response.code() == 200) {
+                        userRequestList.clear();
                         try {
                             JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                             int choiceNum = (int) result.getLong("choiceNum");

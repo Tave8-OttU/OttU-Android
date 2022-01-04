@@ -161,6 +161,32 @@
                 android:layout_height="20dp"/>
 
             <LinearLayout
+                android:id="@+id/ll_frag_mypage_my_community_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mypage_my_community_post"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="@string/next"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_next"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <LinearLayout
                 android:id="@+id/ll_frag_mypage_my_ott"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

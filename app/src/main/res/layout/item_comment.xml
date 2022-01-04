@@ -33,7 +33,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:text="2021-12-30 17:03:20"
+            android:text="2021-12-30"
             android:textColor="@color/sub_text_color"
             android:textSize="12sp"/>
     </RelativeLayout>
@@ -46,6 +46,9 @@
         android:id="@+id/tv_item_comment_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:text="comment"
         android:textSize="14sp"/>
 

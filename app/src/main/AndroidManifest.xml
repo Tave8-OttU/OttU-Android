@@ -41,6 +41,7 @@
         <activity android:name=".MyOTTActivity"/>
         <activity android:name=".AddMyOTTActivity"/>
         <activity android:name=".MyRecruitActivity"/>
+        <activity android:name=".MyCommunityActivity"/>
         <activity android:name=".ChangeNickActivity"/>
         <activity android:name=".ChangeGenreActivity"/>
         <activity android:name=".ChangeKakaoTalkIdActivity"/>

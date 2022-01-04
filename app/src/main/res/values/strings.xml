@@ -75,6 +75,7 @@
 
     <string name="mypage_my_ottu">나의 OttU</string>
     <string name="mypage_my_recruit">내가 작성한 모집글</string>
+    <string name="mypage_my_community_post">내가 작성한 커뮤니티 글</string>
     <string name="mypage_my_ott_service">내가 이용하는 OTT 서비스</string>
     <string name="mypage_my_information">내 정보</string>
     <string name="mypage_change_nick">닉네임 변경</string>

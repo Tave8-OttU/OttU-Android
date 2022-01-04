@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
@@ -22,15 +23,28 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tave8.ottu.CommunityActivity;
+import com.tave8.ottu.LoginActivity;
+import com.tave8.ottu.OttURetrofitClient;
 import com.tave8.ottu.PostActivity;
+import com.tave8.ottu.PreferenceManager;
 import com.tave8.ottu.R;
 import com.tave8.ottu.data.CommunityPostInfo;
 import com.tave8.ottu.data.Genre;
 import com.tave8.ottu.data.UserInfo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<CommunityPostRecyclerAdapter.ItemViewHolder> {
     private Context context;
@@ -58,10 +72,7 @@ public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<Community
     public void onBindViewHolder(@NonNull CommunityPostRecyclerAdapter.ItemViewHolder holder, int position) {
         holder.tvWriterNick.setText(communityPostInfoList.get(position).getWriterInfo().getNick());
 
-        //TODO: 시간 표시!
         LocalDateTime dateTimeNow = LocalDateTime.now();
-        //Time이 String일 때 해줘야 함!
-        //LocalDateTime postDateTime = LocalDateTime.parse(communityPostInfoList.get(position).getPostDateTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDateTime postDateTime = communityPostInfoList.get(position).getPostDateTime();
         if (ChronoUnit.SECONDS.between(postDateTime, dateTimeNow) < 60)
             holder.tvPostTime.setText(String.valueOf(ChronoUnit.SECONDS.between(postDateTime, dateTimeNow)).concat("초 전"));
@@ -74,7 +85,7 @@ public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<Community
         else if (ChronoUnit.YEARS.between(postDateTime, dateTimeNow) < 1)
             holder.tvPostTime.setText(String.valueOf(postDateTime.getMonthValue()).concat("/").concat(String.valueOf(postDateTime.getDayOfMonth())));
         else
-            holder.tvPostTime.setText(String.valueOf(postDateTime.getYear()).substring(2).concat("/").concat(String.valueOf(postDateTime.getMonthValue())).concat("/").concat(String.valueOf(postDateTime.getDayOfMonth())));
+            holder.tvPostTime.setText(String.valueOf(postDateTime.getYear()).substring(2).concat(".").concat(String.valueOf(postDateTime.getMonthValue())).concat(".").concat(String.valueOf(postDateTime.getDayOfMonth())));
 
         holder.tvContent.setText(communityPostInfoList.get(position).getContent().replace(" ", "\u00A0"));
         holder.tvCommentNum.setText(String.valueOf(communityPostInfoList.get(position).getCommentNum()));
@@ -116,7 +127,6 @@ public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<Community
                     builder.setView(profileDialogView);
                     final AlertDialog alertDialog = builder.create();
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    alertDialog.show();
 
                     WindowManager.LayoutParams params = alertDialog.getWindow().getAttributes();
                     Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -126,48 +136,76 @@ public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<Community
                     params.width = (int) (width*0.89);
                     alertDialog.getWindow().setAttributes(params);
 
-                    //TODO: 서버로부터 사용자의 정보 받아옴(communityPostInfoList.get(pos).getWriterInfo().getUserIdx() 전달)
-                    //TODO: 임시
-                    //
-                    ArrayList<Genre> interestGenreList = new ArrayList<>();
-                    interestGenreList.add(new Genre(1, "드라마"));
-                    interestGenreList.add(new Genre(5, "사극"));
-                    UserInfo writerInfo = new UserInfo(1L, "오뜨유", 7, false, interestGenreList);
-                    //
-
                     AppCompatImageButton ibtCancel = profileDialogView.findViewById(R.id.ibt_dialog_profile_cancel);
                     ibtCancel.setOnClickListener(view -> alertDialog.dismiss());
 
                     TextView tvUserNick = profileDialogView.findViewById(R.id.tv_dialog_profile_nick);
-                    tvUserNick.setText(writerInfo.getNick());
-
-                    ProgressBar pbOttULevel = profileDialogView.findViewById(R.id.pb_dialog_profile);
                     TextView tvOttULevel = profileDialogView.findViewById(R.id.tv_dialog_profile_level);
-
-                    pbOttULevel.setProgress(writerInfo.getReliability());
-                    tvOttULevel.setText(String.valueOf(writerInfo.getReliability()));
-                    if (writerInfo.isFirst()) {
-                        pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
-                        tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));
-                    }
-
+                    ProgressBar pbOttULevel = profileDialogView.findViewById(R.id.pb_dialog_profile);
                     AppCompatButton btGenre1 = profileDialogView.findViewById(R.id.bt_dialog_profile_genre1);
                     AppCompatButton btGenre2 = profileDialogView.findViewById(R.id.bt_dialog_profile_genre2);
                     AppCompatButton btGenre3 = profileDialogView.findViewById(R.id.bt_dialog_profile_genre3);
 
-                    if (writerInfo.getInterestGenre().size() == 1) {
-                        btGenre1.setText(writerInfo.getInterestGenre().get(0).getGenreName());
-                        btGenre2.setVisibility(View.INVISIBLE);
-                        btGenre3.setVisibility(View.INVISIBLE);
-                    } else if (writerInfo.getInterestGenre().size() == 2) {
-                        btGenre1.setText(writerInfo.getInterestGenre().get(0).getGenreName());
-                        btGenre2.setText(writerInfo.getInterestGenre().get(1).getGenreName());
-                        btGenre3.setVisibility(View.INVISIBLE);
-                    } else {
-                        btGenre1.setText(writerInfo.getInterestGenre().get(0).getGenreName());
-                        btGenre2.setText(writerInfo.getInterestGenre().get(1).getGenreName());
-                        btGenre3.setText(writerInfo.getInterestGenre().get(2).getGenreName());
-                    }
+                    Long userIdx = communityPostInfoList.get(pos).getWriterInfo().getUserIdx();
+                    OttURetrofitClient.getApiService().getUser(PreferenceManager.getString(context, "jwt"), userIdx).enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                            if (response.code() == 200) {
+                                try {
+                                    JSONObject userInfo = new JSONObject(Objects.requireNonNull(response.body()));
+                                    JSONObject user = userInfo.getJSONObject("user");
+
+                                    ArrayList<Genre> interestGenreList = new ArrayList<>();
+                                    JSONArray genres = user.getJSONArray("genres");
+                                    for (int i=0; i<genres.length(); i++) {
+                                        JSONObject genre = genres.getJSONObject(i);
+                                        interestGenreList.add(new Genre(genre.getInt("genreIdx"), genre.getString("genreName")));
+                                    }
+                                    UserInfo otherUserInfo = new UserInfo(userIdx, user.getString("nickname"), user.getInt("reliability"),
+                                            user.getBoolean("isFirst"), interestGenreList);
+
+                                    tvUserNick.setText(otherUserInfo.getNick());
+
+                                    pbOttULevel.setProgress(otherUserInfo.getReliability());
+                                    tvOttULevel.setText(String.valueOf(otherUserInfo.getReliability()));
+                                    if (otherUserInfo.isFirst()) {
+                                        pbOttULevel.setProgressDrawable(AppCompatResources.getDrawable(context, R.drawable.bg_progress_first));
+                                        tvOttULevel.setTextColor(context.getColor(R.color.sub_text_color));
+                                    }
+
+                                    if (otherUserInfo.getInterestGenre().size() == 1) {
+                                        btGenre1.setText(otherUserInfo.getInterestGenre().get(0).getGenreName());
+                                        btGenre2.setVisibility(View.INVISIBLE);
+                                        btGenre3.setVisibility(View.INVISIBLE);
+                                    } else if (otherUserInfo.getInterestGenre().size() == 2) {
+                                        btGenre1.setText(otherUserInfo.getInterestGenre().get(0).getGenreName());
+                                        btGenre2.setText(otherUserInfo.getInterestGenre().get(1).getGenreName());
+                                        btGenre3.setVisibility(View.INVISIBLE);
+                                    } else if (otherUserInfo.getInterestGenre().size() == 3) {
+                                        btGenre1.setText(otherUserInfo.getInterestGenre().get(0).getGenreName());
+                                        btGenre2.setText(otherUserInfo.getInterestGenre().get(1).getGenreName());
+                                        btGenre3.setText(otherUserInfo.getInterestGenre().get(2).getGenreName());
+                                    }
+                                    alertDialog.show();
+                                } catch (JSONException e) { e.printStackTrace(); }
+                            }
+                            else if (response.code() == 401) {
+                                Toast.makeText(context, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                                PreferenceManager.removeKey(context, "jwt");
+                                Intent reLogin = new Intent(context, LoginActivity.class);
+                                reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                context.startActivity(reLogin);
+                                ((CommunityActivity) context).finish();
+                            }
+                            else
+                                Toast.makeText(context, "회원 정보 불러오기에 문제가 생겼습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                            Toast.makeText(context, "서버와 연결되지 않았습니다. 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
         }

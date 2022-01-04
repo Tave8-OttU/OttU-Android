@@ -105,13 +105,11 @@ public class RecruitActivity extends AppCompatActivity {
     }
     
     public void updateRecruitList(boolean isSwipe) {
-        recruitList.clear();
-        recruitRecyclerAdapter.notifyDataSetChanged();
-
         OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
+                    recruitList.clear();
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonRecruitList = result.getJSONArray("recruitlist");

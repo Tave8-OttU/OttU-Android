@@ -83,6 +83,14 @@ public class CommunityPostInfo implements Parcelable {
         return commentNum;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
+
     @Override
     public int describeContents() {
         return 0;
