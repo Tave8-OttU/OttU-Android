@@ -75,6 +75,17 @@
             android:paddingEnd="10dp"
             android:textColor="@color/white"
             android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/tv_change_kakaotalk_id_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="기존 카카오톡 아이디와 일치합니다."
+            android:textColor="@color/red_notice"
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
         <View
             android:layout_width="match_parent"

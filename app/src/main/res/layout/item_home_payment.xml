@@ -10,7 +10,7 @@
         android:id="@+id/iv_item_home_payment_platform"
         android:layout_width="160dp"
         android:layout_height="90dp"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:src="@drawable/icon_ott_netflix"
         android:contentDescription="@string/ott_service"
         app:layout_constraintTop_toTopOf="parent"

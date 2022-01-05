@@ -46,7 +46,13 @@ public class MyCommunityPostRecyclerAdapter extends RecyclerView.Adapter<MyCommu
 
     @Override
     public void onBindViewHolder(@NonNull MyCommunityPostRecyclerAdapter.ItemViewHolder holder, int position) {
-        holder.ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(communityPostInfoList.get(position).getPlatformIdx()));
+        int platformIdx = communityPostInfoList.get(position).getPlatformIdx();
+        if (platformIdx == 3)       //웨이브
+            holder.ivPlatform.setImageResource(R.drawable.icon_ott_wavve_white);
+        else if (platformIdx == 5)  //디즈니 플러스
+            holder.ivPlatform.setImageResource(R.drawable.icon_ott_disney_white);
+        else
+            holder.ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformIdx));
 
         LocalDateTime dateTimeNow = LocalDateTime.now();
         LocalDateTime postDateTime = communityPostInfoList.get(position).getPostDateTime();

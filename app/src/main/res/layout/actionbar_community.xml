@@ -33,6 +33,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="15dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/icon_ott_netflix" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_ott_netflix"
+        android:contentDescription="@string/ott_service" />
 </RelativeLayout>
