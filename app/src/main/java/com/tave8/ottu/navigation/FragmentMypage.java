@@ -99,8 +99,12 @@ public class FragmentMypage extends Fragment {
         ActivityResultLauncher<Intent> startChangeActivityResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getResultCode() == RESULT_OK)
-                        updateMyInfo();
+                    if (result.getResultCode() == RESULT_OK) {
+                        if (Objects.requireNonNull(result.getData()).hasExtra("isGenre"))
+                            getMyInfo();
+                        else
+                            updateMyInfo();
+                    }
                 });
 
         LinearLayout llChangeNick = rootView.findViewById(R.id.ll_frag_mypage_change_nick);
@@ -212,10 +216,13 @@ public class FragmentMypage extends Fragment {
             btGenre2.setVisibility(View.INVISIBLE);
             btGenre3.setVisibility(View.INVISIBLE);
         } else if (myInfo.getInterestGenre().size() == 2) {
+            btGenre2.setVisibility(View.VISIBLE);
             btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
             btGenre2.setText(myInfo.getInterestGenre().get(1).getGenreName());
             btGenre3.setVisibility(View.INVISIBLE);
         } else {
+            btGenre2.setVisibility(View.VISIBLE);
+            btGenre3.setVisibility(View.VISIBLE);
             btGenre1.setText(myInfo.getInterestGenre().get(0).getGenreName());
             btGenre2.setText(myInfo.getInterestGenre().get(1).getGenreName());
             btGenre3.setText(myInfo.getInterestGenre().get(2).getGenreName());

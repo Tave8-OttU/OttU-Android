@@ -2,6 +2,8 @@ package com.tave8.ottu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -9,12 +11,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.JsonObject;
+
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.tave8.ottu.MainActivity.myInfo;
 
@@ -66,7 +75,20 @@ public class ChangeKakaoTalkIdActivity extends AppCompatActivity {
     }
 
     private void changeNickClickListener() {
+        TextView tvNickError = findViewById(R.id.tv_change_kakaotalk_id_error);
+
         EditText etNewKakaoTalkId = findViewById(R.id.et_change_kakaotalk_id_new);
+        etNewKakaoTalkId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tvNickError.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
 
         Button btSubmit = findViewById(R.id.bt_change_kakaotalk_id_submit);
         btSubmit.setOnClickListener(v -> {
@@ -78,12 +100,40 @@ public class ChangeKakaoTalkIdActivity extends AppCompatActivity {
                 etNewKakaoTalkId.requestFocus();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNewKakaoTalkId, 0);
             } else if (newKakaoTalkId.equals(myInfo.getKakaotalkId())) {
-                Toast.makeText(this, "기존 카카오톡 아이디와 일치합니다.", Toast.LENGTH_SHORT).show();
+                tvNickError.setVisibility(View.VISIBLE);
                 etNewKakaoTalkId.setEnabled(true);
             } else {
-                //TODO: 서버에 전달함
-                isChanged = true;
-                finish();
+                JsonObject requestData = new JsonObject();
+                requestData.addProperty("kakaotalkId", newKakaoTalkId);
+                OttURetrofitClient.getApiService().patchUser(PreferenceManager.getString(ChangeKakaoTalkIdActivity.this, "jwt"), myInfo.getUserIdx(), requestData).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 200) {
+                            isChanged = true;
+                            myInfo.setKakaotalkId(newKakaoTalkId);
+                            Toast.makeText(ChangeKakaoTalkIdActivity.this, "카카오톡 아이디 변경에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(ChangeKakaoTalkIdActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(ChangeKakaoTalkIdActivity.this, "jwt");
+                            Intent reLogin = new Intent(ChangeKakaoTalkIdActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else {
+                            etNewKakaoTalkId.setEnabled(true);
+                            Toast.makeText(ChangeKakaoTalkIdActivity.this, "카카오톡 아이디 변경에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        etNewKakaoTalkId.setEnabled(true);
+                        Toast.makeText(ChangeKakaoTalkIdActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

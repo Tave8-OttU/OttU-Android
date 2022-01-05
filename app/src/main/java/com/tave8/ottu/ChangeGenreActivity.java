@@ -7,24 +7,32 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tave8.ottu.data.Genre;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.tave8.ottu.MainActivity.myInfo;
 
 public class ChangeGenreActivity extends AppCompatActivity {
     private boolean isChanged = false;
-    private HashSet<View> selectedGenre = null;
-    private ArrayList<Integer> genreIdList = null;
+    private HashSet<View> interestingGenre = null;
+    private HashSet<View> changedGenre = null;
+    private ArrayList<Integer> genreIdList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,8 @@ public class ChangeGenreActivity extends AppCompatActivity {
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
 
-        selectedGenre = new HashSet<>();
+        interestingGenre = new HashSet<>();
+        changedGenre = new HashSet<>();
         genreIdList = new ArrayList<>();
         genreIdList.add(R.id.bt_change_genre_genre1);
         genreIdList.add(R.id.bt_change_genre_genre2);
@@ -60,7 +69,8 @@ public class ChangeGenreActivity extends AppCompatActivity {
             int genreBtIndex = genre.getGenreIdx()-1;
             AppCompatButton btSelectedGenre = findViewById(genreIdList.get(genreBtIndex));
             btSelectedGenre.setBackgroundResource(R.drawable.bg_button_select);
-            selectedGenre.add(btSelectedGenre);
+            interestingGenre.add(btSelectedGenre);
+            changedGenre.add(btSelectedGenre);
         }
 
         changeNickClickListener();
@@ -70,6 +80,7 @@ public class ChangeGenreActivity extends AppCompatActivity {
     public void finish() {
         if (isChanged) {
             Intent submittedIntent = new Intent();
+            submittedIntent.putExtra("isGenre", true);
             setResult(RESULT_OK, submittedIntent);
         }
         else {
@@ -90,13 +101,13 @@ public class ChangeGenreActivity extends AppCompatActivity {
 
     private void changeNickClickListener() {
         View.OnClickListener genreClickListener = view -> {
-            if (selectedGenre.contains(view)) {
-                selectedGenre.remove(view);
+            if (changedGenre.contains(view)) {
+                changedGenre.remove(view);
                 view.setBackgroundResource(R.drawable.bg_button_non_select);
-            } else if (selectedGenre.size() == 3) {
+            } else if (changedGenre.size() == 3) {
                 Toast.makeText(this, "선택할 수 있는 관심 장르의 개수는 최대 3개입니다.", Toast.LENGTH_SHORT).show();
             } else {
-                selectedGenre.add(view);
+                changedGenre.add(view);
                 view.setBackgroundResource(R.drawable.bg_button_select);
             }
         };
@@ -127,13 +138,43 @@ public class ChangeGenreActivity extends AppCompatActivity {
 
         Button btSubmit = findViewById(R.id.bt_change_genre_submit);
         btSubmit.setOnClickListener(v -> {
-            if (selectedGenre.isEmpty()) {
+            if (changedGenre.isEmpty()) {
                 Toast.makeText(this, "관심 장르를 하나 이상 선택해 주세요.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                //TODO: 서버에 전달함 (if 예전과 똑같다면 그냥 보냄??)
-                isChanged = true;
-                finish();
+            } else if (changedGenre.equals(interestingGenre)) {
+                Toast.makeText(this, "기존의 관심 장르와 동일합니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                ArrayList<Integer> genres = new ArrayList<>();
+                for (View genre : changedGenre) {
+                    genres.add(genreIdList.indexOf(genre.getId())+1);
+                }
+
+                JsonObject requestData = new JsonObject();
+                requestData.add("genres", new Gson().toJsonTree(genres));
+                OttURetrofitClient.getApiService().patchUser(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx(), requestData).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 200) {
+                            isChanged = true;
+                            Toast.makeText(ChangeGenreActivity.this, "장르 변경에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(ChangeGenreActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(ChangeGenreActivity.this, "jwt");
+                            Intent reLogin = new Intent(ChangeGenreActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else
+                            Toast.makeText(ChangeGenreActivity.this, "장르 변경에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        Toast.makeText(ChangeGenreActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

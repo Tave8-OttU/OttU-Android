@@ -9,13 +9,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.tave8.ottu.MainActivity.myInfo;
 
@@ -96,10 +107,74 @@ public class ChangeNickActivity extends AppCompatActivity {
                 tvNickError.setText("기존 닉네임과 일치합니다.");
                 etNewNick.setEnabled(true);
             } else {
-                //TODO: 서버에 전달함
-                //1. 이미 존재하는 닉네임인 경우 -> tvNickError.setVisibility(VISIBLE), etNewNick.setEnabled(true), tvNickError.setText("이미 존재하는 닉네임입니다.");
-                //2. 닉네임 변경 -> isChanged = true, finish()
-                finish();
+                //1. 닉네임 중복 확인
+                //2. 닉네임 중복 확인 성공 후 닉네임 변경
+                OttURetrofitClient.getApiService().getCheckNick(PreferenceManager.getString(this, "jwt"), newNick).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
+                                if (result.getBoolean("isExisted")) {
+                                    tvNickError.setVisibility(View.VISIBLE);
+                                    tvNickError.setText("이미 존재하는 닉네임입니다.");
+                                    etNewNick.setEnabled(true);
+                                }
+                                else {
+                                    JsonObject requestData = new JsonObject();
+                                    requestData.addProperty("nickname", newNick);
+                                    OttURetrofitClient.getApiService().patchUser(PreferenceManager.getString(ChangeNickActivity.this, "jwt"), myInfo.getUserIdx(), requestData).enqueue(new Callback<String>() {
+                                        @Override
+                                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                                            if (response.code() == 200) {
+                                                isChanged = true;
+                                                myInfo.getUserEssentialInfo().setNick(newNick);
+                                                Toast.makeText(ChangeNickActivity.this, "닉네임 변경에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
+                                            else if (response.code() == 401) {
+                                                Toast.makeText(ChangeNickActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                                                PreferenceManager.removeKey(ChangeNickActivity.this, "jwt");
+                                                Intent reLogin = new Intent(ChangeNickActivity.this, LoginActivity.class);
+                                                reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                startActivity(reLogin);
+                                                finish();
+                                            }
+                                            else {
+                                                etNewNick.setEnabled(true);
+                                                Toast.makeText(ChangeNickActivity.this, "닉네임 변경에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                            etNewNick.setEnabled(true);
+                                            Toast.makeText(ChangeNickActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            } catch (JSONException e) { e.printStackTrace(); }
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(ChangeNickActivity.this, "로그인 토큰 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(ChangeNickActivity.this, "jwt");
+                            Intent reLogin = new Intent(ChangeNickActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else {
+                            etNewNick.setEnabled(true);
+                            Toast.makeText(ChangeNickActivity.this, "다시 한번 닉네임 변경해 주세요.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        etNewNick.setEnabled(true);
+                        Toast.makeText(ChangeNickActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

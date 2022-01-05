@@ -23,7 +23,6 @@ public interface OttURetrofitAPI {
     @GET("/user/{uid}")
     Call<String> getUser(@Header("authorization") String jwt, @Path("uid") Long userIdx);           //사용자 정보 조회
 
-    //TODO: 정의 요망!!
     @PATCH("/user/{uid}")
     Call<String> patchUser(@Header("authorization") String jwt, @Path("uid") Long userIdx, @Body JsonObject request);       //사용자 정보 수정
 

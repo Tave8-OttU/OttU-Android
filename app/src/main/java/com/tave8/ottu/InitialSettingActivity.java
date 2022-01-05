@@ -1,7 +1,7 @@
 package com.tave8.ottu;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tave8.ottu.data.Genre;
 import com.tave8.ottu.data.UserInfo;
 
@@ -191,26 +193,104 @@ public class InitialSettingActivity extends AppCompatActivity {
 
         Button btSubmit = findViewById(R.id.bt_initial_submit);
         btSubmit.setOnClickListener(v -> {
+            String nickname = etNick.getText().toString().trim();
+            String kakaotalkId = etKakaoId.getText().toString().trim();
+
             if (!isCheckedNick) {
                 etNick.requestFocus();
                 Toast.makeText(this, "닉네임 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNick, 0);
-            } else if (etKakaoId.getText().toString().trim().length() == 0) {
+            } else if (kakaotalkId.length() == 0) {
                 etKakaoId.requestFocus();
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etKakaoId, 0);
             } else if (selectedGenre.isEmpty()) {
                 Toast.makeText(this, "관심 장르를 하나 이상 선택해 주세요.", Toast.LENGTH_SHORT).show();
             } else {
-                //TODO: 서버에 관심장르와 닉네임 전달
-                //TODO: 예시
-                ArrayList<Genre> interestGenreList = new ArrayList<>();
-                interestGenreList.add(new Genre(1, "드라마"));
-                interestGenreList.add(new Genre(5, "사극"));
-                myInfo = new UserInfo(1L, "영은", "youngeun", 10, true, interestGenreList);
+                ArrayList<Integer> genres = setGenreNum();
 
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
+                JsonObject requestData = new JsonObject();
+                requestData.addProperty("nickname", nickname);
+                requestData.addProperty("kakaotalkId", kakaotalkId);
+                requestData.add("genres", new Gson().toJsonTree(genres));
+                OttURetrofitClient.getApiService().patchUser(PreferenceManager.getString(this, "jwt"), userIdx, requestData).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        if (response.code() == 200) {
+                            ArrayList<Genre> genre = new ArrayList<>();
+                            for (Integer genreId : genres) {
+                                genre.add(new Genre(genreId));
+                            }
+
+                            myInfo = new UserInfo(1L, nickname, kakaotalkId, 10, true, genre);
+
+                            startActivity(new Intent(InitialSettingActivity.this, MainActivity.class));
+                            finish();
+                        }
+                        else if (response.code() == 401) {
+                            Toast.makeText(InitialSettingActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                            PreferenceManager.removeKey(InitialSettingActivity.this, "jwt");
+                            Intent reLogin = new Intent(InitialSettingActivity.this, LoginActivity.class);
+                            reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(reLogin);
+                            finish();
+                        }
+                        else
+                            Toast.makeText(InitialSettingActivity.this, "회원 정보 설정에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        Toast.makeText(InitialSettingActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private ArrayList<Integer> setGenreNum() {
+        ArrayList<Integer> genres = new ArrayList<>();
+        for (View genre : selectedGenre) {
+            switch (genre.getId()) {
+                case R.id.bt_initial_genre1: {
+                    genres.add(1);
+                    break;
+                } case R.id.bt_initial_genre2: {
+                    genres.add(2);
+                    break;
+                } case R.id.bt_initial_genre3: {
+                    genres.add(3);
+                    break;
+                } case R.id.bt_initial_genre4: {
+                    genres.add(4);
+                    break;
+                } case R.id.bt_initial_genre5: {
+                    genres.add(5);
+                    break;
+                } case R.id.bt_initial_genre6: {
+                    genres.add(6);
+                    break;
+                } case R.id.bt_initial_genre7: {
+                    genres.add(7);
+                    break;
+                } case R.id.bt_initial_genre8: {
+                    genres.add(8);
+                    break;
+                } case R.id.bt_initial_genre9: {
+                    genres.add(9);
+                    break;
+                } case R.id.bt_initial_genre10: {
+                    genres.add(10);
+                    break;
+                } case R.id.bt_initial_genre11: {
+                    genres.add(11);
+                    break;
+                } case R.id.bt_initial_genre12: {
+                    genres.add(12);
+                    break;
+                }
+            }
+        }
+        return genres;
     }
 }

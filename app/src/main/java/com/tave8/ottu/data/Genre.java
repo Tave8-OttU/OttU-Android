@@ -2,8 +2,11 @@ package com.tave8.ottu.data;
 
 public class Genre {
     private int genreIdx;
-    private String genreName;
+    private String genreName = "";
 
+    public Genre(int genreIdx) {
+        this.genreIdx = genreIdx;
+    }
     public Genre(int genreIdx, String genreName) {
         this.genreIdx = genreIdx;
         this.genreName = genreName;
