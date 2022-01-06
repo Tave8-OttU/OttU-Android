@@ -15,6 +15,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <TextView
+        android:id="@+id/tv_my_recruit_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나의 모집글이 없습니다."
+        android:textColor="@color/sub_text_color"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tb_my_recruit_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_recruit_recruitList"
         android:layout_width="match_parent"

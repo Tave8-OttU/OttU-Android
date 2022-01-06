@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="15dp">
     <ImageView
-        android:id="@+id/iv_dialog_eval_ott"
+        android:id="@+id/iv_dialog_evaluation_ott"
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:scaleType="fitCenter"
@@ -29,16 +29,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:lineSpacingExtra="3dp"
         android:text="해당 평가는 오뜨 level에 반영되며,\n추후 사용자의 신뢰도를 나타내줍니다."
         android:textColor="@color/sub_text_color"
-        android:textSize="14sp" />
+        android:textSize="13sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dialog_eval"
+        android:id="@+id/rv_dialog_evaluation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -47,7 +48,7 @@
         android:layout_height="30dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_dialog_eval_submit"
+        android:id="@+id/bt_dialog_evaluation_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,8 @@ public class FragmentNotice extends Fragment {
 
         ArrayList<Notice> noticeList = new ArrayList<>();
 
+        TextView tvNoticeNo = rootView.findViewById(R.id.tv_frag_notice_no);
+
         RecyclerView rvNotice = rootView.findViewById(R.id.rv_frag_notice);
         LinearLayoutManager manager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false);
         rvNotice.setLayoutManager(manager);
@@ -69,11 +72,13 @@ public class FragmentNotice extends Fragment {
                         for (int i=0; i<jsonNoticeList.length(); i++) {
                             JSONObject notice = jsonNoticeList.getJSONObject(i);
                             Long noticeIdx = notice.getLong("noticeIdx");
+                            Long evaluateTeamIdx = notice.getLong("evaluateTeamIdx");
                             String content = notice.getString("content");
                             String createdDate = notice.getString("createdDate");
+                            boolean isEvaluated = notice.getBoolean("isEvaluated");
 
                             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-                            noticeList.add(new Notice(noticeIdx, content, LocalDateTime.parse(createdDate, dateTimeFormatter)));
+                            noticeList.add(new Notice(noticeIdx, evaluateTeamIdx, content, LocalDateTime.parse(createdDate, dateTimeFormatter), isEvaluated));
                         }
                         noticeRecyclerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }
@@ -88,6 +93,9 @@ public class FragmentNotice extends Fragment {
                 }
                 else
                     Toast.makeText(requireContext(), "내가 쓴 모집글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (noticeList.size() == 0)
+                    tvNoticeNo.setVisibility(View.VISIBLE);
             }
 
             @Override

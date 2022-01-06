@@ -3,6 +3,7 @@ package com.tave8.ottu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -39,6 +40,7 @@ import static com.tave8.ottu.MainActivity.myInfo;
 public class MyOTTActivity extends AppCompatActivity {
     private ArrayList<PaymentInfo> myOttPaymentList;
     private OttPaymentRecyclerAdapter ottPaymentRecyclerAdapter;
+    private TextView tvMyOttNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class MyOTTActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
+
+        tvMyOttNo = findViewById(R.id.tv_my_ott_no);
 
         RecyclerView rvMyOttPost = findViewById(R.id.rv_my_ott_platformList);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
@@ -92,6 +96,7 @@ public class MyOTTActivity extends AppCompatActivity {
     }
 
     public void updateMyOTTList() {
+        tvMyOttNo.setVisibility(View.GONE);
         OttURetrofitClient.getApiService().getMyOttList(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -123,6 +128,9 @@ public class MyOTTActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(MyOTTActivity.this, "나의 OTT 서비스 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (myOttPaymentList.size() == 0)
+                    tvMyOttNo.setVisibility(View.VISIBLE);
             }
 
             @Override

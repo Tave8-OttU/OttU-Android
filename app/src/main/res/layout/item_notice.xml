@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_notice"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_black_color2_4"
     android:orientation="vertical"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
+    android:paddingTop="17dp"
+    android:paddingBottom="17dp"
     android:paddingStart="20dp"
     android:paddingEnd="20dp">
     <TextView
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:gravity="top"
-        android:lineSpacingExtra="3dp"
+        android:lineSpacingExtra="5dp"
         android:text="‘넷플릭스' 1월 2일 14,500원 결제 예정입니다."
         android:textSize="14sp" />
 
@@ -29,5 +30,5 @@
         android:layout_marginEnd="10dp"
         android:text="2021.12.30"
         android:textColor="@color/sub_text_color"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 </LinearLayout>

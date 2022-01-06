@@ -40,6 +40,7 @@ import static com.tave8.ottu.MainActivity.myInfo;
 public class MyCommunityActivity extends AppCompatActivity {
     private ArrayList<CommunityPostInfo> myCommunityPostList = null;
     private MyCommunityPostRecyclerAdapter myCommunityRecyclerAdapter;
+    private TextView tvMyPostNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class MyCommunityActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
+
+        tvMyPostNo = findViewById(R.id.tv_my_community_no);
 
         ActivityResultLauncher<Intent> startActivityResultPost = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -87,6 +90,7 @@ public class MyCommunityActivity extends AppCompatActivity {
     }
 
     private void updateMyCommunityPostList() {
+        tvMyPostNo.setVisibility(View.GONE);
         OttURetrofitClient.getApiService().getMyPostList(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -125,6 +129,9 @@ public class MyCommunityActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(MyCommunityActivity.this, "내가 쓴 커뮤니티 글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (myCommunityPostList.size() == 0)
+                    tvMyPostNo.setVisibility(View.VISIBLE);
             }
 
             @Override

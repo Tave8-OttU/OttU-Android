@@ -36,6 +36,7 @@ import static com.tave8.ottu.MainActivity.myInfo;
 public class MyRecruitActivity extends AppCompatActivity {
     private ArrayList<RecruitInfo> myRecruitList;
     private MyRecruitRecyclerAdapter recruitRecyclerAdapter;
+    private TextView tvMyRecruitNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class MyRecruitActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
+
+        tvMyRecruitNo = findViewById(R.id.tv_my_recruit_no);
 
         RecyclerView rvMyRecruitPost = findViewById(R.id.rv_my_recruit_recruitList);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
@@ -76,6 +79,7 @@ public class MyRecruitActivity extends AppCompatActivity {
     }
 
     public void updateMyRecruitList() {
+        tvMyRecruitNo.setVisibility(View.GONE);
         OttURetrofitClient.getApiService().getMyRecruitList(PreferenceManager.getString(this, "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -112,6 +116,9 @@ public class MyRecruitActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(MyRecruitActivity.this, "내가 쓴 모집글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (myRecruitList.size() == 0)
+                    tvMyRecruitNo.setVisibility(View.VISIBLE);
             }
 
             @Override

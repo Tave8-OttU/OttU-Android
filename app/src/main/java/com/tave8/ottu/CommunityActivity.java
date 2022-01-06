@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -44,6 +45,7 @@ public class CommunityActivity extends AppCompatActivity {
 
     private CommunityPostRecyclerAdapter postRecyclerAdapter;
     private SwipeRefreshLayout srlCommunityPosts;
+    private TextView tvPostNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class CommunityActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
+
+        tvPostNo = findViewById(R.id.tv_community_no);
 
         ActivityResultLauncher<Intent> startActivityResultPost = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -114,6 +118,7 @@ public class CommunityActivity extends AppCompatActivity {
     }
 
     private void updateCommunityPostList(boolean isSwipe) {
+        tvPostNo.setVisibility(View.GONE);
         OttURetrofitClient.getApiService().getCommunityPostList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -153,6 +158,9 @@ public class CommunityActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(CommunityActivity.this, "커뮤니티 글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (communityPostList.size() == 0)
+                    tvPostNo.setVisibility(View.VISIBLE);
 
                 if (isSwipe)
                     srlCommunityPosts.setRefreshing(false);

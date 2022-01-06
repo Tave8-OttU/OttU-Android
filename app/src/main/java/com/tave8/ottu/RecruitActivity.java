@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -42,6 +43,7 @@ public class RecruitActivity extends AppCompatActivity {
     
     private RecruitRecyclerAdapter recruitRecyclerAdapter;
     private SwipeRefreshLayout srlRecruitPosts;
+    private TextView tvRecruitNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class RecruitActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(customView, params);
         toolbarListener(toolbar);
+
+        tvRecruitNo = findViewById(R.id.tv_recruit_no);
 
         srlRecruitPosts = findViewById(R.id.srl_recruit_postlist);
         srlRecruitPosts.setDistanceToTriggerSync(400);
@@ -105,6 +109,7 @@ public class RecruitActivity extends AppCompatActivity {
     }
     
     public void updateRecruitList(boolean isSwipe) {
+        tvRecruitNo.setVisibility(View.GONE);
         OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -142,6 +147,9 @@ public class RecruitActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(RecruitActivity.this, "모집글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
+
+                if (recruitList.size() == 0)
+                    tvRecruitNo.setVisibility(View.VISIBLE);
 
                 if (isSwipe)
                     srlRecruitPosts.setRefreshing(false);

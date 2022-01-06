@@ -90,7 +90,11 @@ public interface OttURetrofitAPI {
     Call<String> deleteTeam(@Header("authorization") String jwt, @Path("tid") Long teamIdx);        //OTT 서비스 해지
 
 
-    //TODO: 신뢰도 평가
+    @GET("/team/{tid}/evaluation/{uid}")
+    Call<String> getTeamForEvaluation(@Header("authorization") String jwt, @Path("tid") Long teamIdx, @Path("uid") Long userIdx);//팀원 신뢰도 평가를 위한 회원 정보 받기
+
+    @POST("/team/{tid}/evaluation")
+    Call<String> postTeamEvaluation(@Header("authorization") String jwt, @Path("tid") Long teamIdx, @Body JsonObject request);   //팀원 신뢰도 평가 전달
     
     
     @GET("/community/post/current")
