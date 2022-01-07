@@ -98,11 +98,12 @@ public class FragmentHome extends Fragment {
                             JSONObject paymentOtt = jsonOttList.getJSONObject(i);
                             Long paymentIdx = paymentOtt.getLong("teamIdx");
                             int platformIdx = paymentOtt.getJSONObject("platform").getInt("platformIdx");
+                            String teamName = paymentOtt.getString("teamName");
 
                             int headcount = paymentOtt.getInt("headcount");
                             int paymentDay = paymentOtt.getInt("paymentDay");
                             String paymentDate = paymentOtt.getString("paymentDate");
-                            ottPaymentList.add(new PaymentInfo(paymentIdx, platformIdx, headcount, paymentDay, LocalDate.parse(paymentDate, DateTimeFormatter.ISO_DATE)));
+                            ottPaymentList.add(new PaymentInfo(paymentIdx, platformIdx, teamName, headcount, paymentDay, LocalDate.parse(paymentDate, DateTimeFormatter.ISO_DATE)));
                         }
                         homePaymentPagerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }

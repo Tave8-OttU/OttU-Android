@@ -37,6 +37,7 @@
 
     <string name="recruit_ing">모집 중</string>
     <string name="recruit_completed">모집 완료</string>
+    <string name="recruit_participated">참여 완료</string>
 
     <string name="post_edit">글 수정</string>
     <string name="post_delete">글 삭제</string>

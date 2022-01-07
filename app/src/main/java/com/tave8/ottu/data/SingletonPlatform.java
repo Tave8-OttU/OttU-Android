@@ -60,7 +60,7 @@ public class SingletonPlatform {
         platformInfoList.put(5, disneyPlusRatePlanInfoList);
 
         ArrayList<RatePlanInfo> coupangPlayRatePlanInfoList = new ArrayList<>();
-        coupangPlayRatePlanInfoList.add(new RatePlanInfo("쿠팡 와우 멤버십", 2, 4990));
+        coupangPlayRatePlanInfoList.add(new RatePlanInfo("쿠팡 와우 멤버십", 4, 4990));
         platformInfoList.put(6, coupangPlayRatePlanInfoList);
     }
 

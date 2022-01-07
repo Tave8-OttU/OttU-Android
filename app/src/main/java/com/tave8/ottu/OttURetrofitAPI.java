@@ -54,11 +54,11 @@ public interface OttURetrofitAPI {
     Call<String> getMyPostList(@Header("authorization") String jwt, @Path("uid") Long userIdx);     //나의 게시글 조회
 
 
-    @GET("/recruit/{pid}/list")
-    Call<String> getRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx);//해당 플랫폼의 모집글 조회
+    @GET("/recruit/{pid}/list/{uid}")
+    Call<String> getRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Path("uid") Long userIdx);//해당 플랫폼의 모집글 조회
 
-    @GET("/recruit/{pid}/list")
-    Call<String> getHeadcountRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Query("headcount") int headcount);//해당 플랫폼의 인원수에 맞는 모집글 조회
+    @GET("/recruit/{pid}/list/{uid}")
+    Call<String> getHeadcountRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Path("uid") Long userIdx, @Query("headcount") int headcount);//해당 플랫폼의 인원수에 맞는 모집글 조회
 
     @POST("/recruit/upload")
     Call<String> postRecruitUpload(@Header("authorization") String jwt, @Body JsonObject request);  //모집글 추가
@@ -100,7 +100,7 @@ public interface OttURetrofitAPI {
     Call<String> getCurrentCommunityPostList(@Header("authorization") String jwt);                  //각 플랫폼별 최신 커뮤니티 글 조회
 
     @GET("/community/post/{pid}/list")
-    Call<String> getCommunityPostList(@Header("authorization") String jwt, @Path("pid") int platformIdx);               //해당 플랫폼의 커뮤니티글 조회
+    Call<String> getCommunityPostList(@Header("authorization") String jwt, @Path("pid") int platformIdx);   //해당 플랫폼의 커뮤니티글 조회
 
     @GET("/community/post/{cpid}")
     Call<String> getPost(@Header("authorization") String jwt, @Path("cpid") Long postIdx);

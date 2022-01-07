@@ -46,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
@@ -79,6 +80,8 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
     @Override
     public void onBindViewHolder(@NonNull RecruitRecyclerAdapter.ItemViewHolder holder, int position) {
         holder.tvWriterNick.setText(recruitPostList.get(position).getWriterInfo().getNick());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        holder.tvCreatedDate.setText(recruitPostList.get(position).getRecruitDateTime().format(dateTimeFormatter));
         if (recruitPostList.get(position).isCompleted()) {
             holder.llitem.setBackgroundColor(context.getColor(R.color.bg_black_color1_4));
             holder.tvRecruitIng.setVisibility(View.GONE);
@@ -97,6 +100,11 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
         }
         holder.tvChoiceNum.setText(String.valueOf(recruitPostList.get(position).getChoiceNum()));
         holder.tvHeadCount.setText(String.valueOf(recruitPostList.get(position).getHeadCount()));
+
+        if (recruitPostList.get(position).isApplying())
+            holder.tvParticipated.setVisibility(View.VISIBLE);
+        else
+            holder.tvParticipated.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -106,7 +114,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         LinearLayout llitem;
-        TextView tvWriterNick, tvRecruitIng, tvRecruitCompleted, tvChoiceNum, tvSlash, tvHeadCount;
+        TextView tvWriterNick, tvCreatedDate, tvRecruitIng, tvRecruitCompleted, tvChoiceNum, tvSlash, tvHeadCount, tvParticipated;
 
         //참여 요청 다이얼로그용
         ArrayList<RecruitRequestInfo> userRequestList;
@@ -120,11 +128,13 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
 
             llitem = itemView.findViewById(R.id.ll_item_recruit_bg);
             tvWriterNick = itemView.findViewById(R.id.tv_item_recruit_nick);
+            tvCreatedDate = itemView.findViewById(R.id.tv_item_recruit_date);
             tvRecruitIng = itemView.findViewById(R.id.tv_item_recruit_ing);
             tvRecruitCompleted = itemView.findViewById(R.id.tv_item_recruit_completed);
             tvChoiceNum = itemView.findViewById(R.id.tv_item_recruit_choice);
             tvSlash = itemView.findViewById(R.id.tv_item_recruit_slash);
             tvHeadCount = itemView.findViewById(R.id.tv_item_recruit_headcount);
+            tvParticipated = itemView.findViewById(R.id.tv_item_recruit_participated);
 
             userRequestList = new ArrayList<>();
             itemView.setOnClickListener(v -> {
@@ -300,7 +310,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                             });
                         });
                     }
-                    else {      //참여 다이얼로그가 뜸
+                    else if (!recruitPostList.get(pos).isApplying()) {      //참여 다이얼로그가 뜸(참여 완료가 아닐 시에)
                         View participateDialogView = View.inflate(context, R.layout.dialog_recruit_participate, null);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);

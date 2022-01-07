@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
@@ -75,15 +76,15 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
     @Override
     public void onBindViewHolder(@NonNull MyRecruitRecyclerAdapter.ItemViewHolder holder, int position) {
         holder.ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(recruitPostList.get(position).getPlatformIdx()));
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        holder.tvCreatedDate.setText(recruitPostList.get(position).getRecruitDateTime().format(dateTimeFormatter));
         if (recruitPostList.get(position).isCompleted()) {
-            holder.llitem.setBackgroundColor(context.getColor(R.color.white));
             holder.tvRecruitIng.setVisibility(View.GONE);
             holder.tvRecruitCompleted.setVisibility(View.VISIBLE);
             holder.tvSlash.setTextColor(context.getColor(R.color.sub_text_color2));
             holder.tvHeadCount.setTextColor(context.getColor(R.color.sub_text_color2));
         }
         else {
-            holder.llitem.setBackgroundColor(context.getColor(R.color.white));
             holder.tvRecruitIng.setVisibility(View.VISIBLE);
             holder.tvRecruitCompleted.setVisibility(View.GONE);
             holder.tvSlash.setTextColor(context.getColor(R.color.main_color));
@@ -99,9 +100,8 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout llitem;
         ImageView ivPlatform;
-        TextView tvRecruitIng, tvRecruitCompleted, tvChoiceNum, tvSlash, tvHeadCount;
+        TextView tvCreatedDate, tvRecruitIng, tvRecruitCompleted, tvChoiceNum, tvSlash, tvHeadCount;
 
         //참여 요청 다이얼로그용
         ArrayList<RecruitRequestInfo> userRequestList;
@@ -113,8 +113,8 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            llitem = itemView.findViewById(R.id.ll_item_mypage_recruit_bg);
             ivPlatform = itemView.findViewById(R.id.iv_item_mypage_recruit_platform);
+            tvCreatedDate = itemView.findViewById(R.id.iv_item_mypage_recruit_date);
             tvRecruitIng = itemView.findViewById(R.id.tv_item_mypage_recruit_ing);
             tvRecruitCompleted = itemView.findViewById(R.id.tv_item_mypage_recruit_completed);
             tvChoiceNum = itemView.findViewById(R.id.tv_item_mypage_recruit_choice);

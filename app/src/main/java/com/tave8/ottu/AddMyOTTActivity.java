@@ -178,6 +178,7 @@ public class AddMyOTTActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                         if (response.code() == 201) {
                             isAdded = true;
+                            Toast.makeText(AddMyOTTActivity.this, "나의 OTT 추가에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                         else if (response.code() == 401) {
@@ -189,7 +190,7 @@ public class AddMyOTTActivity extends AppCompatActivity {
                             finish();
                         }
                         else
-                            Toast.makeText(AddMyOTTActivity.this, "나의 모집글 추가에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMyOTTActivity.this, "나의 OTT 추가에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

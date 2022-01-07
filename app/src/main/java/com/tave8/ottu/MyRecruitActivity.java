@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -100,7 +102,8 @@ public class MyRecruitActivity extends AppCompatActivity {
                             boolean isCompleted = recruit.getBoolean("isCompleted");
                             String createdDate = recruit.getString("createdDate");
 
-                            RecruitInfo recruitInfo = new RecruitInfo(recruitIdx, platformIdx, writerInfo, isCompleted, headcount, choiceNum, createdDate);
+                            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                            RecruitInfo recruitInfo = new RecruitInfo(recruitIdx, platformIdx, writerInfo, isCompleted, headcount, choiceNum, LocalDateTime.parse(createdDate, dateTimeFormatter));
                             myRecruitList.add(recruitInfo);
                         }
                         recruitRecyclerAdapter.notifyDataSetChanged();

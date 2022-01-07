@@ -111,6 +111,9 @@ public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRe
                     TextView tvRatePlanCharge = paymentDialogView.findViewById(R.id.tv_dialog_payment_charge);
                     tvRatePlanCharge.setText(chargeFormatter.format(ratePlanInfo.getCharge()));
 
+                    TextView tvTeamName = paymentDialogView.findViewById(R.id.tv_dialog_payment_team);
+                    tvTeamName.setText(paymentInfo.getTeamName());
+
                     TextView tvTeamNum = paymentDialogView.findViewById(R.id.tv_dialog_payment_team_num);
                     tvTeamNum.setText(String.valueOf(paymentInfo.getHeadCount()));
                     TextView tvMyCharge = paymentDialogView.findViewById(R.id.tv_dialog_payment_my_charge);

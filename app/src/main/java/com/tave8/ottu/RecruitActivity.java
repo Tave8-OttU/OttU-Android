@@ -41,12 +41,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.tave8.ottu.MainActivity.myInfo;
 
 public class RecruitActivity extends AppCompatActivity {
     private int platformIdx = 0;
@@ -204,9 +208,11 @@ public class RecruitActivity extends AppCompatActivity {
                             int headcount = recruit.getInt("headcount");
                             int choiceNum = (int) recruit.getLong("choiceNum");
                             boolean isCompleted = recruit.getBoolean("isCompleted");
+                            boolean isApplying = recruit.getBoolean("isApplying");
                             String createdDate = recruit.getString("createdDate");
 
-                            RecruitInfo recruitInfo = new RecruitInfo(recruitIdx, platformIdx, writerInfo, isCompleted, headcount, choiceNum, createdDate);
+                            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                            RecruitInfo recruitInfo = new RecruitInfo(recruitIdx, platformIdx, writerInfo, isCompleted, isApplying, headcount, choiceNum, LocalDateTime.parse(createdDate, dateTimeFormatter));
                             recruitList.add(recruitInfo);
                         }
                         recruitRecyclerAdapter.notifyDataSetChanged();
@@ -240,8 +246,8 @@ public class RecruitActivity extends AppCompatActivity {
         };
         
         if (headcount == 0)
-            OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(recruitListCallback);
+            OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, myInfo.getUserIdx()).enqueue(recruitListCallback);
         else       //filter 시에 사용
-            OttURetrofitClient.getApiService().getHeadcountRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, headcount).enqueue(recruitListCallback);
+            OttURetrofitClient.getApiService().getHeadcountRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, myInfo.getUserIdx(), headcount).enqueue(recruitListCallback);
     }
 }

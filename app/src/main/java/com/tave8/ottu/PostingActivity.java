@@ -106,6 +106,7 @@ public class PostingActivity extends AppCompatActivity {
                         public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                             if (response.code() == 200) {
                                 isSubmitted = true;
+                                Toast.makeText(PostingActivity.this, "글 수정에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                             else if (response.code() == 401) {
@@ -139,6 +140,7 @@ public class PostingActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                         if (response.code() == 201) {
                             isSubmitted = true;
+                            Toast.makeText(PostingActivity.this, "글 작성에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                         else if (response.code() == 401) {

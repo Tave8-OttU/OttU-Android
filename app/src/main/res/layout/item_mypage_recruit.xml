@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_item_mypage_recruit_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:gravity="center_vertical"
     android:padding="20dp"
-    android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3">
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_item_mypage_recruit_platform"
             android:layout_width="100dp"
@@ -19,67 +16,84 @@
             android:layout_centerVertical="true"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_ott_netflix" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_item_mypage_recruit_ing"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_r5blue"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="@string/recruit_ing"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/tv_item_mypage_recruit_completed"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_r5grey"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="@string/recruit_completed"
-        android:textAlignment="center"
-        android:textColor="@color/sub_text_color"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/iv_item_mypage_recruit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="2022.01.10"
+            android:textColor="@color/sub_text_color2"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
+        android:orientation="horizontal">
         <TextView
-            android:id="@+id/tv_item_mypage_recruit_choice"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_item_mypage_recruit_ing"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="2"
-            android:textColor="@color/sub_text_color2"
-            android:textSize="19sp" />
-        <TextView
-            android:id="@+id/tv_item_mypage_recruit_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:text="/"
-            android:textColor="@color/main_color"
-            android:textSize="19sp" />
-        <TextView
-            android:id="@+id/tv_item_mypage_recruit_headcount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:textColor="@color/main_color"
-            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_r5blue"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/recruit_ing"
+            android:textAlignment="center"
+            android:textSize="14sp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_item_mypage_recruit_completed"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_r5grey"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/recruit_completed"
+            android:textAlignment="center"
+            android:textColor="@color/sub_text_color"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="0dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_item_mypage_recruit_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
+            <TextView
+                android:id="@+id/tv_item_mypage_recruit_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:text="/"
+                android:textColor="@color/main_color"
+                android:textSize="19sp" />
+            <TextView
+                android:id="@+id/tv_item_mypage_recruit_headcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="@color/main_color"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

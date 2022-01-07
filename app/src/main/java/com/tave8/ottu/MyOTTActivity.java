@@ -109,11 +109,12 @@ public class MyOTTActivity extends AppCompatActivity {
                             JSONObject paymentOtt = jsonOttList.getJSONObject(i);
                             Long paymentIdx = paymentOtt.getLong("teamIdx");
                             int platformIdx = paymentOtt.getJSONObject("platform").getInt("platformIdx");
+                            String teamName = paymentOtt.getString("teamName");
 
                             int headcount = paymentOtt.getInt("headcount");
                             int paymentDay = paymentOtt.getInt("paymentDay");
                             String paymentDate = paymentOtt.getString("paymentDate");
-                            myOttPaymentList.add(new PaymentInfo(paymentIdx, platformIdx, headcount, paymentDay, LocalDate.parse(paymentDate, DateTimeFormatter.ISO_DATE)));
+                            myOttPaymentList.add(new PaymentInfo(paymentIdx, platformIdx, teamName, headcount, paymentDay, LocalDate.parse(paymentDate, DateTimeFormatter.ISO_DATE)));
                         }
                         ottPaymentRecyclerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }

@@ -5,13 +5,15 @@ import java.time.LocalDate;
 public class PaymentInfo {
     private Long paymentIdx;     //teamIdx와 동일함
     private int platformIdx;
+    private String teamName;
     private int headCount;
     private int paymentDay;
     private LocalDate paymentDate;
 
-    public PaymentInfo(Long paymentIdx, int platformIdx, int headCount, int paymentDay, LocalDate paymentDate) {
+    public PaymentInfo(Long paymentIdx, int platformIdx, String teamName, int headCount, int paymentDay, LocalDate paymentDate) {
         this.paymentIdx = paymentIdx;
         this.platformIdx = platformIdx;
+        this.teamName = teamName;
         this.headCount = headCount;
         this.paymentDay = paymentDay;
         this.paymentDate = paymentDate;
@@ -23,6 +25,10 @@ public class PaymentInfo {
 
     public int getPlatformIdx() {
         return platformIdx;
+    }
+
+    public String getTeamName() {
+        return teamName;
     }
 
     public int getHeadCount() {

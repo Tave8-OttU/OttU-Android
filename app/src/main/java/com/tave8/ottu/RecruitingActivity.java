@@ -116,6 +116,7 @@ public class RecruitingActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                         if (response.code() == 201) {
                             isSubmitted = true;
+                            Toast.makeText(RecruitingActivity.this, "모집글 제출에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                         else if (response.code() == 401) {
