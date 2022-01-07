@@ -95,7 +95,6 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                     if (noticeList.get(pos).getEvaluateTeamIdx() != null && !noticeList.get(pos).getIsEvaluated()) {
-                        //TODO: 서버에 보냄
                         OttURetrofitClient.getApiService().getTeamForEvaluation(PreferenceManager.getString(context, "jwt"), noticeList.get(pos).getEvaluateTeamIdx(), myInfo.getUserIdx()).enqueue(new Callback<String>() {
                             @Override
                             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

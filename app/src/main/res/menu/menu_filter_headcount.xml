@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_headcount_all"
+        android:title="@string/filter_all" />
+    <item
+        android:id="@+id/menu_headcount_1"
+        android:title="@string/filter_1" />
+    <item
+        android:id="@+id/menu_headcount_2"
+        android:title="@string/filter_2" />
+    <item
+        android:id="@+id/menu_headcount_4"
+        android:title="@string/filter_4" />
+</menu>

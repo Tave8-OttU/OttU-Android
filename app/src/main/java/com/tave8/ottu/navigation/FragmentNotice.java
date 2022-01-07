@@ -17,21 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tave8.ottu.LoginActivity;
-import com.tave8.ottu.MyRecruitActivity;
 import com.tave8.ottu.OttURetrofitClient;
 import com.tave8.ottu.PreferenceManager;
 import com.tave8.ottu.R;
 import com.tave8.ottu.adapter.NoticeRecyclerAdapter;
-import com.tave8.ottu.adapter.RecruitRecyclerAdapter;
 import com.tave8.ottu.data.Notice;
-import com.tave8.ottu.data.RecruitInfo;
-import com.tave8.ottu.data.UserEssentialInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -72,7 +67,10 @@ public class FragmentNotice extends Fragment {
                         for (int i=0; i<jsonNoticeList.length(); i++) {
                             JSONObject notice = jsonNoticeList.getJSONObject(i);
                             Long noticeIdx = notice.getLong("noticeIdx");
-                            Long evaluateTeamIdx = notice.getLong("evaluateTeamIdx");
+
+                            Long evaluateTeamIdx = null;
+                            if (!notice.isNull("evaluateTeamIdx"))
+                                evaluateTeamIdx = notice.getLong("evaluateTeamIdx");
                             String content = notice.getString("content");
                             String createdDate = notice.getString("createdDate");
                             boolean isEvaluated = notice.getBoolean("isEvaluated");

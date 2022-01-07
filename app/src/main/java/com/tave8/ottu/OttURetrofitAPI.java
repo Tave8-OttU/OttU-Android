@@ -57,7 +57,6 @@ public interface OttURetrofitAPI {
     @GET("/recruit/{pid}/list")
     Call<String> getRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx);//해당 플랫폼의 모집글 조회
 
-    //TODO: 연동 요망!!
     @GET("/recruit/{pid}/list")
     Call<String> getHeadcountRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Query("headcount") int headcount);//해당 플랫폼의 인원수에 맞는 모집글 조회
 

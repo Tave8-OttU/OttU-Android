@@ -1,9 +1,18 @@
 package com.tave8.ottu;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +21,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -39,6 +50,7 @@ import retrofit2.Response;
 
 public class RecruitActivity extends AppCompatActivity {
     private int platformIdx = 0;
+    private int headcount = 0;  //0일 때는 전체
     private ArrayList<RecruitInfo> recruitList = null;
     
     private RecruitRecyclerAdapter recruitRecyclerAdapter;
@@ -88,6 +100,68 @@ public class RecruitActivity extends AppCompatActivity {
 
         ImageView ivPlatform = toolbar.findViewById(R.id.iv_ab_recruit_platform);
         ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformIdx));
+
+        AppCompatImageButton ivFilter = toolbar.findViewById(R.id.iv_ab_recruit_filter);
+        ivFilter.setOnClickListener(v -> {
+            View filterDialogView = View.inflate(this, R.layout.dialog_recruit_filter, null);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setView(filterDialogView);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            alertDialog.show();
+
+            WindowManager.LayoutParams params = alertDialog.getWindow().getAttributes();
+            Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+            Point size = new Point();
+            display.getRealSize(size);
+            int width = size.x;
+            params.width = (int) (width*0.89);
+            alertDialog.getWindow().setAttributes(params);
+
+            TextView tvHeadcount = filterDialogView.findViewById(R.id.tv_dialog_filter_headcount);
+            if (headcount == 0)
+                tvHeadcount.setText("전체");
+            else
+                tvHeadcount.setText(String.valueOf(headcount));
+
+            LinearLayout llHeadcount = filterDialogView.findViewById(R.id.ll_dialog_filter_headcount);
+            llHeadcount.setOnClickListener(view -> {
+                Context wrapper = new ContextThemeWrapper(this, R.style.PopUpMenuTheme);
+                PopupMenu postMenu = new PopupMenu(wrapper, view);
+                getMenuInflater().inflate(R.menu.menu_filter_headcount, postMenu.getMenu());
+
+                postMenu.setOnMenuItemClickListener(menuItem -> {
+                    if (menuItem.getItemId() == R.id.menu_headcount_all) {
+                        headcount = 0;
+                        tvHeadcount.setText("전체");
+                    }
+                    else if (menuItem.getItemId() == R.id.menu_headcount_1) {        //인원 수 1
+                        headcount = 1;
+                        tvHeadcount.setText("1");
+                    }
+                    else if (menuItem.getItemId() == R.id.menu_headcount_2) {   //인원 수 2
+                        headcount = 2;
+                        tvHeadcount.setText("2");
+                    }
+                    else {
+                        headcount = 4;
+                        tvHeadcount.setText("4");
+                    }
+                    return false;
+                });
+                postMenu.show();
+            });
+
+            AppCompatButton btCancel = filterDialogView.findViewById(R.id.bt_dialog_filter_cancel);
+            btCancel.setOnClickListener(view -> alertDialog.dismiss());
+
+            AppCompatButton btApplyFilter = filterDialogView.findViewById(R.id.bt_dialog_filter_apply);
+            btApplyFilter.setOnClickListener(view -> {
+                alertDialog.dismiss();
+                updateRecruitList(false);
+            });
+        });
     }
 
     private void recruitClickListener() {
@@ -110,7 +184,8 @@ public class RecruitActivity extends AppCompatActivity {
     
     public void updateRecruitList(boolean isSwipe) {
         tvRecruitNo.setVisibility(View.GONE);
-        OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(new Callback<String>() {
+
+        Callback<String> recruitListCallback = new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
@@ -118,7 +193,7 @@ public class RecruitActivity extends AppCompatActivity {
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonRecruitList = result.getJSONArray("recruitlist");
-                        for (int i=0; i<jsonRecruitList.length(); i++) {
+                        for (int i = 0; i < jsonRecruitList.length(); i++) {
                             JSONObject recruit = jsonRecruitList.getJSONObject(i);
                             Long recruitIdx = recruit.getLong("recruitIdx");
                             int platformIdx = recruit.getJSONObject("platform").getInt("platformIdx");
@@ -135,17 +210,17 @@ public class RecruitActivity extends AppCompatActivity {
                             recruitList.add(recruitInfo);
                         }
                         recruitRecyclerAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) { e.printStackTrace(); }
-                }
-                else if (response.code() == 401) {
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
                     Toast.makeText(RecruitActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
                     PreferenceManager.removeKey(RecruitActivity.this, "jwt");
                     Intent reLogin = new Intent(RecruitActivity.this, LoginActivity.class);
                     reLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(reLogin);
                     finish();
-                }
-                else
+                } else
                     Toast.makeText(RecruitActivity.this, "모집글 로드에 문제가 생겼습니다. 새로 고침을 해주세요.", Toast.LENGTH_SHORT).show();
 
                 if (recruitList.size() == 0)
@@ -162,6 +237,11 @@ public class RecruitActivity extends AppCompatActivity {
 
                 Toast.makeText(RecruitActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+        
+        if (headcount == 0)
+            OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx).enqueue(recruitListCallback);
+        else       //filter 시에 사용
+            OttURetrofitClient.getApiService().getHeadcountRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, headcount).enqueue(recruitListCallback);
     }
 }

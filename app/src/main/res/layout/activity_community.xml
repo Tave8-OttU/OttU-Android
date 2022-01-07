@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:src="@drawable/icon_plus"
-        android:backgroundTint="@color/bg_bt_color"
+        android:backgroundTint="@color/floating_color"
         app:tint="@color/main_color"
         app:borderWidth="0dp"
         app:layout_constraintTop_toTopOf="parent"

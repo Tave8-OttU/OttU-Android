@@ -21,6 +21,7 @@
     <color name="light_grey2">#FFC4C4C4</color>
     <color name="sub_text_color">#FFC2C2C2</color>
     <color name="sub_text_color2">#FF555555</color>
+    <color name="floating_color">#FF585858</color>
     <color name="bg_black_color1_4">#33000000</color>
     <color name="bg_black_color2_4">#77000000</color>
     <color name="bg_black_color3_4">#BB000000</color>
