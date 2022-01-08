@@ -103,7 +103,7 @@ public class InitialSettingActivity extends AppCompatActivity {
                 tvNickInfo.setTextColor(getColor(R.color.red_notice));
                 tvNickInfo.setText(R.string.nickname_rule2);
             }
-            else if (nickname.getBytes().length<2 || nickname.getBytes().length>24) {
+            else if (nickname.length()<2 || nickname.length()>12) {
                 tvNickInfo.setVisibility(View.VISIBLE);
                 tvNickInfo.setTextColor(getColor(R.color.red_notice));
                 tvNickInfo.setText(R.string.nickname_rule3);

@@ -132,29 +132,30 @@ public class RecruitActivity extends AppCompatActivity {
             LinearLayout llHeadcount = filterDialogView.findViewById(R.id.ll_dialog_filter_headcount);
             llHeadcount.setOnClickListener(view -> {
                 Context wrapper = new ContextThemeWrapper(this, R.style.PopUpMenuTheme);
-                PopupMenu postMenu = new PopupMenu(wrapper, view);
-                getMenuInflater().inflate(R.menu.menu_filter_headcount, postMenu.getMenu());
+                PopupMenu filterMenu = new PopupMenu(wrapper, view);
+                getMenuInflater().inflate(R.menu.menu_filter_headcount, filterMenu.getMenu());
 
-                postMenu.setOnMenuItemClickListener(menuItem -> {
+                //플랫폼에 따른 선택 인원 수가 다름(기본 전체, 1, 2, 4)
+                if (platformIdx == 4)                                   //왓챠는 2인이 없음
+                    filterMenu.getMenu().getItem(2).setVisible(false);
+                else if (platformIdx == 5 || platformIdx == 6) {        //디즈니 플러스와 쿠팡 플레이는 1, 2인이 없음(전체=4인)
+                    filterMenu.getMenu().getItem(1).setVisible(false);
+                    filterMenu.getMenu().getItem(2).setVisible(false);
+                    filterMenu.getMenu().getItem(3).setVisible(false);
+                }
+
+                filterMenu.setOnMenuItemClickListener(menuItem -> {
                     if (menuItem.getItemId() == R.id.menu_headcount_all) {
                         headcount = 0;
                         tvHeadcount.setText("전체");
                     }
-                    else if (menuItem.getItemId() == R.id.menu_headcount_1) {        //인원 수 1
-                        headcount = 1;
-                        tvHeadcount.setText("1");
-                    }
-                    else if (menuItem.getItemId() == R.id.menu_headcount_2) {   //인원 수 2
-                        headcount = 2;
-                        tvHeadcount.setText("2");
-                    }
-                    else {
-                        headcount = 4;
-                        tvHeadcount.setText("4");
+                    else { //인원 수 1, 2, 4
+                        headcount = Integer.valueOf(menuItem.getTitle().toString());
+                        tvHeadcount.setText(menuItem.getTitle());
                     }
                     return false;
                 });
-                postMenu.show();
+                filterMenu.show();
             });
 
             AppCompatButton btCancel = filterDialogView.findViewById(R.id.bt_dialog_filter_cancel);

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.tave8.ottu.OttURetrofitClient;
 import com.tave8.ottu.PreferenceManager;
 import com.tave8.ottu.R;
 import com.tave8.ottu.data.Notice;
+import com.tave8.ottu.data.SingletonPlatform;
 import com.tave8.ottu.data.UserEssentialInfo;
 
 import org.json.JSONArray;
@@ -103,6 +105,8 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
                                         ArrayList<UserEssentialInfo> memberList = new ArrayList<>();
 
                                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
+
+                                        int platformIdx = result.getJSONObject("platform").getInt("platformIdx");
                                         JSONArray members = result.getJSONArray("userlist");
                                         for (int i=0; i<members.length(); i++) {
                                             JSONObject member = members.getJSONObject(i);
@@ -112,7 +116,7 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
                                         }
                                         memberList.sort((o1, o2) -> o1.getUserIdx().compareTo(o2.getUserIdx()));    //userIdx 순으로 오름차순 정렬
 
-                                        showEvaluationDialog(pos, memberList);
+                                        showEvaluationDialog(pos, platformIdx, memberList);
                                     } catch (JSONException e) { e.printStackTrace(); }
                                 }
                                 else if (response.code() == 401) {
@@ -137,7 +141,7 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
             });
         }
 
-        private void showEvaluationDialog(int pos, ArrayList<UserEssentialInfo> memberList) {
+        private void showEvaluationDialog(int pos, int platformIdx, ArrayList<UserEssentialInfo> memberList) {
             View evaluationDialogView = View.inflate(context, R.layout.dialog_team_evaluation, null);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -152,6 +156,9 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
             int width = size.x;
             params.width = (int) (width*0.89);
             alertDialogTeam.getWindow().setAttributes(params);
+
+            ImageView ivPlatform = evaluationDialogView.findViewById(R.id.iv_dialog_evaluation_ott);
+            ivPlatform.setImageResource(SingletonPlatform.getPlatform().getPlatformLogoList().get(platformIdx));
 
             RecyclerView rvEvaluationMembers = evaluationDialogView.findViewById(R.id.rv_dialog_evaluation);
             LinearLayoutManager teamManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);

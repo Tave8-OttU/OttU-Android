@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,9 +50,6 @@ public class FragmentNotice extends Fragment {
         rvNotice.setLayoutManager(manager);
         NoticeRecyclerAdapter noticeRecyclerAdapter = new NoticeRecyclerAdapter(noticeList);
         rvNotice.setAdapter(noticeRecyclerAdapter);
-        DividerItemDecoration devider = new DividerItemDecoration(requireContext(), 1);
-        devider.setDrawable(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.item_divide_bar, null)));
-        rvNotice.addItemDecoration(devider);
 
         //서버로부터 Notice 받아옴
         OttURetrofitClient.getApiService().getMyNoticeList(PreferenceManager.getString(requireContext(), "jwt"), myInfo.getUserIdx()).enqueue(new Callback<String>() {

@@ -98,15 +98,39 @@ public class ChangeNickActivity extends AppCompatActivity {
             etNewNick.setEnabled(false);
             String newNick = etNewNick.getText().toString().trim();
 
-            if (newNick.length() == 0) {
-                etNewNick.setEnabled(true);
-                etNewNick.requestFocus();
-                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNewNick, 0);
-            } else if (newNick.equals(myInfo.getNick())) {
+            if (newNick.equals(myInfo.getNick())) {
                 tvNickError.setVisibility(View.VISIBLE);
                 tvNickError.setText("기존 닉네임과 일치합니다.");
                 etNewNick.setEnabled(true);
-            } else {
+            }
+            else if (newNick.length() != etNewNick.getText().toString().length()) {
+                tvNickError.setVisibility(View.VISIBLE);
+                tvNickError.setText(R.string.nickname_rule1);
+                etNewNick.setEnabled(true);
+            }
+            else if (newNick.length() == 0) {
+                tvNickError.setVisibility(View.VISIBLE);
+                tvNickError.setText(R.string.nickname_rule2);
+                etNewNick.setEnabled(true);
+                etNewNick.requestFocus();
+                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(etNewNick, 0);
+            }
+            else if (newNick.length()<2 || newNick.length()>12) {
+                tvNickError.setVisibility(View.VISIBLE);
+                tvNickError.setText(R.string.nickname_rule3);
+                etNewNick.setEnabled(true);
+            }
+            else if (!newNick.matches(".*[a-zㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+                tvNickError.setVisibility(View.VISIBLE);
+                tvNickError.setText(R.string.nickname_rule4);
+                etNewNick.setEnabled(true);
+            }
+            else if (newNick.matches(".*[^0-9a-zㄱ-ㅎㅏ-ㅣ가-힣_[*]].*")) {
+                tvNickError.setVisibility(View.VISIBLE);
+                tvNickError.setText(R.string.nickname_rule5);
+                etNewNick.setEnabled(true);
+            }
+            else {
                 //1. 닉네임 중복 확인
                 //2. 닉네임 중복 확인 성공 후 닉네임 변경
                 OttURetrofitClient.getApiService().getCheckNick(PreferenceManager.getString(this, "jwt"), newNick).enqueue(new Callback<String>() {

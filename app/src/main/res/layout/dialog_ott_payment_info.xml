@@ -6,7 +6,6 @@
     android:background="@drawable/bg_r5white"
     android:orientation="vertical"
     android:padding="20dp" >
-
     <ImageView
         android:id="@+id/iv_dialog_payment_platform"
         android:layout_width="100dp"
