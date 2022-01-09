@@ -19,7 +19,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="5dp"
             android:text="팀원 정보"
-            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -62,7 +61,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="결제일 입력"
-            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -71,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="*결제 알림일"
-            android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
         <TextView
@@ -79,7 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="(7일 이내 입력 시 팀 확정)"
-            android:includeFontPadding="false"
             android:textColor="@color/red_notice"
             android:textSize="12sp" />
     </LinearLayout>

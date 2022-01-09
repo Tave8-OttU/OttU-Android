@@ -25,8 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="닉네임"
-                android:includeFontPadding="false"
+                android:text="@string/nickname"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -57,13 +56,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:background="@drawable/bg_r20white"
+                    android:includeFontPadding="false"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
-                    android:includeFontPadding="false"
                     android:text="중복 확인"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
@@ -82,7 +81,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +91,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="카카오톡 아이디"
-                android:includeFontPadding="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -134,7 +132,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="50dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -169,8 +167,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_1"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -178,10 +176,10 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_2"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -189,8 +187,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_3"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -205,8 +203,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_4"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -214,10 +212,10 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_5"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -225,8 +223,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_6"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -241,8 +239,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_7"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -250,10 +248,10 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_8"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -261,8 +259,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_9"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -277,8 +275,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_10"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -286,10 +284,10 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_11"
                     android:textSize="12sp" />
                 <androidx.appcompat.widget.AppCompatButton
@@ -297,8 +295,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:includeFontPadding="false"
                     android:background="@drawable/bg_button_non_select"
+                    android:includeFontPadding="false"
                     android:text="@string/genre_12"
                     android:textSize="12sp" />
             </LinearLayout>

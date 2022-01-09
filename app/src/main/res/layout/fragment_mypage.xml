@@ -13,7 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nickname"
-            android:includeFontPadding="false"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -31,7 +30,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오뜨 Level"
-                android:includeFontPadding="false"
                 android:textSize="14sp" />
 
             <View
@@ -60,7 +58,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="5dp"
                     android:text="5"
-                    android:includeFontPadding="false"
                     android:textColor="@color/main_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -77,7 +74,6 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:text="관심 장르"
-            android:includeFontPadding="false"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -129,6 +125,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:includeFontPadding="true"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/mypage_my_ottu"
@@ -153,7 +150,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_recruit"
                     android:textSize="14sp" />
 
@@ -181,7 +177,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_community_post"
                     android:textSize="14sp" />
 
@@ -209,7 +204,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_ott_service"
                     android:textSize="14sp" />
 
@@ -231,6 +225,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:includeFontPadding="true"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:text="@string/mypage_my_information"
@@ -253,7 +248,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_nick"
-                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -280,7 +274,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_genre"
-                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -307,7 +300,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_kakaotalk_id"
-                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -328,6 +320,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:includeFontPadding="true"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:text="@string/mypage_account"
@@ -350,7 +343,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_logout"
-                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -377,7 +369,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_withdrawal"
-                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView

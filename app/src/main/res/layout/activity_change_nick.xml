@@ -107,7 +107,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/change_nick_rule1"
-                android:includeFontPadding="false"
                 android:textColor="@color/sub_text_color"
                 android:textSize="12sp" />
             <TextView

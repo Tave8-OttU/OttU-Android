@@ -10,6 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:includeFontPadding="true"
         android:text="@string/participate_question"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -21,7 +22,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="85dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/bg_r5white_sblue"
@@ -37,7 +38,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:text="베이식"
-            android:includeFontPadding="false"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -51,7 +51,6 @@
             android:layout_toEndOf="@id/tv_dialog_participate_rateplan"
             android:layout_toStartOf="@id/tv_dialog_participate_yuan"
             android:text="9,500"
-            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="14sp"
@@ -64,7 +63,6 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:text="원"
-            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="14sp"
@@ -73,7 +71,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -138,7 +136,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="\u279E"
-                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="16sp" />
 
@@ -154,7 +151,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="9,500"
-                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView
@@ -162,7 +158,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="원"
-                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>

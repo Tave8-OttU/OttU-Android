@@ -37,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="컨텐츠 관심 장르"
-                android:includeFontPadding="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -60,7 +59,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre1"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_1"
@@ -68,7 +67,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre2"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
@@ -78,7 +77,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre3"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_3"
@@ -93,7 +92,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre4"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_4"
@@ -101,7 +100,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre5"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
@@ -111,7 +110,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre6"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_6"
@@ -126,7 +125,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre7"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_7"
@@ -134,7 +133,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre8"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
@@ -144,7 +143,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre9"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_9"
@@ -159,7 +158,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre10"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_10"
@@ -167,7 +166,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre11"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
@@ -177,7 +176,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_change_genre_genre12"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_non_select"
                 android:text="@string/genre_12"

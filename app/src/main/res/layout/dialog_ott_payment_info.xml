@@ -10,6 +10,7 @@
         android:id="@+id/iv_dialog_payment_platform"
         android:layout_width="100dp"
         android:layout_height="60dp"
+        android:contentDescription="@string/ott_service"
         android:scaleType="fitCenter"
         android:src="@drawable/icon_ott_netflix" />
 
@@ -22,7 +23,6 @@
         android:layout_height="wrap_content"
         android:text="결제 일자"
         android:textStyle="bold"
-        android:includeFontPadding="false"
         android:textColor="@color/black"
         android:textSize="16sp" />
     <LinearLayout
@@ -34,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="매월 "
-            android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -45,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:text="20"
-            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -53,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일"
-            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -67,13 +64,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="요금제"
-        android:includeFontPadding="false"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16sp" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="85dp"
         android:background="@drawable/bg_r5white_sblue"
         android:layout_marginTop="15dp"
         android:paddingTop="25dp"
@@ -88,7 +84,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:text="베이식"
-            android:includeFontPadding="false"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -102,7 +97,6 @@
             android:layout_toEndOf="@id/tv_dialog_payment_rateplan"
             android:layout_toStartOf="@id/tv_dialog_payment_yuan"
             android:text="9,500"
-            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="16sp"
@@ -115,7 +109,6 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:text="원"
-            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="18sp"
@@ -124,7 +117,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
@@ -187,7 +180,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="\u279E"
-                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="18sp" />
 
@@ -204,14 +196,12 @@
                     android:layout_height="wrap_content"
                     android:text="9,500"
                     android:textSize="16sp"
-                    android:includeFontPadding="false"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="원"
-                    android:includeFontPadding="false"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>

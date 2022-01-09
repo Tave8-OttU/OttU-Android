@@ -3,56 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/bg_black_color1_4">
-    <TextView
-        android:id="@+id/tv_item_mypage_ott_payment_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:text="2022.01.08"
-        android:includeFontPadding="false"
-        android:textColor="@color/grey1"
-        android:textSize="14sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="@color/white"
-        android:padding="15dp">
-        <ImageView
-            android:id="@+id/iv_item_mypage_ott_platform"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/ott_service"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_ott_netflix" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibt_item_mypage_ott_next"
-            android:layout_width="35dp"
-            android:layout_height="33dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_next" />
-    </RelativeLayout>
-    </LinearLayout>
-
     <View
         android:id="@+id/view_item_mypage_ott"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_black_color1_4"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_item_mypage_ott_payment_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="2022.01.08"
+            android:textColor="@color/grey1"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:padding="15dp">
+            <ImageView
+                android:id="@+id/iv_item_mypage_ott_platform"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/ott_service"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_ott_netflix" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibt_item_mypage_ott_next"
+                android:layout_width="35dp"
+                android:layout_height="33dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_next" />
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

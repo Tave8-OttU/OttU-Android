@@ -33,7 +33,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="OTT 선택"
-                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -133,7 +132,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/recruiting_select_rateplan"
-                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -164,7 +162,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="결제 일자"
-                        android:includeFontPadding="false"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -173,7 +170,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="*결제 알림일"
-                        android:includeFontPadding="false"
                         android:textSize="12sp" />
                 </LinearLayout>
 

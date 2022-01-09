@@ -12,7 +12,6 @@
         android:layout_marginBottom="5dp"
         android:padding="10dp"
         android:text="OTT 팀원 모집"
-        android:includeFontPadding="false"
         android:textSize="15sp"
         android:textStyle="bold" />
 

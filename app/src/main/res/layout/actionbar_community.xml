@@ -22,7 +22,7 @@
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/ibt_ab_community_back"
         android:layout_toStartOf="@id/iv_ab_community_platform"
-        android:text="커뮤니티"
+        android:text="@string/nav_community"
         android:textColor="@color/black"
         android:textSize="14sp" />
 
