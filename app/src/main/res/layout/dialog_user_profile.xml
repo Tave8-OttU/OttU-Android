@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="8dp"
             android:text="@string/nickname"
+            android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -52,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오뜨 Level"
+            android:includeFontPadding="false"
             android:textSize="14sp" />
 
         <View
@@ -77,9 +78,10 @@
                 android:id="@+id/tv_dialog_profile_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginEnd="5dp"
                 android:text="5"
+                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -88,7 +90,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+        android:layout_height="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,6 +98,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:text="관심 장르"
+        android:includeFontPadding="false"
         android:textAlignment="center"
         android:textColor="@color/main_color"
         android:textSize="14sp"
@@ -111,19 +114,23 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:orientation="horizontal">
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_profile_genre1"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="42dp"
             android:layout_weight="1"
+            android:includeFontPadding="false"
             android:background="@drawable/bg_bt_genre"
             android:text="없음"
             android:textSize="12sp" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_profile_genre2"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="42dp"
             android:layout_weight="1"
+            android:includeFontPadding="false"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/bg_bt_genre"
@@ -132,8 +139,9 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_profile_genre3"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="42dp"
             android:layout_weight="1"
+            android:includeFontPadding="false"
             android:background="@drawable/bg_bt_genre"
             android:textSize="12sp"
             android:visibility="invisible" />

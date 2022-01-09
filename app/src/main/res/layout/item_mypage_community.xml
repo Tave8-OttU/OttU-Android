@@ -65,7 +65,7 @@
             android:layout_height="23dp"
             android:layout_gravity="center_vertical"
             android:padding="3dp"
-            android:src="@drawable/icon_comment"
+            android:src="@drawable/icon_comment2"
             android:contentDescription="@string/comment"
             app:tint="@color/white" />
         <TextView

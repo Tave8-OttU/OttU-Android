@@ -15,8 +15,11 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:buttonStyle">@style/NotoSansButtonStyle</item>
+        <item name="android:editTextStyle">@style/NotoSansEditTextStyle</item>
+        <item name="android:checkboxStyle">@style/NotoSansCheckboxStyle</item>
+        <item name="android:textViewStyle">@style/NotoSansTextViewStyle</item>
     </style>
-
     <style name="PopUpMenuTheme" parent="Widget.AppCompat.PopupMenu">
         <item name="android:textColor">@color/black</item>
     </style>

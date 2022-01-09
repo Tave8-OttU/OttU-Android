@@ -72,13 +72,13 @@
     <string name="recruiting_4">4. </string>
     <string name="recruiting_1_content">참여자 모집 글 작성</string>
     <string name="recruiting_2_content">참여자 중 팀원 선택</string>
-    <string name="recruiting_2_content2">*오뜨 Level과 프로필을 참고하세요:)</string>
+    <string name="recruiting_2_content2">*오뜨 Level과 프로필을 참고하세요.</string>
     <string name="recruiting_3_content">팀원 선택 후, 팀원의 카카오 아이디 확인</string>
     <string name="recruiting_4_content">1주일 내로, 팀원들과 소통 후 결제 일자 입력</string>
     <string name="recruiting_notice1">*팀원 중 한 명이라도 해지 의사를 밝히면 팀은 해체됩니다.</string>
     <string name="recruiting_notice2">*팀 해체 시, 오뜨 level에 적용되는 팀원 간의 평가가 이루어집니다.</string>
     <string name="recruiting_check">위 사항들을 확인했습니다.</string>
-    <string name="recruiting_submit">모집 작성 완료</string>
+    <string name="recruiting_submit">모집 작성</string>
 
     <string name="mypage_my_ottu">나의 OttU</string>
     <string name="mypage_my_recruit">내가 작성한 모집글</string>
