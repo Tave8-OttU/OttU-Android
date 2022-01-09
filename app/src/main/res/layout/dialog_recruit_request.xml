@@ -9,14 +9,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:padding="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_margin="5dp"
             android:text="참여 요청"
+            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -31,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
+                android:includeFontPadding="false"
                 android:textColor="@color/main_transparent_color"
                 android:textSize="19sp" />
             <TextView
@@ -39,6 +41,7 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
                 android:text="/"
+                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="19sp" />
             <TextView
@@ -46,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
+                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -75,22 +79,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_yes"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/ok"
             android:textColor="@color/light_grey2"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_dialog_request_confirmed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_yes"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/confirmed"
             android:textColor="@color/light_grey2"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone"/>
         <View
@@ -101,11 +105,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_no"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/delete"
             android:textColor="@color/red_notice"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:text="Coupang Play"
+        android:includeFontPadding="false"
         android:textSize="14sp" />
 
     <TextView
@@ -23,6 +24,7 @@
         android:maxLines="1"
         android:singleLine="true"
         android:text="커뮤니티 글 content"
+        android:includeFontPadding="false"
         android:textColor="@color/sub_text_color"
         android:textSize="12sp" />
 </LinearLayout>

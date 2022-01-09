@@ -47,10 +47,7 @@
             android:enabled="false"
             android:importantForAutofill="no"
             android:inputType="text"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:padding="10dp"
             android:textColor="@color/white"
             android:textSize="14sp"
             tools:ignore="LabelFor" />
@@ -62,7 +59,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="새로운 닉네임 :"
+            android:text="닉네임"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -74,10 +71,7 @@
             android:background="@drawable/bg_edittext"
             android:importantForAutofill="no"
             android:inputType="text"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:padding="10dp"
             android:textColor="@color/white"
             android:textSize="14sp"
             tools:ignore="LabelFor" />
@@ -100,7 +94,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
             <TextView
@@ -114,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/change_nick_rule1"
+                android:includeFontPadding="false"
                 android:textColor="@color/sub_text_color"
                 android:textSize="12sp" />
             <TextView

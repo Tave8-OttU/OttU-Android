@@ -37,6 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:text="베이식"
+            android:includeFontPadding="false"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -50,6 +51,7 @@
             android:layout_toEndOf="@id/tv_dialog_participate_rateplan"
             android:layout_toStartOf="@id/tv_dialog_participate_yuan"
             android:text="9,500"
+            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="14sp"
@@ -62,6 +64,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:text="원"
+            android:includeFontPadding="false"
             android:textAlignment="viewEnd"
             android:textColor="@color/main_color"
             android:textSize="14sp"
@@ -135,6 +138,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="\u279E"
+                android:includeFontPadding="false"
                 android:textColor="@color/main_color"
                 android:textSize="16sp" />
 
@@ -150,6 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="9,500"
+                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView
@@ -157,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="원"
+                    android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -201,11 +207,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_yes"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/ok"
             android:textColor="@color/light_grey2"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
         <View
             android:layout_width="30dp"
@@ -215,11 +221,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_no"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/cancel"
             android:textColor="@color/red_notice"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>

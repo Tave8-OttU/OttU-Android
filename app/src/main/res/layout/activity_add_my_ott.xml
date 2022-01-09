@@ -32,8 +32,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OTT 서비스 플랫폼"
-                    android:textSize="16sp"
+                    android:text="OTT 선택"
+                    android:includeFontPadding="false"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -49,7 +50,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_netflix"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
                             android:scaleType="fitCenter"
@@ -58,7 +59,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_wavve"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
@@ -68,7 +69,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_disney"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
@@ -88,7 +89,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_tving"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
                             android:scaleType="fitCenter"
@@ -97,7 +98,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_watcha"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
@@ -107,7 +108,7 @@
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/ibt_addmyott_coupangplay"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="90dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_r5white"
                             android:padding="22dp"
@@ -132,7 +133,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/recruiting_select_rateplan"
-                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -162,7 +164,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="결제 일자"
-                        android:textSize="16sp"
+                        android:includeFontPadding="false"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -170,6 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="*결제 알림일"
+                        android:includeFontPadding="false"
                         android:textSize="12sp" />
                 </LinearLayout>
 

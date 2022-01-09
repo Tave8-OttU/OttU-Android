@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_r5blue"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="커뮤니티 글 삭제"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -42,11 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_yes"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/ok"
             android:textColor="@color/light_grey2"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
         <View
             android:layout_width="30dp"
@@ -56,11 +56,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bt_no"
-            android:minWidth="0dp"
+            android:minWidth="80dp"
             android:minHeight="0dp"
             android:text="@string/cancel"
             android:textColor="@color/red_notice"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>

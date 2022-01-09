@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nickname"
+            android:includeFontPadding="false"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오뜨 Level"
+                android:includeFontPadding="false"
                 android:textSize="14sp" />
 
             <View
@@ -55,9 +57,10 @@
                     android:id="@+id/tv_frag_mypage_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="5dp"
                     android:text="5"
+                    android:includeFontPadding="false"
                     android:textColor="@color/main_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -66,7 +69,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,6 +77,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:text="관심 장르"
+            android:includeFontPadding="false"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -90,16 +94,18 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_frag_mypage_genre1"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
+                android:includeFontPadding="false"
                 android:background="@drawable/bg_button_select"
                 android:text="@string/genre_1"
                 android:textSize="12sp" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_frag_mypage_genre2"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
+                android:includeFontPadding="false"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/bg_button_select"
@@ -108,8 +114,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_frag_mypage_genre3"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
+                android:includeFontPadding="false"
                 android:background="@drawable/bg_button_select"
                 android:text="@string/genre_3"
                 android:textSize="12sp" />
@@ -117,32 +124,36 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="30dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/mypage_my_ottu"
             android:textSize="16sp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="20dp">
+
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_my_recruit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_recruit"
                     android:textSize="14sp" />
 
@@ -158,7 +169,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp" />
 
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_my_community_post"
@@ -166,9 +177,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_community_post"
                     android:textSize="14sp" />
 
@@ -184,7 +197,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp" />
 
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_my_ott"
@@ -192,9 +205,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:text="@string/mypage_my_ott_service"
                     android:textSize="14sp" />
 
@@ -211,7 +226,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="20dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -227,7 +242,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="20dp">
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_change_nick"
                 android:layout_width="match_parent"
@@ -238,6 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_nick"
+                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -252,7 +268,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_change_genre"
@@ -264,6 +280,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_genre"
+                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -278,7 +295,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_change_kakaoid"
@@ -290,6 +307,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_change_kakaotalk_id"
+                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -305,7 +323,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="20dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -321,7 +339,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_r5black1_4_slightblue"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="20dp">
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_logout"
                 android:layout_width="match_parent"
@@ -332,6 +350,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_logout"
+                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -346,7 +365,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_frag_mypage_withdrawal"
@@ -358,6 +377,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_withdrawal"
+                    android:includeFontPadding="false"
                     android:textSize="14sp" />
 
                 <ImageView

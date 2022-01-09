@@ -18,8 +18,8 @@
             android:layout_weight="1"
             android:layout_marginTop="8dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             android:text="팀원 정보"
+            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -62,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="결제일 입력"
+            android:includeFontPadding="false"
             android:textColor="@color/main_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="*결제 알림일"
+            android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
         <TextView
@@ -77,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="(7일 이내 입력 시 팀 확정)"
+            android:includeFontPadding="false"
             android:textColor="@color/red_notice"
             android:textSize="12sp" />
     </LinearLayout>
@@ -131,17 +134,17 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_dialog_confirmed_team_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_r5blue"
         android:layout_gravity="center"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/ok"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textStyle="bold"/>
 </LinearLayout>

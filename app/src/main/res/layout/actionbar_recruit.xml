@@ -28,8 +28,8 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/iv_ab_recruit_filter"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:layout_marginEnd="15dp"
         android:layout_toStartOf="@id/iv_ab_recruit_platform"

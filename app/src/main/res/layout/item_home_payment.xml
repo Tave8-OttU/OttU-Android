@@ -51,6 +51,7 @@
             android:shadowColor="@color/bg_black_color1_4"
             android:text="결제 예정"
             android:textColor="@color/sub_text_color2"
+            android:fontFamily="@font/notosans_light"
             android:textSize="14sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
