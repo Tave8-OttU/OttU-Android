@@ -13,13 +13,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.tave8.ottu.adapter.OttPaymentRecyclerAdapter;
+import com.tave8.ottu.adapter.MyOttPaymentRecyclerAdapter;
 import com.tave8.ottu.data.PaymentInfo;
 
 import org.json.JSONArray;
@@ -38,8 +36,10 @@ import retrofit2.Response;
 import static com.tave8.ottu.MainActivity.myInfo;
 
 public class MyOTTActivity extends AppCompatActivity {
+    private boolean isAdded = false;
     private ArrayList<PaymentInfo> myOttPaymentList;
-    private OttPaymentRecyclerAdapter ottPaymentRecyclerAdapter;
+
+    private MyOttPaymentRecyclerAdapter myOttPaymentRecyclerAdapter;
     private TextView tvMyOttNo;
 
     @Override
@@ -65,14 +65,25 @@ public class MyOTTActivity extends AppCompatActivity {
         RecyclerView rvMyOttPost = findViewById(R.id.rv_my_ott_platformList);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         rvMyOttPost.setLayoutManager(manager);
-        ottPaymentRecyclerAdapter = new OttPaymentRecyclerAdapter(myOttPaymentList);
-        rvMyOttPost.setAdapter(ottPaymentRecyclerAdapter);
-        DividerItemDecoration devider = new DividerItemDecoration(this, 1);
-        devider.setDrawable(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.item_divide_bar, null)));
-        rvMyOttPost.addItemDecoration(devider);
+        myOttPaymentRecyclerAdapter = new MyOttPaymentRecyclerAdapter(myOttPaymentList);
+        rvMyOttPost.setAdapter(myOttPaymentRecyclerAdapter);
 
         updateMyOTTList();
         myOTTClickListener();
+    }
+
+    @Override
+    public void finish() {
+        if (isAdded) {
+            Intent submittedIntent = new Intent();
+            setResult(RESULT_OK, submittedIntent);
+        }
+        else {
+            Intent returnIntent = new Intent();
+            setResult(RESULT_CANCELED, returnIntent);
+        }
+
+        super.finish();
     }
 
     private void toolbarListener(Toolbar toolbar) {
@@ -84,8 +95,10 @@ public class MyOTTActivity extends AppCompatActivity {
         ActivityResultLauncher<Intent> startActivityResultAddingOtt = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getResultCode() == RESULT_OK)
+                    if (result.getResultCode() == RESULT_OK) {
+                        isAdded = true;
                         updateMyOTTList();
+                    }
                 });
 
         FloatingActionButton fabAddOttService = findViewById(R.id.fab_my_ott_add);
@@ -116,7 +129,7 @@ public class MyOTTActivity extends AppCompatActivity {
                             String paymentDate = paymentOtt.getString("paymentDate");
                             myOttPaymentList.add(new PaymentInfo(paymentIdx, platformIdx, teamName, headcount, paymentDay, LocalDate.parse(paymentDate, DateTimeFormatter.ISO_DATE)));
                         }
-                        ottPaymentRecyclerAdapter.notifyDataSetChanged();
+                        myOttPaymentRecyclerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }
                 }
                 else if (response.code() == 401) {

@@ -58,7 +58,7 @@ public class NoticeFirebaseMessagingService extends FirebaseMessagingService {
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_ottu)
                     .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                     .setContentTitle(title)
                     .setContentText(message)

@@ -12,6 +12,7 @@ public class SingletonPlatform {
     private static SingletonPlatform platform;
     @NonNull private HashMap<Integer, Integer> platformLogoList;                    //platformIdx로 찾음
     @NonNull private HashMap<Integer, String> platformNameList;                     //platformIdx로 찾음
+    @NonNull private HashMap<Integer, String> platformEnglishNameList;              //platformIdx로 영어이름 찾음
     @NonNull private HashMap<Integer, ArrayList<RatePlanInfo>> platformInfoList;    //platformIdx로 찾음
 
     private SingletonPlatform() {
@@ -30,6 +31,14 @@ public class SingletonPlatform {
         platformNameList.put(4, "왓챠");
         platformNameList.put(5, "디즈니 플러스");
         platformNameList.put(6, "쿠팡 플레이");
+
+        platformEnglishNameList = new HashMap<>();
+        platformEnglishNameList.put(1, "Netflix");
+        platformEnglishNameList.put(2, "Tving");
+        platformEnglishNameList.put(3, "Wavve");
+        platformEnglishNameList.put(4, "Watcha");
+        platformEnglishNameList.put(5, "Disney+");
+        platformEnglishNameList.put(6, "Coupang Play");
 
         platformInfoList = new HashMap<>();
         ArrayList<RatePlanInfo> netflixRatePlanInfoList = new ArrayList<>();
@@ -83,6 +92,11 @@ public class SingletonPlatform {
     @NonNull
     public HashMap<Integer, String> getPlatformNameList() {
         return platformNameList;
+    }
+
+    @NonNull
+    public HashMap<Integer, String> getPlatformEnglishNameList() {
+        return platformEnglishNameList;
     }
 
     @NonNull

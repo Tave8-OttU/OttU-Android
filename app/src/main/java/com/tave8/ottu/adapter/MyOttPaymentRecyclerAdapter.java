@@ -30,34 +30,45 @@ import com.tave8.ottu.data.RatePlanInfo;
 import com.tave8.ottu.data.SingletonPlatform;
 
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRecyclerAdapter.ItemViewHolder> {
+public class MyOttPaymentRecyclerAdapter extends RecyclerView.Adapter<MyOttPaymentRecyclerAdapter.ItemViewHolder> {
     private Context context;
     private ArrayList<PaymentInfo> ottPaymentList;
 
-    public OttPaymentRecyclerAdapter(ArrayList<PaymentInfo> ottPaymentList) {
+    public MyOttPaymentRecyclerAdapter(ArrayList<PaymentInfo> ottPaymentList) {
         this.ottPaymentList = ottPaymentList;
     }
 
     @NonNull
     @Override
-    public OttPaymentRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyOttPaymentRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.item_mypage_ott, parent, false);
-        OttPaymentRecyclerAdapter.ItemViewHolder viewHolder = new OttPaymentRecyclerAdapter.ItemViewHolder(view);
+        MyOttPaymentRecyclerAdapter.ItemViewHolder viewHolder = new MyOttPaymentRecyclerAdapter.ItemViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OttPaymentRecyclerAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyOttPaymentRecyclerAdapter.ItemViewHolder holder, int position) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        if (position == 0)
+            holder.viMargin.setVisibility(View.GONE);
+        if (position>0 && ottPaymentList.get(position-1).getPaymentDay()==ottPaymentList.get(position).getPaymentDay()) {
+            holder.tvPaymentDate.setVisibility(View.GONE);
+            holder.viMargin.setVisibility(View.GONE);
+        }
+        else
+            holder.tvPaymentDate.setText(ottPaymentList.get(position).getPaymentDate().format(dateTimeFormatter));
+
         int imageResourceId = SingletonPlatform.getPlatform().getPlatformLogoList().get(ottPaymentList.get(position).getPlatformIdx());
         holder.ivPlatform.setImageResource(imageResourceId);
     }
@@ -68,14 +79,18 @@ public class OttPaymentRecyclerAdapter extends RecyclerView.Adapter<OttPaymentRe
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivPlatform;
         AppCompatImageButton ibtOttNext;
+        ImageView ivPlatform;
+        View viMargin;
+        TextView tvPaymentDate;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ivPlatform = itemView.findViewById(R.id.iv_item_mypage_platform);
+            tvPaymentDate = itemView.findViewById(R.id.tv_item_mypage_ott_payment_date);
+            ivPlatform = itemView.findViewById(R.id.iv_item_mypage_ott_platform);
             ibtOttNext = itemView.findViewById(R.id.ibt_item_mypage_ott_next);
+            viMargin = itemView.findViewById(R.id.view_item_mypage_ott);
 
             itemView.setOnClickListener(v -> {
                 int pos = getAdapterPosition();

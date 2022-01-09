@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -300,7 +299,6 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
             OttURetrofitClient.getApiService().getRecruitWaitlist(PreferenceManager.getString(context, "jwt"), recruitIdx).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                    Log.i("MyRecruitRecyclerAdapter 확인용", response.body());
                     if (response.code() == 200) {
                         userRequestList.clear();
                         try {
@@ -319,7 +317,7 @@ public class MyRecruitRecyclerAdapter extends RecyclerView.Adapter<MyRecruitRecy
                                 userRequestList.add(new RecruitRequestInfo(waitlistIdx, new UserEssentialInfo(userIdx, nickname), isAccepted));
                             }
 
-                            if (choiceNum == headcount && !result.getBoolean("timeout")) {
+                            if (choiceNum == headcount && !result.getBoolean("timeout") && !result.getBoolean("isTeam")) {
                                 btRequestYes.setVisibility(View.GONE);
                                 btRequestConfirmed.setVisibility(View.VISIBLE);
                             }

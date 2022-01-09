@@ -12,6 +12,7 @@ public class RecruitInfo {
     private int choiceNum;
     private LocalDateTime recruitDateTime;
 
+    //MyRecruitActivity에서 사용
     public RecruitInfo(Long recruitIdx, int platformIdx, UserEssentialInfo writerInfo, boolean isCompleted, int headCount, int choiceNum, LocalDateTime recruitDateTime) {
         this.recruitIdx = recruitIdx;
         this.platformIdx = platformIdx;
@@ -22,6 +23,7 @@ public class RecruitInfo {
         this.recruitDateTime = recruitDateTime;
     }
 
+    //RecruitActivity에서 사용
     public RecruitInfo(Long recruitIdx, int platformIdx, UserEssentialInfo writerInfo, boolean isCompleted, boolean isApplying, int headCount, int choiceNum, LocalDateTime recruitDateTime) {
         this.recruitIdx = recruitIdx;
         this.platformIdx = platformIdx;

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -40,6 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static com.tave8.ottu.MainActivity.myInfo;
 
 public class FragmentHome extends Fragment {
@@ -67,8 +70,14 @@ public class FragmentHome extends Fragment {
         ciOttPayment.setViewPager(vpOttPayment);
         homePaymentPagerAdapter.registerAdapterDataObserver(ciOttPayment.getAdapterDataObserver());
 
+        ActivityResultLauncher<Intent> startActivityResultOttAdding = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK)
+                        updateMyUrgentOttList();
+                });
         llNoPayment = rootView.findViewById(R.id.ll_home_payment_no);
-        llNoPayment.setOnClickListener(v -> startActivity(new Intent(requireContext(), MyOTTActivity.class)));
+        llNoPayment.setOnClickListener(v -> startActivityResultOttAdding.launch(new Intent(requireContext(), MyOTTActivity.class)));
 
         updateMyUrgentOttList();
 
@@ -88,6 +97,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
+                    ottPaymentList.clear();
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonOttList = result.getJSONArray("ottlist");
@@ -132,6 +142,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
+                    ottCommunityList.clear();
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonCurrentPostList = result.getJSONArray("postlist");
@@ -139,7 +150,7 @@ public class FragmentHome extends Fragment {
                             JSONObject ottCurrentPost = jsonCurrentPostList.getJSONObject(i);
 
                             int platformIdx = ottCurrentPost.getJSONObject("platform").getInt("platformIdx");
-                            String platformName = ottCurrentPost.getJSONObject("platform").getString("platformName");
+                            String platformName = SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(platformIdx);
                             String content = ottCurrentPost.getString("content");
 
                             ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));
@@ -147,7 +158,7 @@ public class FragmentHome extends Fragment {
 
                         for (int i=jsonCurrentPostList.length(); i<SingletonPlatform.getPlatform().getPlatformNum(); i++) {
                             int platformIdx = i+1;
-                            String platformName = SingletonPlatform.getPlatform().getPlatformNameList().get(platformIdx);
+                            String platformName = SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(platformIdx);
                             String content = "게시글이 존재하지 않음";
 
                             ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));

@@ -67,7 +67,7 @@ public class PostActivity extends AppCompatActivity {
 
     private CommentRecyclerAdapter commentRecyclerAdapter;
     private NestedScrollView nsvPost;
-    private TextView tvWriterNick, tvContent, tvCommentNum;
+    private TextView tvWriterNick, tvContent, tvCommentNum, tvComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,9 @@ public class PostActivity extends AppCompatActivity {
         tvPostDateTime.setText(postInfo.getPostDateTime().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss")));
         tvContent.setText(postInfo.getContent().replace(" ", "\u00A0"));
         tvCommentNum.setText(String.valueOf(postInfo.getCommentNum()));
+
+        tvComment = findViewById(R.id.tv_post_comment);
+        tvComment.setVisibility(View.GONE);
 
         nsvPost = findViewById(R.id.nsv_post);
         RecyclerView rvComment = findViewById(R.id.rv_post_comment);
@@ -403,18 +406,23 @@ public class PostActivity extends AppCompatActivity {
                             JSONObject writer = comment.getJSONObject("writer");
                             UserEssentialInfo writerInfo = new UserEssentialInfo(writer.getLong("userIdx"), writer.getString("nickname"));
 
-                            String commenntContent = comment.getString("content");
+                            String commentContent = comment.getString("content");
 
                             String createdDate = comment.getString("createdDate");
                             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-                            commentList.add(new CommentInfo(commentIdx, writerInfo, commenntContent, LocalDateTime.parse(createdDate, dateTimeFormatter)));
+                            commentList.add(new CommentInfo(commentIdx, writerInfo, commentContent, LocalDateTime.parse(createdDate, dateTimeFormatter)));
                         }
                         commentRecyclerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }
 
                     if (isCommentAdded)
                         nsvPost.post(() -> nsvPost.fullScroll(View.FOCUS_DOWN));
+
+                    if (commentList.size() == 0)
+                        tvComment.setVisibility(View.GONE);
+                    else
+                        tvComment.setVisibility(View.VISIBLE);
                 }
                 else if (response.code() == 401) {
                     Toast.makeText(PostActivity.this, "로그인 기한이 만료되어\n 로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
