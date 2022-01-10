@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class OttURetrofitClient {
-    private static final String BASE_URL = "http://ec2-13-209-81-234.ap-northeast-2.compute.amazonaws.com/";
+    private static final String BASE_URL = "http://ec2-52-78-36-104.ap-northeast-2.compute.amazonaws.com/";
 
     public static OttURetrofitAPI getApiService() {
         return getInstance().create(OttURetrofitAPI.class);

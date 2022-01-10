@@ -146,6 +146,7 @@ public class FragmentHome extends Fragment {
                     try {
                         JSONObject result = new JSONObject(Objects.requireNonNull(response.body()));
                         JSONArray jsonCurrentPostList = result.getJSONArray("postlist");
+                        /*
                         for (int i=0; i<jsonCurrentPostList.length(); i++) {
                             JSONObject ottCurrentPost = jsonCurrentPostList.getJSONObject(i);
 
@@ -163,6 +164,49 @@ public class FragmentHome extends Fragment {
 
                             ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));
                         }
+                        
+                         */
+
+                        if (jsonCurrentPostList.length() < SingletonPlatform.getPlatform().getPlatformNum()) {
+                            //중간에 게시글이 없는 플랫폼 커뮤니티가 존재
+                            for (int i=0; i<jsonCurrentPostList.length(); i++) {
+                                JSONObject ottCurrentPost = jsonCurrentPostList.getJSONObject(i);
+                                int platformIdx = ottCurrentPost.getJSONObject("platform").getInt("platformIdx");
+
+                                int pos = ottCommunityList.size();
+                                if (platformIdx != 1 && pos+1 != platformIdx) {
+                                    //이전에 게시글이 없는 플랫폼 커뮤니티가 존재함!
+                                    for (int j=1; j+pos<platformIdx; j++) {
+                                        ottCommunityList.add(new SimpleCommunityInfo(pos+1, SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(pos+1), "게시글이 존재하지 않음"));
+                                    }
+                                }
+
+                                String platformName = SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(platformIdx);
+                                String content = ottCurrentPost.getString("content");
+
+                                ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));
+                            }
+                            //전달받은 플랫폼 이후의 글 없는 플랫폼들 저장
+                            for (int i=ottCommunityList.size(); i<SingletonPlatform.getPlatform().getPlatformNum(); i++) {
+                                int platformIdx = i+1;
+                                String platformName = SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(platformIdx);
+                                String content = "게시글이 존재하지 않음";
+
+                                ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));
+                            }
+                        }
+                        else {
+                            for (int i=0; i<jsonCurrentPostList.length(); i++) {
+                                JSONObject ottCurrentPost = jsonCurrentPostList.getJSONObject(i);
+
+                                int platformIdx = ottCurrentPost.getJSONObject("platform").getInt("platformIdx");
+                                String platformName = SingletonPlatform.getPlatform().getPlatformEnglishNameList().get(platformIdx);
+                                String content = ottCurrentPost.getString("content");
+
+                                ottCommunityList.add(new SimpleCommunityInfo(platformIdx, platformName, content));
+                            }
+                        }
+
                         homeCommunityRecyclerAdapter.notifyDataSetChanged();
                     } catch (JSONException e) { e.printStackTrace(); }
                 }
