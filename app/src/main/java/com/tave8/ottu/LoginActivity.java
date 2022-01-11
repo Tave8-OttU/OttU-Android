@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
         else
             btLogin.setEnabled(true);
 
-
         btLogin.setOnClickListener(v -> {
             if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(this))
                 UserApiClient.getInstance().loginWithKakaoTalk(this, kakaoLoginCallback);

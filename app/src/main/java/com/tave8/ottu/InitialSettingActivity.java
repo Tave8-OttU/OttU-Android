@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -221,7 +220,7 @@ public class InitialSettingActivity extends AppCompatActivity {
                                 genre.add(new Genre(genreId));
                             }
 
-                            myInfo = new UserInfo(1L, nickname, kakaotalkId, 10, true, genre);
+                            myInfo = new UserInfo(userIdx, nickname, kakaotalkId, 10, true, genre);
 
                             startActivity(new Intent(InitialSettingActivity.this, MainActivity.class));
                             finish();
