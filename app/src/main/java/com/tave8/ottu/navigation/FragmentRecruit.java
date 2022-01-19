@@ -2,9 +2,13 @@ package com.tave8.ottu.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +22,20 @@ public class FragmentRecruit extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_recruit, container, false);
+
+        Display display = requireActivity().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+
+        if (dpHeight < 700) {   //화면 크기가 700보다 작을 때
+            LinearLayout llCommunity = rootView.findViewById(R.id.ll_frag_recruit);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            llCommunity.setLayoutParams(layoutParams);
+            llCommunity.setOrientation(LinearLayout.HORIZONTAL);
+        }
 
         AppCompatImageButton ibtNetflix = rootView.findViewById(R.id.ibt_frag_recruit_netflix);
         AppCompatImageButton ibtTving = rootView.findViewById(R.id.ibt_frag_recruit_tving);

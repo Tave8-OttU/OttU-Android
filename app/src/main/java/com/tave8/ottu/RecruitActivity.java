@@ -50,11 +50,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.tave8.ottu.MainActivity.myInfo;
-
 public class RecruitActivity extends AppCompatActivity {
     private int platformIdx = 0;
-    private int headcount = 0;  //0일 때는 전체
+    private Integer headcountFilter = null;
+    private Boolean completedFilter = null;
     private ArrayList<RecruitInfo> recruitList = null;
     
     private RecruitRecyclerAdapter recruitRecyclerAdapter;
@@ -124,10 +123,10 @@ public class RecruitActivity extends AppCompatActivity {
             alertDialog.getWindow().setAttributes(params);
 
             TextView tvHeadcount = filterDialogView.findViewById(R.id.tv_dialog_filter_headcount);
-            if (headcount == 0)
-                tvHeadcount.setText("전체");
+            if (headcountFilter == null)
+                tvHeadcount.setText(getString(R.string.filter_all));
             else
-                tvHeadcount.setText(String.valueOf(headcount));
+                tvHeadcount.setText(String.valueOf(headcountFilter));
 
             LinearLayout llHeadcount = filterDialogView.findViewById(R.id.ll_dialog_filter_headcount);
             llHeadcount.setOnClickListener(view -> {
@@ -146,12 +145,44 @@ public class RecruitActivity extends AppCompatActivity {
 
                 filterMenu.setOnMenuItemClickListener(menuItem -> {
                     if (menuItem.getItemId() == R.id.menu_headcount_all) {
-                        headcount = 0;
-                        tvHeadcount.setText("전체");
+                        headcountFilter = null;
+                        tvHeadcount.setText(getString(R.string.filter_all));
                     }
                     else { //인원 수 1, 2, 4
-                        headcount = Integer.valueOf(menuItem.getTitle().toString());
+                        headcountFilter = Integer.parseInt(menuItem.getTitle().toString());
                         tvHeadcount.setText(menuItem.getTitle());
+                    }
+                    return false;
+                });
+                filterMenu.show();
+            });
+
+            TextView tvIsCompleted = filterDialogView.findViewById(R.id.tv_dialog_filter_completed);
+            if (completedFilter == null)
+                tvIsCompleted.setText(getString(R.string.filter_all));
+            else if (!completedFilter)
+                tvIsCompleted.setText(getString(R.string.filter_completed_false));
+            else
+                tvIsCompleted.setText(getString(R.string.filter_completed_true));
+
+            LinearLayout llCompleted = filterDialogView.findViewById(R.id.ll_dialog_filter_completed);
+            llCompleted.setOnClickListener(view -> {
+                Context wrapper = new ContextThemeWrapper(this, R.style.PopUpMenuTheme);
+                PopupMenu filterMenu = new PopupMenu(wrapper, view);
+                getMenuInflater().inflate(R.menu.menu_filter_completed, filterMenu.getMenu());
+
+                filterMenu.setOnMenuItemClickListener(menuItem -> {
+                    if (menuItem.getItemId() == R.id.menu_completed_all) {
+                        completedFilter = null;
+                        tvIsCompleted.setText(getString(R.string.filter_all));
+                    }
+                    else if (menuItem.getItemId() == R.id.menu_completed_false) {   //모집 중 조회
+                        completedFilter = false;
+                        tvIsCompleted.setText(getString(R.string.filter_completed_false));
+                    }
+                    else {  //모집 완료 조회
+                        completedFilter = true;
+                        tvIsCompleted.setText(getString(R.string.filter_completed_true));
                     }
                     return false;
                 });
@@ -190,7 +221,7 @@ public class RecruitActivity extends AppCompatActivity {
     public void updateRecruitList(boolean isSwipe) {
         tvRecruitNo.setVisibility(View.GONE);
 
-        Callback<String> recruitListCallback = new Callback<String>() {
+        OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, headcountFilter, completedFilter).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 200) {
@@ -244,11 +275,6 @@ public class RecruitActivity extends AppCompatActivity {
 
                 Toast.makeText(RecruitActivity.this, "서버와 연결되지 않았습니다. 확인해 주세요:)", Toast.LENGTH_SHORT).show();
             }
-        };
-        
-        if (headcount == 0)
-            OttURetrofitClient.getApiService().getRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, myInfo.getUserIdx()).enqueue(recruitListCallback);
-        else       //filter 시에 사용
-            OttURetrofitClient.getApiService().getHeadcountRecruitList(PreferenceManager.getString(this, "jwt"), platformIdx, myInfo.getUserIdx(), headcount).enqueue(recruitListCallback);
+        });
     }
 }

@@ -24,6 +24,7 @@
         android:layout_weight="1"
         android:scrollbars="none">
         <LinearLayout
+            android:id="@+id/ll_frag_community"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

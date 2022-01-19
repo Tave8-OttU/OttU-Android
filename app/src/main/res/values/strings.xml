@@ -56,9 +56,11 @@
     <string name="genre_12">기타</string>
 
     <string name="filter_all">전체</string>
-    <string name="filter_1">1</string>
-    <string name="filter_2">2</string>
-    <string name="filter_4">4</string>
+    <string name="filter_headcount_1">1</string>
+    <string name="filter_headcount_2">2</string>
+    <string name="filter_headcount_4">4</string>
+    <string name="filter_completed_false">진행 중</string>
+    <string name="filter_completed_true">완료</string>
 
     <string name="participate_question">참여 요청하시겠습니까?</string>
     <string name="participate_notice1">*요청 시 작성자에게 카카오 아이디가 공개되며,\n이를 통해 팀원 간 연락이 가능합니다.</string>

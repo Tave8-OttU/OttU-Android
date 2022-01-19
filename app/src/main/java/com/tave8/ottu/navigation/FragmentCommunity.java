@@ -2,9 +2,13 @@ package com.tave8.ottu.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,20 @@ public class FragmentCommunity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
+
+        Display display = requireActivity().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+
+        if (dpHeight < 800) {   //화면 크기가 800보다 작을 때
+            LinearLayout llCommunity = rootView.findViewById(R.id.ll_frag_community);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            llCommunity.setLayoutParams(layoutParams);
+            llCommunity.setOrientation(LinearLayout.VERTICAL);
+        }
 
         RelativeLayout rlNetflix = rootView.findViewById(R.id.rl_frag_community_netflix);
         RelativeLayout rlTving = rootView.findViewById(R.id.rl_frag_community_tving);

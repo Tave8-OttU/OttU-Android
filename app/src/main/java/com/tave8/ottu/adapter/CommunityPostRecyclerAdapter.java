@@ -80,8 +80,6 @@ public class CommunityPostRecyclerAdapter extends RecyclerView.Adapter<Community
             holder.tvPostTime.setText(String.valueOf(ChronoUnit.MINUTES.between(postDateTime, dateTimeNow)).concat("분 전"));
         else if (ChronoUnit.HOURS.between(postDateTime, dateTimeNow) < 24)
             holder.tvPostTime.setText(String.valueOf(ChronoUnit.HOURS.between(postDateTime, dateTimeNow)).concat("시간 전"));
-        else if (ChronoUnit.DAYS.between(postDateTime, dateTimeNow) < 7)
-            holder.tvPostTime.setText(String.valueOf(ChronoUnit.DAYS.between(postDateTime, dateTimeNow)).concat("일 전"));
         else if (ChronoUnit.YEARS.between(postDateTime, dateTimeNow) < 1)
             holder.tvPostTime.setText(String.valueOf(postDateTime.getMonthValue()).concat("/").concat(String.valueOf(postDateTime.getDayOfMonth())));
         else

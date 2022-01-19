@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_completed_all"
+        android:title="@string/filter_all" />
+    <item
+        android:id="@+id/menu_completed_false"
+        android:title="@string/filter_completed_false" />
+    <item
+        android:id="@+id/menu_completed_true"
+        android:title="@string/filter_completed_true" />
+</menu>

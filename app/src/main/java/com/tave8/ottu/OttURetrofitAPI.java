@@ -54,13 +54,10 @@ public interface OttURetrofitAPI {
     Call<String> getMyPostList(@Header("authorization") String jwt, @Path("uid") Long userIdx);     //나의 게시글 조회
 
 
-    @GET("/recruit/{pid}/list/{uid}")
-    Call<String> getRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Path("uid") Long userIdx);//해당 플랫폼의 모집글 조회
+    @GET("/recruit/list")
+    Call<String> getRecruitList(@Header("authorization") String jwt, @Query("pid") int platformIdx, @Query("headcount") Integer headcount, @Query("completed") Boolean completed);//해당 플랫폼의 모집글 조회(필터 가능)
 
-    @GET("/recruit/{pid}/list/{uid}")
-    Call<String> getHeadcountRecruitList(@Header("authorization") String jwt, @Path("pid") int platformIdx, @Path("uid") Long userIdx, @Query("headcount") int headcount);//해당 플랫폼의 인원수에 맞는 모집글 조회
-
-    @POST("/recruit/upload")
+    @POST("/recruit")
     Call<String> postRecruitUpload(@Header("authorization") String jwt, @Body JsonObject request);  //모집글 추가
 
     @DELETE("/recruit/{rid}")
@@ -99,13 +96,13 @@ public interface OttURetrofitAPI {
     @GET("/community/post/current")
     Call<String> getCurrentCommunityPostList(@Header("authorization") String jwt);                  //각 플랫폼별 최신 커뮤니티 글 조회
 
-    @GET("/community/post/{pid}/list")
-    Call<String> getCommunityPostList(@Header("authorization") String jwt, @Path("pid") int platformIdx);   //해당 플랫폼의 커뮤니티글 조회
+    @GET("/community/post/list")
+    Call<String> getCommunityPostList(@Header("authorization") String jwt, @Query("pid") int platformIdx);   //해당 플랫폼의 커뮤니티글 조회
 
     @GET("/community/post/{cpid}")
     Call<String> getPost(@Header("authorization") String jwt, @Path("cpid") Long postIdx);
 
-    @POST("/community/post/upload")
+    @POST("/community/post")
     Call<String> postPostUpload(@Header("authorization") String jwt, @Body JsonObject request);     //커뮤니티 글 추가
 
     @PATCH("/community/post/{cpid}")
@@ -115,7 +112,7 @@ public interface OttURetrofitAPI {
     Call<String> deletePost(@Header("authorization") String jwt, @Path("cpid") Long postIdx);       //커뮤니티 글 삭제
 
 
-    @POST("/community/comment/upload")
+    @POST("/community/comment")
     Call<String> postCommentUpload(@Header("authorization") String jwt, @Body JsonObject request);  //댓글 추가
 
     @DELETE("/community/comment/{ccid}")
