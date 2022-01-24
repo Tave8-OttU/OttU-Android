@@ -12,7 +12,7 @@
         android:layout_marginBottom="5dp"
         android:padding="10dp"
         android:text="OTT 팀원 모집"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <ScrollView

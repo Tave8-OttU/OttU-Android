@@ -309,7 +309,7 @@ public class RecruitRecyclerAdapter extends RecyclerView.Adapter<RecruitRecycler
                             });
                         });
                     }
-                    else if (!recruitPostList.get(pos).isApplying()) {      //참여 다이얼로그가 뜸(참여 완료가 아닐 시에)
+                    else if (!recruitPostList.get(pos).isApplying() && !recruitPostList.get(pos).isCompleted()) {      //참여 다이얼로그가 뜸(참여 완료가 아닐 시에)
                         View participateDialogView = View.inflate(context, R.layout.dialog_recruit_participate, null);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);

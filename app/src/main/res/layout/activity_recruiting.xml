@@ -198,26 +198,31 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"/>
             <TextView
                 android:id="@+id/tv_recruiting_notification1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/recruiting_notice1"
                 android:textColor="@color/red_notice"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
             <TextView
                 android:id="@+id/tv_recruiting_notification2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:text="@string/recruiting_notice2"
                 android:textColor="@color/red_notice"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
