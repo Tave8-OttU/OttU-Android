@@ -38,4 +38,4 @@
 <br/>
   
 ### 시연 영상
-[OttU 앱 시연 영상 바로가기](https://drive.google.com/file/d/1PWWm9LDJfa8emiJn9XsLk-uqmw4v1m6c/view?usp=sharing/)
+[OttU 앱 시연 영상 바로가기](https://drive.google.com/file/d/118hMvKIXNJJBDw0V-Cu5F6z4glewH_iz/view?usp=sharing/)
